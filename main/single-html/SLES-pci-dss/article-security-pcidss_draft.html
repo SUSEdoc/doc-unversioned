@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Payment Card Industry Data Security Standard (PCI DSS) Guide | SUSE Linux Enterprise Server code stream 15</title><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" /><link rel="stylesheet" type="text/css" href="static/css/style.css" /><link rel="stylesheet" type="text/css" href="static/css/highlight.css" />
+<meta name="title" content="Payment Card Industry Data Security Standard (PCI DSS)…" />
+<meta name="description" content="To protect customers and the business itself, companies that handle credit card payments must keep data as safe and secure as possible. Following the Payment C…" />
+<meta name="product-name" content="SUSE Linux Enterprise Server" />
+<meta name="product-number" content="code stream 15" />
+<meta name="book-title" content="Payment Card Industry Data Security Standard (PCI DSS) Guide" />
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi" />
+<meta name="tracker-type" content="bsc" />
+<meta name="tracker-bsc-assignee" content="taroth@suse.com" />
+<meta name="tracker-bsc-component" content="Documentation" />
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 15" />
+<meta property="og:title" content="Payment Card Industry Data Security Standard (PCI DSS)…" />
+<meta property="og:description" content="To protect customers and the business itself, companies that handle credit card payments must keep data as safe and secure as possible. Following the Payment C…" />
+<meta property="og:type" content="article" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Payment Card Industry Data Security Standard (PCI DSS)…" />
+<meta name="twitter:description" content="To protect customers and the business itself, companies that handle credit card payments must keep data as safe and secure as possible. Following the Payment C…" />
+
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css" /></noscript><script src="static/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="static/js/script.js" type="text/javascript"></script><script src="static/js/highlight.min.js" type="text/javascript"></script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft single offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><div id="_outer-wrap"><div id="_white-bg" style="background-color: #E11;"><div id="_header"><div id="_logo"><img src="static/images/logo.svg" alt="Logo" /></div><div class="crumbs inactive"><a class="single-crumb" href="#article-security-pcidss" accesskey="c"><span class="single-contents-icon"></span>Payment Card Industry Data Security Standard (PCI DSS) Guide</a><div class="bubble-corner active-contents"></div></div><div class="clearme"></div></div></div><div id="_fixed-header-wrap" style="background-color: #E11;" class="inactive"><div id="_fixed-header"><div class="crumbs inactive"><a class="single-crumb" href="#article-security-pcidss" accesskey="c"><span class="single-contents-icon"></span>Show Contents: Payment Card Industry Data Security Standard (PCI DSS) Guide</a></div><div class="buttons"><a class="top-button button" href="#">Top</a><div class="clearme"></div></div><div class="clearme"></div></div><div class="active-contents bubble"><div class="bubble-container"><div id="_bubble-toc"><ol><li class="inactive"><a href="#sec-pcidss-what"><span class="number">1 </span><span class="name">What is the PCI DSS?</span></a></li><li class="inactive"><a href="#sec-pcidss-os-relevant"><span class="number">2 </span><span class="name">Focus of this document: areas relevant to the operating system</span></a></li><li class="inactive"><a href="#sec-pcidss-requirement"><span class="number">3 </span><span class="name">Requirements in detail</span></a></li></ol></div><div class="clearme"></div></div></div></div><div id="_toc-bubble-wrap"></div><div id="_content" class="draft "><div class="documentation"><div xml:lang="en" class="article " id="article-security-pcidss" lang="en"><div class="titlepage"><div><h6 class="version-info"><span class="productname "><span class="phrase">SUSE Linux Enterprise Server</span></span> <span class="productnumber "><span class="phrase">code stream 15</span></span></h6><div><h1 class="title"><em class="citetitle ">Payment Card Industry Data Security Standard (PCI DSS) Guide</em> <a title="Permalink" class="permalink" href="#article-security-pcidss">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h1></div><div class="abstract "><div class="abstract-title-wrap"><h6 class="abstract-title">Abstract<a title="Permalink" class="permalink" href="#id-1.3.5">#</a></h6></div><p>
+    To protect customers and the business itself, companies that handle
+    credit card payments must keep data as safe and secure as possible.
+    Following the Payment Card Industry Data Security Standard helps to secure all areas that are connected to
+    payment processes, and to implement security-relevant actions to keep
+    the data and the computing environment safe.
+   </p></div><div class="date"><span class="imprint-label">Publication Date: </span>April 19, 2022
+</div></div></div><div class="line"><div class="toc"><dl><dt><span class="sect1"><a href="#sec-pcidss-what"><span class="number">1 </span><span class="name">What is the PCI DSS?</span></a></span></dt><dt><span class="sect1"><a href="#sec-pcidss-os-relevant"><span class="number">2 </span><span class="name">Focus of this document: areas relevant to the operating system</span></a></span></dt><dt><span class="sect1"><a href="#sec-pcidss-requirement"><span class="number">3 </span><span class="name">Requirements in detail</span></a></span></dt></dl></div></div><p>
+  This document aims to provide a basic understanding of how
+  <span class="phrase">SUSE Linux Enterprise Server</span> can be configured to comply with the Payment Card Industry Data Security Standard.
+ </p><p>
+  It is important to understand that protecting systems includes
+  more than configuration. The entire environment and people involved must
+  be taken into account.
+ </p><p>
+  An essential part of implementing PCI DSS is the combination of actions:
+ </p><div class="orderedlist "><ol class="orderedlist" type="1"><li class="listitem "><p>
+    Create a secure configuration.
+   </p></li><li class="listitem "><p>
+    Track and review all changes made to the configuration: who changed what
+    at which point in time.
+   </p></li></ol></div><div id="art-pcidss-disclaimer" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg" /><h6>Important: PCI DSS Disclaimer</h6><p>
+   SUSE seeks to provide our customers with quick and easy guides that can
+   assist them in maintaining security compliance. Implementation of the
+   settings contained within this guide without its prior testing in a non-
+   operational environment is highly discouraged. The developers of these
+   profiles and documentation have made reasonable efforts to ensure overall
+   compliance. They assume no responsibility for its use by other parties, and
+   make no guarantee, expressed or implied, about its quality, reliability, or
+   any other characteristic.
+  </p></div><div class="sect1 " id="sec-pcidss-what"><div class="titlepage"><div><div><h2 class="title"><span class="number">1 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">What is the PCI DSS?</span> <a title="Permalink" class="permalink" href="#sec-pcidss-what">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-what</li></ul></div></div></div></div><p>
+   The Payment Card Industry Data Security Standard (PCI DSS) is a set of
+   requirements to guide a merchant to protect cardholder data. The
+   standard covers six main categories with currently 12 requirement topics
+   on how to implement, protect, maintain and monitor systems that are involved
+   in credit cardholder data processing.
+  </p><p>
+   PCI DSS was created and is maintained by the PCI Security Standards
+   Council (SSC), which was founded by the five major credit card brands, Visa,
+   MasterCard, American Express, Discover, and JCB. In December 2004, PCI DSS
+   1.0 was released to address the growing threat of online credit card
+   fraud. The current version, PCI DSS version 3.2, has been available since
+   April 2016.
+  </p><div class="orderedlist "><div class="orderedlist-title-wrap"><h6 class="orderedlist-title"><span class="name">Build and maintain a secure network and systems </span><a title="Permalink" class="permalink" href="#id-1.9.4">#</a></h6></div><ol class="orderedlist" type="1"><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-1" title="3.1. Requirement 1: Install and maintain a firewall configuration to protect cardholder data">Section 3.1, “Requirement 1: Install and maintain a firewall configuration to protect cardholder data”</a>
+    </p></li><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-2" title="3.2. Requirement 2: Do not use vendor-supplied defaults for system passwords and other security parameters">Section 3.2, “Requirement 2: Do not use vendor-supplied defaults for system passwords and other security parameters”</a>
+    </p></li></ol></div><div class="orderedlist "><div class="orderedlist-title-wrap"><h6 class="orderedlist-title"><span class="name">Protect cardholder data </span><a title="Permalink" class="permalink" href="#id-1.9.5">#</a></h6></div><ol class="orderedlist" start="3" type="1"><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-3" title="3.3. Requirement 3: Protect stored cardholder data">Section 3.3, “Requirement 3: Protect stored cardholder data”</a>
+    </p></li><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-4" title="3.4. Requirement 4: Encrypt transmission of cardholder data across open, public networks">Section 3.4, “Requirement 4: Encrypt transmission of cardholder data across open, public networks”</a>
+    </p></li></ol></div><div class="orderedlist "><div class="orderedlist-title-wrap"><h6 class="orderedlist-title"><span class="name">Maintain a vulnerability management program </span><a title="Permalink" class="permalink" href="#id-1.9.6">#</a></h6></div><ol class="orderedlist" start="5" type="1"><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-5" title="3.5. Requirement 5: Protect all systems against malware and regularly update anti-virus software or programs">Section 3.5, “Requirement 5: Protect all systems against malware and regularly update anti-virus software or programs”</a>
+    </p></li><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-6" title="3.6. Requirement 6: Develop and maintain secure systems and applications">Section 3.6, “Requirement 6: Develop and maintain secure systems and applications”</a>
+    </p></li></ol></div><div class="orderedlist "><div class="orderedlist-title-wrap"><h6 class="orderedlist-title"><span class="name">Implement strong access control measures </span><a title="Permalink" class="permalink" href="#id-1.9.7">#</a></h6></div><ol class="orderedlist" start="7" type="1"><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-7" title="3.7. Requirement 7: Restrict access to cardholder data by business need to know">Section 3.7, “Requirement 7: Restrict access to cardholder data by business need to know”</a>
+    </p></li><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-8" title="3.8. Requirement 8: Identify and authenticate access to system components">Section 3.8, “Requirement 8: Identify and authenticate access to system components”</a>
+    </p></li><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-9" title="3.9. Requirement 9: Restrict physical access to cardholder data">Section 3.9, “Requirement 9: Restrict physical access to cardholder data”</a>
+    </p></li></ol></div><div class="orderedlist "><div class="orderedlist-title-wrap"><h6 class="orderedlist-title"><span class="name">Regularly monitor and test networks </span><a title="Permalink" class="permalink" href="#id-1.9.8">#</a></h6></div><ol class="orderedlist" start="10" type="1"><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-10" title="3.10. Requirement 10: Track and monitor all access to network resources and cardholder data">Section 3.10, “Requirement 10: Track and monitor all access to network resources and cardholder data”</a>
+    </p></li><li class="listitem "><p>
+    <a class="xref" href="#sec-pcidss-requirement-11" title="3.11. Requirement 11: Regularly test security systems and processes">Section 3.11, “Requirement 11: Regularly test security systems and processes”</a>
+    </p></li></ol></div><div class="orderedlist "><div class="orderedlist-title-wrap"><h6 class="orderedlist-title"><span class="name">Maintain an information security policy </span><a title="Permalink" class="permalink" href="#id-1.9.9">#</a></h6></div><ol class="orderedlist" start="12" type="1"><li class="listitem "><p>
+     <a class="xref" href="#sec-pcidss-requirement-12" title="3.12. Requirement 12: Maintain a policy that addresses information security for all personnel">Section 3.12, “Requirement 12: Maintain a policy that addresses information security for all personnel”</a>
+    </p></li></ol></div><p>
+   Most requirements of PCI DSS are organizational guidelines that
+   help ensure the security of all areas involved with cardholder data.
+   There is usually no specific wording of the technical aspects.
+  </p><p>
+   This means that it is up to auditors to decide which security settings are
+   valid for a requirement and which are not. Therefore, the recommendations
+   in this document can only provide a starting point for implementing the
+   PCI DSS and are necessarily subject to discussion.
+  </p></div><div class="sect1 " id="sec-pcidss-os-relevant"><div class="titlepage"><div><div><h2 class="title"><span class="number">2 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Focus of this document: areas relevant to the operating system</span> <a title="Permalink" class="permalink" href="#sec-pcidss-os-relevant">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-os-relevant</li></ul></div></div></div></div><p>
+   The PCI DSS covers a wide range of aspects related to cardholder data. Not all of
+   these aspects concern the operating system and this document will
+   not focus on these. Instead, this document focuses on aspects that affect
+   OS configuration, including:
+  </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+     System security
+    </p></li><li class="listitem "><p>
+     Access control
+    </p></li><li class="listitem "><p>
+     System maintenance to protect against known vulnerabilities
+    </p></li></ul></div><p>
+   Topics beyond the scope of this document include data processing
+   applications, database design, and formal processes outside of the OS
+   scope. In particular, requirement 9 (restrict physical access) and
+   requirement 12 (maintain a policy) are not discussed extensively in this
+   document.
+  </p></div><div class="sect1 " id="sec-pcidss-requirement"><div class="titlepage"><div><div><h2 class="title"><span class="number">3 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirements in detail</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement</li></ul></div></div></div></div><p>
+   The following section provides an overview of the relevant parts of the
+   PCI DSS, following the ordering of the standard itself.
+  </p><div class="sect2 " id="sec-pcidss-requirement-1"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.1 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 1: Install and maintain a firewall configuration to protect cardholder data</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-1">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-1</li></ul></div></div></div></div><p>
+     The listed terms in this section are mostly design, documentation, and
+     formal process requirements. All changes to the firewalls and routers
+     need to be approved, documented, and verified, and all stakeholders
+     need to be involved. The network design includes a DMZ environment,
+     access to the Internet, a protected network for database servers,
+     traffic filtering rules between network segments, and other relevant
+     considerations.
+    </p><p>
+     In addition to a dedicated firewall and router, <span class="phrase">SUSE Linux Enterprise Server</span>
+     comes with a host firewall based on iptables. The system can be
+     configured to allow only connections on certain inbound ports. With the
+     YaST firewall module it is also possible to define more complex
+     rules, such as refusing connections from specific
+     addresses. This allows integrating the local system firewall into an
+     overall firewall design that maximizes network security.
+    </p><p>
+     In generalized terms, the technical points in requirement 1 are the
+     following:
+    </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+       Identify insecure services and protocols.
+      </p></li><li class="listitem "><p>
+       Limit traffic to and from the system so that unwanted
+       traffic is not allowed.
+      </p></li></ul></div><div class="variablelist "><dl class="variablelist"><dt id="vle-pcidss-insecure-service"><span class="term ">1.1.6.b Identify insecure services, protocols, and ports allowed;
+      and verify that security features are documented for each service</span></dt><dd><p>
+        This task is embedded in the requirement to identify, document, and
+        justify all services and protocols running on a system. Of special
+        interest are services and protocols that could lead to a security
+        risk. If an insecure service or protocol is used, it must
+        be evaluated to understand its potential security impact.
+        Services or protocols that are not necessary for the business to
+        function should be disabled or removed.
+       </p></dd><dt id="vle-pcidss-firewall"><span class="term ">
+       1.2.1.b Verify that inbound and outbound traffic is limited to
+       that which is necessary for the cardholder data environment.
+      </span></dt><dd><p>
+        Outbound traffic should only be allowed in specifically defined
+        cases. Create rules for allowed outbound traffic.
+       </p><p>
+        Make the SSH daemon only reachable on a separate administration
+        interface, and not on the general network interface if possible.
+        Define the source addresses that a service allows traffic from.
+       </p><p>
+        For example, to allow only outbound DNS requests over the
+        interface <code class="systemitem">eth0</code> to server
+        <code class="systemitem">10.0.0.1</code>, use:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 23 \</code>
+    <code class="command">-d 10.0.0.1/32 -o eth0 -p udp -m udp --dport 53 -j ACCEPT</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --reload</code></pre></div><p>
+        To block all other outbound traffic, see <a class="xref" href="#vle-pcidss-deny-all">
+       1.2.1.c Verify that all other inbound and outbound traffic is
+       specifically denied.
+      </a>.
+       </p></dd><dt id="vle-pcidss-deny-all"><span class="term ">
+       1.2.1.c Verify that all other inbound and outbound traffic is
+       specifically denied.
+      </span></dt><dd><p>
+        Deny all outbound and inbound traffic for which no exceptions
+        are defined as stated in the previous section. Forwarding is
+        usually completely disabled by a kernel parameter, and should
+        not be enabled for endpoint servers.
+       </p><p>
+        <code class="systemitem">firewalld</code> in <span class="productname"></span> by default blocks all inbound
+        traffic.
+       </p><p>
+        To block all outbound traffic, manually add the following rules:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --permanent --direct --add-rule ipv6 filter OUTPUT 0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 99 -j DROP</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --permanent --direct --add-rule ipv6 filter OUTPUT 99 -j DROP</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --reload</code></pre></div><p>
+        In addition, inbound traffic can also be configured for specific
+        services via the TCP wrapper configuration file
+        <code class="filename">/etc/hosts.deny</code>.
+       </p><p>
+        Most of the following tasks are about examining and verifying that the
+        defined inbound and outbound rules are really limiting the traffic
+        between and within all network segments, like the DMZ and the
+        Internet, to a necessary minimum for full system operation.
+        </p></dd><dt id="id-1.11.3.6.4"><span class="term ">
+       1.3.3 Implement anti-spoofing measures to detect and block forged
+       source IP addresses from entering the network.
+      </span></dt><dd><p>
+        There are two ways to implement anti-spoofing measurements in
+        <span class="phrase">SUSE Linux Enterprise Server</span>:
+       </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p><span class="formalpara-title"><code class="systemitem">iptables</code> rules that only allow input from certain addresses on specified interfaces. </span>
+           The used address space for communications can be clearly defined
+           in the system setup. Any use of addresses that violates these definitions can be logged and trigger an alarm.
+          </p></li><li class="listitem "><p><span class="formalpara-title">Linux kernel reverse path filtering. </span>
+           This feature discards packet replies that do not go through the
+           same interface as the initial packet. This feature
+           is enabled by default in <span class="phrase">SUSE Linux Enterprise Server</span> and can be checked with
+           the following command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cat /proc/sys/net/ipv4/conf/all/rp_filter</code></pre></div><p>
+          When enabled, this returns
+          <code class="literal">1</code>.
+         </p></li></ul></div></dd><dt id="id-1.11.3.6.5"><span class="term ">
+       1.3.5 Permit only <span class="quote">“<span class="quote ">established</span>”</span> connections into the
+       network.
+      </span></dt><dd><p>
+        <code class="systemitem">firewalld</code> enables connection tracking via
+        <code class="literal">iptables</code>. Connections to an interface that has
+        been marked as external are dropped by default. Only connections
+        that are associated with an established connection are allowed.
+       </p><p>
+        It is possible to define certain services that are allowed to
+        connect to an external interface. However, this must be in
+        compliance with the general security policy.
+       </p><p>
+        Keep in mind that the first line of defense against malicious
+        connections from the Internet should be a dedicated firewall system
+        that handles all traffic and acts as a gatekeeper. Unwanted
+        connections should never reach the DMZ network. However, simple
+        firewall rules on <span class="phrase">SUSE Linux Enterprise Server</span> systems can help avoid
+        misconfigurations and act as another line of defense.
+       </p></dd><dt id="id-1.11.3.6.6"><span class="term ">
+       1.3.7 Do not disclose private IP addresses and routing information to
+       unauthorized parties.
+      </span></dt><dd><p>
+        A <span class="phrase">SUSE Linux Enterprise Server</span> system can also act as a router to forward
+        traffic from one interface to another network on a second interface.
+        It is possible to use Network Address Translation (NAT) on the
+        external interface so that no internal IP address is actually exposed
+        to the outside. This is done to mitigate the information an external
+        attacker can gather by simply analyzing the network traffic. NAT can
+        also be used on virtualization hosts or container-based environments
+        that connect to the outside via a specific interface.
+       </p></dd></dl></div></div><div class="sect2 " id="sec-pcidss-requirement-2"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.2 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 2: Do not use vendor-supplied defaults for system passwords and other security parameters</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-2">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-2</li></ul></div></div></div></div><p>
+     During the installation of <span class="phrase">SUSE Linux Enterprise Server</span>, general system
+     passwords are already set by the administrator. The setup also uses a
+     password checker (<code class="command">cracklib</code>) that identifies weak
+     entries against a dictionary. This means that the standard configuration
+     already includes customer-defined security options for most services.
+    </p><p>
+     For more information about OS security, see the
+     
+     <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide</em>.</span>
+    </p><div class="variablelist "><dl class="variablelist"><dt id="id-1.11.4.4.1"><span class="term ">
+       2.1 Always change vendor-supplied defaults, and remove or disable
+       unnecessary default accounts before installing a system on the network.
+      </span></dt><dd><p>
+        The configuration of any system service must be evaluated to meet
+        the needed security standards. This goes from limiting the used
+        protocols to only allow currently secure versions and to disable
+        legacy implementations, to the definition of access controls and
+        authentication. The default settings of <span class="phrase">SUSE Linux Enterprise Server</span> already provide
+        good overall security, but they can be tweaked further.
+       </p><p>
+        For example, the following security settings might be relevant:
+       </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+          By default, the SNMP daemon only allows incoming requests to
+          <code class="systemitem">localhost</code>. However, the default community
+          string is named <code class="literal">public</code> and should be changed
+          before accepting general inbound connections.
+         </p></li><li class="listitem "><p>
+          By default, certain insecure upstream settings of the
+          <code class="systemitem">sshd</code> daemon are listed and
+          commented out inside the <code class="systemitem">sshd</code>
+          configuration file <code class="filename">/etc/ssh/sshd_config</code>. For
+          example, the insecure protocol version 1 and empty passwords
+          (<code class="literal">PermitEmptyPasswords no</code>) are already disabled.
+         </p><p>
+          To further increase SSH security, if applicable, deny direct
+          <code class="systemitem">root</code> access by setting
+          <code class="literal">PermitRootLogin</code> to <code class="literal">no</code>.
+         </p></li></ul></div><p>
+        Default settings can be customized by automating system installation
+        with an AutoYaST profile. This allows rolling out new instances of
+        <span class="phrase">SUSE Linux Enterprise Server</span> and automatically enabling an evaluated configuration.
+        This setup procedure can also be automated with the SUSE Manager. For
+        more information, see the SUSE Manager documentation at
+        <a class="link" href="https://documentation.suse.com/suma/" target="_blank">https://documentation.suse.com/suma/</a>.
+       </p><p>
+        By default, <span class="phrase">SUSE Linux Enterprise Server</span> does not create additional accounts
+        apart from the <code class="systemitem">root</code>
+        administrative user. There are system accounts defined in
+        <code class="filename">/etc/passwd</code>, but they are not activated and
+        therefore not directly reachable. This can be validated by checking
+        the lines inside the <code class="filename">/etc/shadow</code> file.
+       </p><p>
+        In <code class="filename">/etc/shadow</code>, the second column represents the
+      defined password:
+       </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+          An asterisk (<code class="literal">*</code>) means that a password was never
+          defined and the account is therefore locked.
+         </p></li><li class="listitem "><p>
+          An exclamation mark (<code class="literal">!</code>) stands for a locked
+          account and can appear either alone or in front of a password hash.
+         </p></li></ul></div></dd><dt id="id-1.11.4.4.2"><span class="term ">
+       2.2 Develop configuration standards for all system components. Ensure
+       that these standards address all known security vulnerabilities and
+       are consistent with industry-accepted system hardening standards.
+      </span></dt><dd><p>
+        As mentioned in the PCI DSS document, possible sources for
+        industry-accepted hardening standards are:
+       </p><div class="orderedlist "><ol class="orderedlist" type="1"><li class="listitem "><p>Center for Internet Security (CIS)</p></li><li class="listitem "><p>International Organization for Standardization (ISO)</p></li><li class="listitem "><p>SysAdmin Audit Network Security (SANS) Institute</p></li><li class="listitem "><p>National Institute of Standards Technology (NIST)</p></li></ol></div><p>
+        As the PCI DSS requirements are not specified precisely, there is no
+        direct relationship between hardening standards and specific
+        requirements. However, other hardening resources can also help in
+        complying with these specifications, including the
+        
+        <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide</em>.</span>
+       </p></dd><dt id="id-1.11.4.4.3"><span class="term ">
+       2.2.1 Implement only one primary function per server to prevent
+       functions that require different security levels from co-existing on
+       the same server. (For example, web servers, database servers, and DNS
+       should be implemented on separate servers.)
+      </span></dt><dd><p>
+        To help separate services, use the variety of virtualization and
+        containerization methods included with <span class="phrase">SUSE Linux Enterprise Server</span>:
+        KVM, Xen, LXC, and Docker.
+       </p><p>
+        You can also run <span class="phrase">SUSE Linux Enterprise Server</span> on third-party virtualization servers
+        like VMware ESX or Microsoft Hyper-V to achieve service separation.
+       </p><p>
+        When using the options built in to <span class="phrase">SUSE Linux Enterprise Server</span>, see:
+       </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+          For information about virtualization, see
+          
+          <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Virtualization
+          Guide</em></span>.
+         </p></li><li class="listitem "><p>
+          For information about containerization, see
+          
+          <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Docker Open Source Engine
+          Guide</em></span>.
+         </p></li></ul></div></dd><dt id="id-1.11.4.4.4"><span class="term ">
+       2.2.2 Enable only necessary services, protocols, daemons, etc., as
+       required for the function of the system.
+      </span></dt><dd><p>
+        This is directly related to an item of requirement 1: To allow only
+        services that are really needed and are using secure protocols and
+        settings (<a class="xref" href="#vle-pcidss-insecure-service">1.1.6.b Identify insecure services, protocols, and ports allowed;
+      and verify that security features are documented for each service</a>). All parties
+        involved must be aware of the dangers of using insecure communication.
+        Research, clearly document, and communicate the risk of using insecure
+        protocols and services.
+       </p><p>
+        Enable and disable system services using the following
+        <code class="command">systemctl</code> commands:
+       </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">systemctl status <em class="replaceable ">SERVICE</em></code></pre></div></li><li class="listitem "><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl enable <em class="replaceable ">SERVICE</em></code></pre></div></li><li class="listitem "><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl disable <em class="replaceable ">SERVICE</em></code></pre></div></li></ul></div><p>
+        To list all available services that are installed on the system and
+        see their status, use the following command:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">systemctl list-unit-files --type=service</code></pre></div></dd><dt id="id-1.11.4.4.5"><span class="term ">
+       2.2.3.a Inspect configuration settings to verify that security features
+       are documented and implemented for all insecure services, daemons, or
+       protocols.
+      </span></dt><dd><p>
+        To add an additional layer of security to insecure services, use VPN
+        tunnels (for example, IPsec). With a VPN tunnel, network traffic of
+        such services can be isolated and all data is protected against
+        eavesdropping, both internally and externally. However, note that the
+        communication is still insecure at the endpoints of the VPN tunnel
+        and that this is only a workaround.
+       </p><p>
+        For additional security within <span class="phrase">SUSE Linux Enterprise Server</span>, use SELinux or <span class="phrase">AppArmor</span>.
+        However, the setup of these frameworks is beyond the scope of this
+        document:
+       </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+          For information about SELinux, see
+          
+          <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide,
+          Chapter Configuring SELinux</em>.</span>
+         </p></li><li class="listitem "><p>
+          For information about <span class="phrase">AppArmor</span>, see
+          
+          <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide,
+          Part Confining Privileges with <span class="phrase">AppArmor</span></em>.</span>
+         </p></li></ul></div></dd><dt id="id-1.11.4.4.6"><span class="term ">
+       2.2.5.a Select a sample of system components and inspect the
+       configurations to verify that all unnecessary functionality (for
+       example, scripts, drivers, features, subsystems, file systems, etc.)
+       is removed.
+      </span></dt><dd><p>
+        The Linux kernel is the main system component. It consists of a core
+        image that is extended by kernel modules which are loaded depending
+        on the hardware and system design. For example: Network card drivers
+        are automatically loaded depending on the system’s network card. File
+        system modules can be enabled to extend the Linux kernel’s file
+        system support.
+       </p><p>
+        The list of loaded kernel modules is usually quite long and includes
+        modules that are only used occasionally. The kernel module framework
+        allows blacklisting modules and limiting which functionalities are
+        loaded.
+       </p><p>
+        To block modules from being loaded, configure them
+        via the directory <code class="filename">/etc/modprobe.d</code>. For example,
+        the kernel module <code class="literal">floppy</code> is only necessary for
+        systems that have a floppy drive. On systems that do not have a
+        floppy drive, prevent the module from loading: Create a configuration
+        file <code class="filename">/etc/modprobe.d/00-disable-modules.conf</code>
+        with the following content:
+       </p><div class="verbatim-wrap"><pre class="screen">install floppy /bin/true</pre></div><p>
+        The <code class="literal">floppy</code> module is usually loaded
+        during the execution of the initial RAM disk. Therefore, propagate
+        this configuration change to the <code class="filename">initrd</code> file
+        using <code class="command">dracut</code> (replace <em class="replaceable ">NAME</em>
+      with the name of the current initrd and
+      <em class="replaceable ">KERNELVERSION</em> with the currently running
+      kernel).
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">/usr/bin/dracut --logfile /var/log/YaST2/mkinitrd.log --force /boot/$initrd-<em class="replaceable ">NAME</em> $<em class="replaceable ">KERNELVERSION</em></code></pre></div><p>
+        It is harder to remove or restrict application functionality, as
+        functionality is in most cases compiled into the application or
+        library itself. Even cases where deleting a file cleanly removes a
+        functionality are problematic: If the file was installed from an RPM
+        package, it will be reinstalled when the package is updated.
+       </p></dd><dt id="id-1.11.4.4.7"><span class="term ">
+       2.3 Encrypt all non-console administrative access using strong
+       cryptography. Use technologies such as SSH, VPN, or TLS for web-based
+       management and other non-console administrative access.
+      </span></dt><dd><p>
+        Encrypt all administrative network access: SSH with appropriate
+        configuration settings that fit into the security concept should be
+        the tool of choice.
+       </p><p>
+        Administrative access can also be granted
+        via a Web site. In this case, the complete connection chain between the
+        browser and the server system must be encrypted. This is done via
+        TLS and X.509 certificates.
+       </p></dd></dl></div></div><div class="sect2 " id="sec-pcidss-requirement-3"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.3 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 3: Protect stored cardholder data</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-3">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-3</li></ul></div></div></div></div><p>
+     This section explains how to handle cardholder and
+     authentication data securely. The following definitions apply:
+    </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+       <span class="emphasis"><em>Cardholder data</em></span> includes information such as the
+       cardholder name and the Primary Account Number (PAN).
+      </p></li><li class="listitem "><p>
+       <span class="emphasis"><em>Authentication data</em></span> includes the Personal
+       Identification Number (PIN) and the Card Validation Code (CVC2).
+      </p></li></ul></div><p>
+     The main difference between cardholder data and authentication data is
+     that storing authentication is never allowed. In contrast, data such as
+     the PAN can be stored, but must be encrypted and unreadable in case an
+     attacker gains access to the stored data.
+    </p><p>
+     The database design for storing cardholder data is beyond the scope of
+     this document. However, data can be encrypted in different ways:
+    </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+       The DBMS can use column-level encryption inside the database
+       scheme.
+      </p></li><li class="listitem "><p>
+       Alternatively, the database files can be encrypted.
+      </p></li><li class="listitem "><p>
+       <span class="phrase">SUSE Linux Enterprise Server</span> supports full-disk encryption, so that the whole
+       database storage is always encrypted. However, access to an encrypted
+       disk works the same way as to a non-encrypted disk. This is discussed
+       in more detail in requirement 3.4.1.
+      </p></li></ul></div><div class="variablelist "><dl class="variablelist"><dt id="vle-pcidss-encrypt-disk"><span class="term ">
+       3.4.1.a If disk encryption is used, inspect the configuration and
+       observe the authentication process to verify that logical access to
+       encrypted file systems is implemented via a mechanism that is separate
+       from the native operating system’s authentication mechanism (for
+       example, not using local user account databases or general network
+       login credentials).
+      </span></dt><dd><p>
+        The guidance description of the PCI DSS document says the following
+        about this requirement: <span class="quote">“<span class="quote ">Full disk encryption helps to protect
+        data in the event of physical loss of a disk and therefore may be
+        appropriate for portable devices that store cardholder data.</span>”</span>
+       </p><p>
+        From an administrator’s point of view, a block device encryption with
+        the Linux Unified Key Setup (LUKS)/dm-crypt offers an abstraction
+        layer that allows the usage of encrypted disks in the same way
+        as unencrypted disks.
+       </p><p>
+        Therefore, access control can only be limited
+        with the general ACL permissions that the file system offers. To
+        comply with this requirement, the decryption key used must not be
+        associated with any general login credentials or authentication
+        methods.
+       </p><p>
+        When using LUKS, this is usually fulfilled: The password needs to
+        be entered separately when booting, inserting portable devices or
+        manually mounting disks.
+       </p><p>
+        LUKS is fully integrated into <span class="phrase">SUSE Linux Enterprise Server</span> and can be used via
+        YaST to create new partitions.
+       </p></dd><dt id="id-1.11.5.7.2"><span class="term ">
+       3.4.1.c Examine the configurations and observe the processes to verify
+       that cardholder data on removable media is encrypted wherever stored.
+      </span></dt><dd><p>
+        As described in <a class="xref" href="#vle-pcidss-encrypt-disk">
+       3.4.1.a If disk encryption is used, inspect the configuration and
+       observe the authentication process to verify that logical access to
+       encrypted file systems is implemented via a mechanism that is separate
+       from the native operating system’s authentication mechanism (for
+       example, not using local user account databases or general network
+       login credentials).
+      </a>,
+        LUKS/dm-crypt provides full-disk encryption that fulfills this
+        requirement. Access to the stored data is only possible via a
+        decryption password that must be entered when the disk is mounted.
+       </p></dd></dl></div></div><div class="sect2 " id="sec-pcidss-requirement-4"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.4 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 4: Encrypt transmission of cardholder data across open, public networks</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-4">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-4</li></ul></div></div></div></div><p>
+     Cardholder data must be encrypted during transmissions over insecure
+     networks. Ideally, encrypt all traffic, externally and internally. This
+     makes it hard for attackers to gain inside information and privileged
+     access to the cardholder data environment.
+    </p><div class="variablelist "><dl class="variablelist"><dt id="id-1.11.6.3.1"><span class="term ">
+       4.1 Use strong cryptography and security protocols (for example,
+       TLS, IPSEC, SSH, etc.) to safeguard sensitive cardholder data during
+       transmission over open, public networks, including the following: (1)
+       Only trusted keys and certificates are accepted, (2) The protocol in
+       use only supports secure versions or configurations, (3) The
+       encryption strength is appropriate for the encryption methodology in
+       use.
+      </span></dt><dd><p>
+        Any connection that transmits sensitive information must be
+        protected against eavesdropping and tampering.
+       </p><p>
+        For incoming client requests, use the HTTPS protocol with a secure
+        TLS connection. The authentication is done with a public
+        X.509 certificate that proves to a certain level that the server is
+        the right endpoint the customer is looking for.
+       </p><p>
+        <span class="phrase">SUSE Linux Enterprise Server</span> comes with a set of services and tools that allow
+        protected HTTPS connections. For example, this can be done directly
+        with the Apache HTTP Server or via <code class="command">stunnel</code>, which
+        functions as a proxy to offer TLS encryption functionality.
+       </p><p>
+        IPsec or other VPN technologies can be used for securing the
+        connection between network segments that are connected via a public
+        network. Such connections can also be secured with a public X.509
+        certificate. For internal usage, it is possible to use a private
+        Certificate Authority (CA) to sign X.509 certificates and to keep
+        track of trusted keys.
+       </p><p>
+        In <span class="phrase">SUSE Linux Enterprise Server</span>, this can be established directly with
+        <span class="productname">strongSwan</span>, which is a IPsec-based
+        VPN solution, or with OpenVPN, which uses a custom security protocol.
+       </p><p>
+        To administrate the OS, use SSH. For information about configuring
+        SSH to provide better security, see
+        <a class="xref" href="#sec-pcidss-requirement-1" title="3.1. Requirement 1: Install and maintain a firewall configuration to protect cardholder data">Section 3.1, “Requirement 1: Install and maintain a firewall configuration to protect cardholder data”</a> and
+        <a class="xref" href="#sec-pcidss-requirement-2" title="3.2. Requirement 2: Do not use vendor-supplied defaults for system passwords and other security parameters">Section 3.2, “Requirement 2: Do not use vendor-supplied defaults for system passwords and other security parameters”</a>.
+       </p></dd></dl></div></div><div class="sect2 " id="sec-pcidss-requirement-5"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.5 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 5: Protect all systems against malware and regularly update anti-virus software or programs</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-5">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-5</li></ul></div></div></div></div><p>
+     For PCI DSS compliance, it is necessary to protect against malicious
+     software. Third-party anti-virus software is available from the
+     major anti-virus software vendors and can be integrated into the Linux
+     environment. <span class="phrase">SUSE Linux Enterprise Server</span> comes with the open source anti-virus engine
+     ClamAV.
+    </p><p>
+     ClamAV has a limited set of scanning capabilities and limited
+     performance compared to third-party products. Hence, expect ClamAV to
+     only provide basic protection.
+    </p><p>
+     On the other hand, ClamAV is shipped with <span class="phrase">SUSE Linux Enterprise Server</span> and it can be
+     included during server installation. This makes it easy to fulfill this
+     requirement, but the drawbacks compared to third-party products need to
+     be clearly understood.
+    </p></div><div class="sect2 " id="sec-pcidss-requirement-6"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.6 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 6: Develop and maintain secure systems and applications</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-6">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-6</li></ul></div></div></div></div><p>
+     The major part of this requirement concerns in-house software development,
+     documentation, and design questions that are beyond the scope of this
+     document. However, <span class="phrase">SUSE Linux Enterprise Server</span> provides tools that help keep your
+     systems safe:
+    </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+       The software package manager Zypper is a powerful instrument of
+       <span class="phrase">SUSE Linux Enterprise Server</span>. Among other things, it resolves dependencies of packages,
+       products, patterns, and patches, has a locking mechanism to prevent
+       package installation, and provides a complete update stack to keep the
+       system up-to-date and protected against known security issues.
+      </p><p>
+       <code class="command">zypper</code> is part of any <span class="phrase">SUSE Linux Enterprise Server</span> installation and
+       has direct access to the update repositories after system registration.
+      </p><p>
+       For information about Zypper, see
+       
+       <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Administration Guide,
+       Chapter Managing Software with Command Line Tools, Section Using
+       Zypper</em>.</span>
+      </p></li><li class="listitem "><p>
+       For system management, SUSE provides SUSE Manager, which provides an
+       efficient way to keep systems up-to-date. It offers seamless
+       management of both <span class="phrase">SUSE Linux Enterprise Server</span> and Red Hat Enterprise Linux client systems. This
+       is particularly useful in larger system environments, when you need to
+       check the current update status of each system and to react to known
+       security risks.
+      </p><p>
+       For information about SUSE Manager, see the
+       <a class="link" href="https://documentation.suse.com/suma/" target="_blank">SUSE Manager
+       documentation page</a>.
+      </p></li></ul></div><div class="variablelist "><dl class="variablelist"><dt id="id-1.11.8.4.1"><span class="term ">
+       6.2.a Examine policies and procedures related to security patch
+       installation to verify processes are defined for: (1) Installation of
+       applicable critical vendor-supplied security patches within one month
+       of release, (2) Installation of all applicable vendor-supplied
+       security patches within an appropriate time frame (for example, within
+       three months).
+      </span></dt><dd><p>
+        To identify patches that need to be installed to secure your system,
+        do the following:
+       </p><p>
+        First, refresh all software repositories, so you have up-to-date information:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper refresh</code></pre></div><p>
+        Then use the patch-related commands of Zypper:
+       </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+          Search for important security fixes that have not yet been
+          installed:
+         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">zypper list-patches --category security --severity important</code></pre></div></li><li class="listitem "><p>
+          It is also possible to search for CVE or SUSE Bugzilla numbers.
+          By default, only necessary patches are listed by this command. To
+          also show patches that have already been installed, use the
+          parameter <code class="option">--all</code>:
+         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>z<code class="command">ypper list-patches --all --cve=CVE-2016-4957</code></pre></div></li><li class="listitem "><p>
+          To list details of individual patches, use the
+          <code class="command">patch-info</code> subcommand:
+         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">zypper patch-info SUSE-SLE-Product-SLES-15-SP3-2021-2126</code></pre></div></li><li class="listitem "><p>
+          To install only important security patches, use the
+          <code class="command">patch</code> subcommand:
+         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper patch --category security --severity important</code></pre></div></li></ul></div><p>
+        To perform updates automatically, the parameter
+        <code class="option">--non-interactive</code>, which is supported by all
+        Zypper subcommands, is helpful.
+       </p><p>
+       For more information about Zypper, see
+       
+       <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Administration Guide,
+       Chapter Managing Software with Command Line Tools, Section Using
+       Zypper</em>.</span>
+      </p></dd></dl></div></div><div class="sect2 " id="sec-pcidss-requirement-7"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.7 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 7: Restrict access to cardholder data by business need to know</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-7">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-7</li></ul></div></div></div></div><p>
+     OS access control is a complex topic. Again, this PCI DSS requirement
+     is not specified precisely and does not specifically state to what
+     degree the restrictions need to be implemented.
+     <span class="phrase">SUSE Linux Enterprise Server</span> comes with all general Linux tools to limit and
+     restrict access to certain system areas and components:
+    </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+       Access can be controlled via specific users and groups of users by using
+       the traditional Unix permission settings.
+      </p><p>
+       For information about managing permissions, see
+       
+       <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide,
+       Chapter Access Control Lists in Linux</em>.</span>
+      </p></li><li class="listitem "><p>
+       A more flexible mechanism for file systems are Access Control Lists
+       (ACLs), which offer a more granular approach. SELinux can be used for
+       maximum system separation and to prevent processes from gaining more
+       resources and access than allowed.
+       SELinux and <span class="phrase">AppArmor</span> are beyond the scope of this document but should be
+       employed to protect critical systems that are likely to be targeted.
+      </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+         For information about SELinux, see
+         
+         <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide,
+         Chapter Configuring SELinux</em>.</span>
+        </p></li><li class="listitem "><p>
+         For information about <span class="phrase">AppArmor</span>, see
+         
+         <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide,
+         Part Confining Privileges with <span class="phrase">AppArmor</span></em>.</span>
+        </p></li></ul></div></li></ul></div><div class="variablelist "><dl class="variablelist"><dt id="id-1.11.9.4.1"><span class="term ">
+       7.1.2 Restrict access to privileged user IDs to least privileges
+       necessary to perform job responsibilities.
+      </span></dt><dd><p>
+        The standard Unix permissions allow setting Read, Write, and
+        Execution flags for user and group IDs. A general group called
+        <code class="systemitem">others</code> or
+        <code class="systemitem">world</code> defines the access
+        for users that do not fit into the first two groups. This provides a
+        straightforward way to grant or deny access to file system resources.
+       </p><p>
+        ACLs provide an extra level of restrictions. It is possible to set
+        read-write access for one user ID and only read access for a second
+        one. The same goes for group IDs.
+       </p><p>
+        The commands <code class="command">getfacl</code> and
+        <code class="command">setfacl</code> (on <span class="phrase">SUSE Linux Enterprise Server</span> shipped with the package
+        <span class="package ">acl</span>) allow direct modification of file system
+        resources. For example, to check and set ACL restrictions of the file
+        <code class="filename">/tmp/test.txt</code> for the user <code class="systemitem">wilber</code>:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">getfacl /tmp/test.txt</code>
+# file: /tmp/test.txt
+# owner: tux
+# group: users
+user::r--
+group::r--
+other::r--
+
+<code class="prompt user">&gt; </code><code class="command">setfacl -m "u:wilber:rw" /tmp/test.txt</code>
+
+<code class="prompt user">&gt; </code><code class="command">getfacl /tmp/test.txt</code>
+# file: /tmp/test.txt
+# owner: tux
+# group: users
+user::rw-
+user:wilber:r--
+group::r--
+mask::r--
+other::r--</pre></div><p>
+        Standard Unix permissions include the so-called Sticky Bit. This
+        allows the execution of certain programs with higher privileges than
+        the user who is executing those programs. The best example of this
+        is the <code class="command">passwd</code> tool, which needs to modify
+        <code class="filename">/etc/shadow</code> to change the user password.
+       </p><p>
+        For a more gradual approach to explicitly allowing certain operations
+        or behaviors to binaries, use extended capabilities. As an example of
+        a command that uses extended capabilities by default, consider
+        <code class="command">ping</code> (from the package <span class="package ">iputils</span>).
+       </p><p>
+        <code class="command">ping</code> sends ICMP IP packets over the
+        network card. To do so, it needs the
+        <code class="literal">CAP_NET_RAW</code> capability to be Effective and
+        Permitted (<code class="literal">+ep</code>):
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">getcap /usr/bin/ping</code>
+/usr/bin/ping = cap_net_raw+ep</pre></div><p>
+        Login access control to the system can be managed using Pluggable
+        Authentication Modules (PAM). There are several modules
+        available in <span class="phrase">SUSE Linux Enterprise Server</span> that allow setups such as
+        logging the login time, multiple authentication mechanisms, and
+        central databases like NIS, LDAP, or Active Directory.
+       </p><p>
+       For more information about managing permissions, see
+       
+       <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide,
+       Chapter Access Control Lists in Linux</em>.</span>
+      </p></dd></dl></div></div><div class="sect2 " id="sec-pcidss-requirement-8"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.8 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 8: Identify and authenticate access to system components</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-8">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-8</li></ul></div></div></div></div><p>
+     Ideally, use a central database with user information and a unique
+     identifier (UID) to grant or deny access to certain system components.
+     This makes it easy to give administrators special access to a group of
+     servers or a database engineer permission for a certain DBMS system.
+    </p><p>
+     On a stand-alone server, unique identifiers are managed via the
+     standard Linux user and group IDs. These are listed in
+     <code class="filename">/etc/passwd</code> and <code class="filename">/etc/group</code>.
+    </p><div class="variablelist "><dl class="variablelist"><dt id="vle-pcidss-disable-user"><span class="term ">
+       8.1.4 Remove/disable inactive user accounts within 90 days.
+      </span></dt><dd><p>
+       In this context, there are many advantages to using a centralized
+       infrastructure for user accounts like NIS, LDAP, or Active Directory:
+      </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+         It is easy to identify and automatically disable inactive accounts.
+        </p></li><li class="listitem "><p>
+         User accounts only need to be disabled in one place. After their
+         access is revoked, the user cannot use any service that relies on
+         the centralized account infrastructure.
+        </p></li></ul></div><p>
+       However, if you are using local accounts, these can be checked for
+       inactivity when a user is logging in. This module checks the last
+       login time recorded in <code class="filename">/var/log/lastlog</code> and
+       calculates the number of days since.
+       By default, access is denied when the inactivity reaches 90 days.
+      </p><p>
+       To list the local account's last login time use the command
+       <code class="command">lastlog</code>.
+      </p></dd><dt id="vle-pcidss-lock-user"><span class="term ">
+       8.1.6 Limit repeated access attempts by locking out the user ID after
+       not more than six attempts.
+      </span></dt><dd><p>
+        As stated in <a class="xref" href="#vle-pcidss-disable-user">
+       8.1.4 Remove/disable inactive user accounts within 90 days.
+      </a>, a centralized
+        account infrastructure will have this capability. On <span class="phrase">SUSE Linux Enterprise Server</span>
+        systems, access attempts can be checked and limited with
+        the <code class="systemitem">pam_tally2</code> PAM module. The module is
+        executed during login time and checks the recorded failed attempts
+        since the last successful login. To check and reset the account
+        status, use the tool <code class="command">pam_tally2</code>.
+       </p></dd><dt id="id-1.11.10.4.3"><span class="term ">
+       8.1.7 Set the lockout duration to a minimum of 30 minutes or until an
+       administrator enables the user ID.
+      </span></dt><dd><p>
+        The PAM module <code class="systemitem">pam_tally2</code> described
+        in <a class="xref" href="#vle-pcidss-lock-user">
+       8.1.6 Limit repeated access attempts by locking out the user ID after
+       not more than six attempts.
+      </a> can be used to lock an
+        account for a given time after a failed login attempt. The parameter
+        <code class="literal">unlock_time=1800</code> must be specified in the PAM
+        configuration. By default, only the administrator can
+        reactivate a locked account.
+       </p></dd><dt id="vle-pcidss-multi-factor-local"><span class="term ">
+       8.3.1 Incorporate multi-factor authentication for all non-console access
+       into the CDE for personnel with administrative access.
+      </span></dt><dd><p>
+        To authenticate users for administrative access with multiple
+        factors, use the following methods:
+       </p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
+          Use Pluggable Authentication Modules (PAM): This increases
+          flexibility when adding new methods to the authentication process
+          and when adjusting it.
+         </p><p>
+          For third-party one-time password (OTP) products, there is usually
+          also a Linux PAM module available.
+         </p><p>
+          For information about PAM, see
+          
+          <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide,
+          Chapter Authentication with PAM</em>.</span>
+         </p></li><li class="listitem "><p>
+          To add multi-factor authentication for SSH connections, mandate use
+          of public keys in addition to passwords.
+         </p><p>
+          To connect to a system, it is then necessary to prove possession of
+          an appropriate private key. At the second stage, you then enter a
+          password. This means attackers need to acquire a private key before
+          they can even try to brute-force a password prompt.
+         </p></li></ul></div></dd><dt id="vle-pcidss-multi-factor-remote"><span class="term ">
+       8.3.2 Incorporate multi-factor authentication for all remote network
+       access (both user and administrator, and including third-party access
+       for support or maintenance) originating from outside the entity’s
+       network.
+      </span></dt><dd><p>
+        For details, see <a class="xref" href="#vle-pcidss-multi-factor-local">
+       8.3.1 Incorporate multi-factor authentication for all non-console access
+       into the CDE for personnel with administrative access.
+      </a>.
+       </p></dd></dl></div></div><div class="sect2 " id="sec-pcidss-requirement-9"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.9 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 9: Restrict physical access to cardholder data</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-9">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-9</li></ul></div></div></div></div><p>
+     Physical access to systems that are involved in processing cardholder
+     data are not within the scope of general operating system security.
+     Appropriate facility entry controls must be in place to
+     allow on-site personnel and visitors to access systems directly.
+    </p></div><div class="sect2 " id="sec-pcidss-requirement-10"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.10 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 10: Track and monitor all access to network resources and cardholder data</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-10">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-10</li></ul></div></div></div></div><p>
+     To track user activities, it is important to have a synchronized time
+     reference. This is done via the NTP protocol, which allows servers to keep
+     their local time in synchronization with a central system. The central
+     NTP server
+     inside the cardholder data environment (CDE) should not rely on
+     external connections to the Internet to update the system time.
+     Alternatively, system time can be updated using DCF77 radio
+     transmissions or a GPS receiver.
+    </p><p>
+     A synchronized time reference makes it easier to correlate events inside
+     recorded log files. This reference can include general system log
+     entries collected by a central system log server or kernel audit
+     messages by the daemon <code class="systemitem">audit</code>.
+    </p><p>
+     For information about auditing, see
+     
+     <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span>, Security Guide,
+     Part <em class="citetitle ">The Linux Audit Framework</em></em>.</span>
+    </p><p>
+     All auditing requirements from this section can be fulfilled by defining
+     centrally stored auditing rules.
+    </p></div><div class="sect2 " id="sec-pcidss-requirement-11"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.11 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 11: Regularly test security systems and processes</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-11">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-11</li></ul></div></div></div></div><p>
+     Testing the discussed security mechanisms is also a key requirement for
+     PCI DSS. Evaluating the configurations and testing logging mechanisms
+     can protect against known security risks and ensure that essential
+     information is available to identify possible security breaches.
+     Testing capabilities should be considered during system
+     design, before installation and deployment.
+    </p><p>
+     To keep track of system integrity, <span class="phrase">SUSE Linux Enterprise Server</span> comes with the Advanced
+     Intrusion Detection Environment (AIDE). AIDE creates a hash value
+     database of all relevant OS files. After initialization, it can be used
+     to verify the integrity of all previously saved files. To employ AIDE,
+     it is best to regularly create database snapshots and save them to a
+     central system on which you can evaluate possible modifications.
+    </p><p>
+     For more information about AIDE, see
+     
+     <span class="phrase"><em class="citetitle "><span class="phrase">SUSE Linux Enterprise Server</span> Security Guide,
+     Chapter Intrusion Detection with AIDE</em>.</span>
+    </p></div><div class="sect2 " id="sec-pcidss-requirement-12"><div class="titlepage"><div><div><h3 class="title"><span class="number">3.12 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirement 12: Maintain a policy that addresses information security for all personnel</span> <a title="Permalink" class="permalink" href="#sec-pcidss-requirement-12">#</a><a class="report-bug" rel="nofollow" target="_blank" href="https://github.com/SUSE/doc-sle/edit/main/xml/art_security_pcidss.xml" title="Edit the source file for this section">Edit source</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>art_security_pcidss.xml</li><li><span class="ds-label">ID: </span>sec-pcidss-requirement-12</li></ul></div></div></div></div><p>
+     Any organization that handles valuable information should
+     have a general security policy. All relevant aspects should be
+     included to make it clear for employees and stakeholders what the possible
+     risks are and how to avoid them.
+    </p><p>
+     All security policies should also be evaluated regularly and adjusted to
+     keep the protection level as high as possible.
+    </p></div></div></div></div><div class="page-bottom"><div class="_share-print"><div class="online-contents share"><strong>Share this page: </strong><span class="share-buttons"><span class="_share-fb bottom-button">Facebook</span><span class="spacer"> • </span><span class="_share-in bottom-button">LinkedIn</span><span class="spacer"> • </span><span class="_share-tw bottom-button">Twitter</span><span class="spacer"> • </span><span class="_share-mail bottom-button">E-Mail</span></span></div><div class="print"><span class="_print-button bottom-button">Print this page</span></div><div class="clearme"></div></div></div></div><div id="_inward"></div></div><div id="_footer-wrap"><div id="_footer"><p>©
+        2022 
+        SUSE</p><ul><li><a href="https://jobs.suse.com/" target="_top">Careers</a></li><li><a href="https://www.suse.com/company/legal/" target="_top">Legal</a></li><li><a href="https://www.suse.com/company/about/" target="_top">About</a></li><li><a href="https://www.suse.com/contact/" target="_top">Contact Us</a></li></ul></div></div></body></html>
