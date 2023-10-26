@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="490" height="360" viewBox="0 0 129.65 95.25" version="1.1" id="svg1621">
+    <g id="layer1" transform="translate(-47.62 -84.67)">
+        <rect id="rect1645" width="124.35" height="89.96" x="50.27" y="87.31" fill="#0c322c" stroke="none" stroke-width=".6" stroke-linecap="square" stroke-miterlimit="4" stroke-dasharray="none" stroke-opacity="1" paint-order="fill markers stroke" stop-color="#000"/>
+        <rect id="rect1647" width="113.77" height="66.15" x="55.56" y="103.19" fill="#30ba78" stroke="none" stroke-width=".73" stroke-linecap="square" stroke-miterlimit="4" stroke-dasharray="none" stroke-opacity="1" paint-order="fill markers stroke" stop-color="#000"/>
+        <rect id="rect1649" width="103.19" height="44.98" x="60.85" y="119.06" fill="#90ebcd" stroke="none" stroke-width=".71" stroke-linecap="square" stroke-miterlimit="4" stroke-dasharray="none" stroke-opacity="1" paint-order="fill markers stroke" stop-color="#000"/>
+        <rect id="rect1666" width="79.38" height="23.81" x="71.44" y="134.94" fill="#fff" fill-opacity="1" stroke="none" stroke-width=".66" stroke-linecap="square" stroke-miterlimit="4" stroke-dasharray="none" stroke-opacity="1" paint-order="fill markers stroke" stop-color="#000"/>
+        <text xml:space="preserve" style="line-height:1.25;-inkscape-font-specification:'Poppins, Medium'" x="91.77" y="97.09" id="text1670" font-weight="500" font-size="4.94" font-family="Poppins" letter-spacing="0" fill="#fff" stroke-width=".26"><tspan id="tspan1668" x="91.77" y="97.09" fill="#fff" stroke-width=".26">Custom image 3</tspan></text>
+        <text xml:space="preserve" style="line-height:1.25;-inkscape-font-specification:'Poppins, Medium'" x="91.77" y="112.98" id="text1670-4" font-weight="500" font-size="4.94" font-family="Poppins" letter-spacing="0" fill="#fff" stroke-width=".26"><tspan id="tspan1668-7" x="91.77" y="112.98" fill="#fff" stroke-width=".26">Custom image 2</tspan></text>
+        <text xml:space="preserve" style="line-height:1.25;-inkscape-font-specification:'Poppins, Medium'" x="91.77" y="128.51" id="text1670-7" font-weight="500" font-size="4.94" font-family="Poppins" letter-spacing="0" fill="#000" stroke-width=".26"><tspan id="tspan1668-5" x="91.77" y="128.51" fill="#000" stroke-width=".26">Custom image 1</tspan></text>
+        <text xml:space="preserve" style="line-height:1.25;-inkscape-font-specification:'Poppins, Medium'" x="96.23" y="148.07" id="text1670-2" font-weight="500" font-size="4.94" font-family="Poppins" letter-spacing="0" fill="#000" stroke-width=".26"><tspan id="tspan1668-8" x="96.23" y="148.07" fill="#000" stroke-width=".26">Base image</tspan></text>
+    </g>
+</svg>
+    
+

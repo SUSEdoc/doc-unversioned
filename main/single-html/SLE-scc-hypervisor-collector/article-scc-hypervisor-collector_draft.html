@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>SUSE Linux Enterprise Server | Hypervisor details in SUSE Customer Center</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Hypervisor details in SUSE Customer Center | SUSE Linux Ent…"/>
+<meta name="description" content="This article describes how to provide customers with d…"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="book-title" content="Hypervisor details in SUSE Customer Center"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tbazant@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Hypervisor details in SUSE Customer Center | SUSE Linu…"/>
+<meta property="og:description" content="This article describes how to provide customers with details about the hypervisors they use. The collected data is available…"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hypervisor details in SUSE Customer Center | SUSE Linu…"/>
+<meta name="twitter:description" content="This article describes how to provide customers with details about the hypervisors they use. The collected data is available…"/>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/jquery-1.12.4.min.js" type="text/javascript"> </script><script src="static/js/script.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script><meta name="edit-url" content="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml"/></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#article-scc-hypervisor-collector">Hypervisor details in SUSE Customer Center</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="article-scc-hypervisor-collector" data-id-title="Hypervisor details in SUSE Customer Center"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase">SUSE Linux Enterprise Server</span></span><span class="productnumber"/></div><div><div class="title-container"><h1 class="title">Hypervisor details in SUSE Customer Center <a title="Permalink" class="permalink" href="#article-scc-hypervisor-collector">#</a></h1><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div><div class="date"><span class="imprint-label">Publication Date: </span>
+October 24, 2023
+</div><div><div class="abstract"><p>
+        This article describes how to provide customers with details about the
+        hypervisors they use. The collected data is available under the
+        customers' SUSE Customer Center (SCC) account.
+      </p></div></div></div></div><section class="sect1" id="scc-hypervisor-collector-whatis" data-id-title="What is scc-hypervisor-collector?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is <code class="command">scc-hypervisor-collector</code>?</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-whatis">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      <code class="command">scc-hypervisor-collector</code> is a command-line tool that collects details about customer
+      hypervisor solutions and uploads them to SCC.
+    </p></section><section class="sect1" id="scc-hypervisor-collector-benefits" data-id-title="Benefits"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Benefits</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-benefits">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      Collecting details about hypervisors and providing our customers with
+      them has the following benefits:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Customers are proactively informed about their subscription
+          consumption. This allows them to stay compliant and purchase more
+          subscriptions if needed.
+        </p></li><li class="listitem"><p>
+          Customers can avoid license auditing which is a time consuming and
+          exhausting experience.
+        </p></li></ul></div></section><section class="sect1" id="scc-hypervisor-collector-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-requirements">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      To collect hypervisor data and upload it to SCC, you need:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          An existing VM Host Server running a supported hypervisor—VMware or
+          <code class="systemitem">libvirt</code>.
+        </p></li><li class="listitem"><p>
+          To install the <span class="package">scc-hypervisor-collector</span> package and
+          configure the collector to match your environment.
+        </p></li></ul></div></section><section class="sect1" id="scc-hypervisor-collector-how-it-works" data-id-title="How does scc-hypervisor-collector work?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">How does <code class="command">scc-hypervisor-collector</code> work?</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-how-it-works">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      The <code class="command">scc-hypervisor-collector</code> command collects details (see
+      <a class="xref" href="#scc-hypervisor-collector-data" title="5. Collected data">Section 5, “Collected data”</a>) about the hypervisor
+      solutions it has been configured to collect data from.
+    </p><p>
+      The collected data, when uploaded to SCC, is correlated with existing
+      SCC registrations and subscription entitlements.
+    </p><p>
+      You can either run <code class="command">scc-hypervisor-collector</code> manually or enable a <code class="systemitem">systemd</code> timer to run
+      it regularly.
+    </p></section><section class="sect1" id="scc-hypervisor-collector-data" data-id-title="Collected data"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Collected data</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-data">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      <code class="command">scc-hypervisor-collector</code> collects the following data:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          The system UUID of a <code class="systemitem">libvirt</code> host—it is the primary piece of
+          information used to correlate hypervisor hosts and virtual machines
+          with existing SCC registrations
+        </p></li><li class="listitem"><p>
+          The system UUIDs of the managed virtual machines
+        </p></li><li class="listitem"><p>
+          Basic hardware capabilities, such as RAM and CPUs, of the hypervisor
+          host
+        </p></li><li class="listitem"><p>
+          Type of the hypervisor—VMware or <code class="systemitem">libvirt</code>
+        </p></li><li class="listitem"><p>
+          The state of each discovered virtual machine—whether it is
+          running or stopped/shut off
+        </p></li></ul></div></section><section class="sect1" id="scc-hypervisor-collector-configuration" data-id-title="Configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Configuration</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      You need to configure <code class="command">scc-hypervisor-collector</code> and specify the hypervisors that it needs
+      to query, and the credentials required to upload the collected details to
+      SCC. <code class="command">scc-hypervisor-collector</code> checks configuration files with the
+      <code class="literal">.yaml</code> or <code class="literal">.yml</code> suffix in the
+      <code class="filename">/var/lib/scchvc/.config/scc-hypervisor-collector/</code>
+      directory.
+    </p><div id="id-1.9.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+        To include YAML configuration files from a different directory, specify
+        it with the <code class="option">--config-dir</code> option. To include a single
+        YAML configuration file, specify it with the <code class="option">--config</code>
+        option.
+      </p></div><p>
+      <code class="command">scc-hypervisor-collector</code> can be run as any user with appropriate configuration settings.
+      If you intend to use the <code class="systemitem">systemd</code> integration (see
+      <a class="xref" href="#scc-hypervisor-collector-service" title="7. scc-hypervisor-collector systemd services">Section 7, “<code class="command">scc-hypervisor-collector</code> <code class="systemitem">systemd</code> services”</a>) to run it
+      automatically on a regular basis, configure it to run under the default
+      restricted <code class="literal">scchvc</code> user account.
+    </p><p>
+      The configuration file must include the following top-level entries:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.6.1"><span class="term">credentials</span></dt><dd><p>
+            Includes a collection of credentials that are used by the tool.
+          </p><div id="id-1.9.6.1.2.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+              The provided credentials only need the privileges to retrieve the
+              specified details from the hypervisor solution. It is highly
+              recommended that they do not have capabilities to modify the
+              state of the hypervisor.
+            </p></div></dd><dt id="id-1.9.6.2"><span class="term">backends</span></dt><dd><p>
+            Lists hypervisors that are queried to obtain the relevant details.
+          </p></dd></dl></div><p>
+      You can verify if the configuration is correct by using the
+      <code class="option">--check</code> option.
+    </p><p>
+      The following example configuration file allows querying <code class="systemitem">libvirt</code> and
+      VMware hypervisors, and specifies credentials for uploading the data to
+      SCC:
+    </p><div class="verbatim-wrap"><pre class="screen">credentials:
+  scc:
+    username: 'SCC_USERNAME'
+    password: 'SCC_PASSWORD'
+
+backends:
+  - id: 'vcenter1'
+    module: 'VMware'
+    hostname: 'dc1-vcenter.example.com'
+    port: 443
+    username: 'VC1_USERNAME'
+    password: 'VC1_PASSWORD'
+
+  - id: 'kvmhost1'
+    module: 'Libvirt'
+    uri: 'qemu+ssh://someuser@kvmhost1.example.com/system'</pre></div><div id="id-1.9.10" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+        For more details about configuration options, refer to the
+        corresponding man page <code class="command">man 5
+        scc-hypervisor-collector</code>.
+      </p></div><section class="sect2" id="scc-hypervisor-collector-separate-phases" data-id-title="Separate collection and upload phases"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Separate collection and upload phases</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-separate-phases">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        You can separate the collection and upload phases by manually running
+        the <code class="command">scc-hypervisor-collector</code> command:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            The <code class="option">--output</code> option lets you specify the path to a
+            file to store the results of querying the hypervisors in the YAML
+            format. This option disables uploading results to the SCC.
+          </p></li><li class="listitem"><p>
+            The <code class="option">--input</code> option lets you specify the path to the
+            file that contains the previously collected results of querying the
+            hypervisors in the YAML format. These results are uploaded
+            to SCC instead of querying the current state of hypervisors.
+          </p></li></ul></div><p>
+        This separation helps to fulfil the following scenarios:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Customer systems that have the necessary access to collect the
+            data from the configured hypervisor systems may not have
+            access to the Internet to upload the collected data to SCC.
+            Conversely, systems that have Internet access to upload
+            data to SCC may not have sufficient access to collect
+            the data from the customer hypervisor solutions.
+          </p></li><li class="listitem"><p>
+            You want to sanitize the collected data before it is uploaded to
+            SCC, for example, change host names or virtual machine names. Note
+            that certain values, such as UUID identifiers, cannot be changed.
+          </p></li></ul></div></section></section><section class="sect1" id="scc-hypervisor-collector-service" data-id-title="scc-hypervisor-collector systemd services"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name"><code class="command">scc-hypervisor-collector</code> <code class="systemitem">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-service">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      The
+      <code class="systemitem">scc-hypervisor-collector.timer</code>
+      timer triggers the
+      <code class="systemitem">scc-hypervisor-collector.service</code>
+      service that runs the <code class="command">scc-hypervisor-collector</code> command on a daily basis. These <code class="systemitem">systemd</code>
+      units are disabled by default.
+    </p><div id="id-1.10.3" data-id-title="Test scc-hypervisor-collector manually" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Test <code class="command">scc-hypervisor-collector</code> manually</div><p>
+        Before enabling
+        <code class="systemitem">scc-hypervisor-collector.timer</code>,
+        run <code class="command">scc-hypervisor-collector</code> manually via the <code class="literal">scchvc</code> user account,
+        then verify that it runs correctly when triggered by
+        <code class="systemitem">scc-hypervisor-collector.service</code>.
+        When the result is satisfactory, consider enabling the timer.
+      </p></div><p>
+      To enable the collector's service and timer, run the following commands:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl enable scc-hypervisor-collector.service</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl enable scc-hypervisor-collector.timer</code></pre></div><section class="sect2" id="scc-hypervisor-collector-service-custom" data-id-title="Customizing systemd unit files"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Customizing <code class="systemitem">systemd</code> unit files</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-service-custom">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        To modify the default behavior of the collector's <code class="systemitem">systemd</code> unit files,
+        create <code class="systemitem">systemd</code> unit <span class="emphasis"><em>drop-in</em></span> files to override
+        the default behavior, using the <code class="command">systemctl edit</code>
+        mechanism.
+      </p><p>
+        To change the user under which the
+        <code class="systemitem">scc-hypervisor-collector.service</code>
+        service runs the <code class="command">scc-hypervisor-collector</code> command,
+        create a drop-in snippet with the following content:
+      </p><div class="verbatim-wrap"><pre class="screen">[Service]
+User=<em class="replaceable">EXAMPLE_USER</em>
+Group=<em class="replaceable">EXAMPLE_GROUP</em></pre></div><p>
+        To change the timer to trigger the
+        <code class="systemitem">scc-hypervisor-collector.service</code>
+        service to a weekly cadence with a randomized skew of up to 6 hours
+        rather than 15 minutes, create a drop-in snippet with the following
+        content:
+      </p><div class="verbatim-wrap"><pre class="screen">[Timer]
+OnCalendar=weekly
+RandomizedDelaySec=6h</pre></div></section></section><section class="sect1" id="scc-hypervisor-collector-related-topics" data-id-title="Related topics"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Related topics</span></span> <a title="Permalink" class="permalink" href="#scc-hypervisor-collector-related-topics">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-scc-hypervisor-collector.xml" title="Edit source document"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Detailed configuration of <code class="command">scc-hypervisor-collector</code> is described in the man page
+          <code class="command">man 5 scc-hypervisor-collector</code>.
+        </p></li><li class="listitem"><p>
+          Detailed information about <code class="command">scc-hypervisor-collector</code> <code class="systemitem">systemd</code> units is described in
+          the man page <code class="command">man 8 scc-hypervisor-collector</code>.
+        </p></li><li class="listitem"><p>
+          Creating <code class="systemitem">systemd</code> drop-in files is described in the man page
+          <code class="command">man 5 systemd.unit</code>, search for the
+          <code class="literal">Overriding vendor settings</code> title.
+        </p></li><li class="listitem"><p>
+          Virtualization limits and support information are described in
+          <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/cha-virt-support.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/cha-virt-support.html</a>.
+        </p></li></ul></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="sect1"><a href="#scc-hypervisor-collector-whatis"><span class="title-number">1 </span><span class="title-name">What is <code class="command">scc-hypervisor-collector</code>?</span></a></span></li><li><span class="sect1"><a href="#scc-hypervisor-collector-benefits"><span class="title-number">2 </span><span class="title-name">Benefits</span></a></span></li><li><span class="sect1"><a href="#scc-hypervisor-collector-requirements"><span class="title-number">3 </span><span class="title-name">Requirements</span></a></span></li><li><span class="sect1"><a href="#scc-hypervisor-collector-how-it-works"><span class="title-number">4 </span><span class="title-name">How does <code class="command">scc-hypervisor-collector</code> work?</span></a></span></li><li><span class="sect1"><a href="#scc-hypervisor-collector-data"><span class="title-number">5 </span><span class="title-name">Collected data</span></a></span></li><li><span class="sect1"><a href="#scc-hypervisor-collector-configuration"><span class="title-number">6 </span><span class="title-name">Configuration</span></a></span></li><li><span class="sect1"><a href="#scc-hypervisor-collector-service"><span class="title-number">7 </span><span class="title-name"><code class="command">scc-hypervisor-collector</code> <code class="systemitem">systemd</code> services</span></a></span></li><li><span class="sect1"><a href="#scc-hypervisor-collector-related-topics"><span class="title-number">8 </span><span class="title-name">Related topics</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2023</span></div></div></footer></body></html>

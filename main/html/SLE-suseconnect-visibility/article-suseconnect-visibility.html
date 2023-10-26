@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>SUSE Linux Enterprise Server | Enriched system visibility in the SUSE Customer Center</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Enriched system visibility in the SUSE Customer Center | SU…"/>
+<meta name="description" content="This document describes what SUSEConnect is and how th…"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="book-title" content="Enriched system visibility in the SUSE Customer Center"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tbazant@suse.com"/>
+<meta name="tracker-bsc-component" content="SLE Family"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Enriched system visibility in the SUSE Customer Center…"/>
+<meta property="og:description" content="This document describes what SUSEConnect is and how the SUSE Customer Center (SCC) and Repository Mirroring Tool (RMT) use i…"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Enriched system visibility in the SUSE Customer Center…"/>
+<meta name="twitter:description" content="This document describes what SUSEConnect is and how the SUSE Customer Center (SCC) and Repository Mirroring Tool (RMT) use i…"/>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/jquery-1.12.4.min.js" type="text/javascript"> </script><script src="static/js/script.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script><meta name="edit-url" content="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml"/></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Enriched system visibility in the SUSE Customer Center</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Enriched system visibility in the SUSE Customer Center</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="article-suseconnect-visibility" data-id-title="Enriched system visibility in the SUSE Customer Center"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase">SUSE Linux Enterprise Server</span></span><span class="productnumber"/></div><div><div class="title-container"><h1 class="title">Enriched system visibility in the SUSE Customer Center <a title="Permalink" class="permalink" href="index.html#">#</a></h1><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div><div class="date"><span class="imprint-label">Publication Date: </span>
+October 24, 2023
+</div><div><div class="abstract"><p>
+    This document describes what SUSEConnect is and how the SUSE Customer Center (SCC) and Repository
+    Mirroring Tool (RMT) use it to gather updated information about active systems and
+    their hardware environment.
+   </p></div></div></div></div><section class="sect1" id="suseconnect-whatis" data-id-title="What is SUSEConnect?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is SUSEConnect?</span></span> <a title="Permalink" class="permalink" href="index.html#suseconnect-whatis">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+   SUSEConnect is a tool to register SLE-based operating systems with SCC or RMT. Registered
+   systems receive updates to installed packages, for example, to increase security of the operating
+   system. With SUSEConnect, you can additionally register extensions and modules that extend the
+   base system functionality.
+  </p><div id="id-1.4.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+    This document does not cover general usage of SUSEConnect. To find more basic information
+    about how to register your system, modules and extensions with SUSEConnect, refer to
+    <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/cha-register-sle.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/cha-register-sle.html</a>.
+   </p></div><p>
+   SUSE is committed to helping provide better insights into the consumption of SUSE subscriptions,
+   regardless of where they are running or how they are managed; physical or virtual, on-prem or in
+   the cloud, connected to SCC or RMT, or managed by SUSE Manager.
+
+   To help you identify or filter out systems in SCC that are decommissioned or no longer running,
+   SUSEConnect now features a daily 'ping,' which will update system information automatically.
+   Each registered host contacts SCC or RMT and sends the unique identification of the host and
+   the description of its hardware environment.
+  </p></section><section class="sect1" id="suseconnect-visibility-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#suseconnect-visibility-requirements">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+   To use the extended SUSEConnect functionality, you need to:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Run a supported and registered SLE-based host with all update patches applied.
+    </p></li><li class="listitem"><p>
+     Verify that the host system includes the <code class="command">SUSEConnect</code> command version
+     0.3.33 or higher.
+    </p></li></ul></div></section><section class="sect1" id="suseconnect-visibility-how-it-works" data-id-title="How enhanced system visibility works"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">How enhanced system visibility works</span></span> <a title="Permalink" class="permalink" href="index.html#suseconnect-visibility-how-it-works">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+   We extended SUSEConnect with the new option <code class="option">--keepalive</code>. The command
+   <code class="command">SUSEConnect --keepalive</code> updates the last time that a host contacted SCC or
+   RMT and updates the host's hardware information.
+  </p><p>
+   The SUSEConnect package ships with two <code class="systemitem">systemd</code> units:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.4.1"><span class="term"><code class="filename">suseconnect-keepalive.service</code></span></dt><dd><p>
+      A service which runs the command <code class="command">SUSEConnect --keepalive</code> on demand.
+     </p></dd><dt id="id-1.6.4.2"><span class="term"><code class="filename">suseconnect-keepalive.timer</code></span></dt><dd><p>
+      A timer which runs the service <code class="filename">suseconnect-keepalive.service</code> once a day
+      at random time to prevent SCC congestion.
+     </p></dd></dl></div><p>
+   These units are responsible for keeping the system information up to date with
+   the SCC or RMT, and for providing accurate data about subscription usage.
+  </p><div id="id-1.6.6" data-id-title="The timer is enabled automatically" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: The timer is enabled automatically</div><p>
+    When the SUSEConnect package is installed or updated, and its version is equal to or greater
+    than the one described above, the keep-alive timer will be enabled automatically.
+   </p></div><section class="sect2" id="disabling-suseconnect-timer" data-id-title="Disabling the keep-alive timer"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Disabling the keep-alive timer</span></span> <a title="Permalink" class="permalink" href="index.html#disabling-suseconnect-timer">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+    If you prefer to not have the SUSEConnect keep-alive timer running on your system, you can
+    disable it with <code class="command">systemctl</code>:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl disable --now suse-connect-keepalive.timer</pre></div><p>
+    Once the timer is disabled, subsequent updates to the SUSEConnect package will not re-enable
+    it.
+   </p><div id="id-1.6.7.5" data-id-title="Re-enabling the keep-alive timer" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Re-enabling the keep-alive timer</div><p>
+     If you decide to re-enable the disabled keep-alive timer, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl enable --now suse-connect-keepalive.timer</pre></div></div></section></section><section class="sect1" id="identifying-inactive-systems-with-registration-servers" data-id-title="Identifying inactive systems"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Identifying inactive systems</span></span> <a title="Permalink" class="permalink" href="index.html#identifying-inactive-systems-with-registration-servers">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+   When SUSEConnect reports details about active hosts daily, SCC or RMT collect this information
+   and let you filter out registered inactive hosts. If your hosts are registered against RMT or
+   SUSE Manager, these registration servers forward the received information to SCC.
+  </p><section class="sect2" id="identifying-inactive-systems-with-scc" data-id-title="Identifying inactive systems with SCC"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Identifying inactive systems with SCC</span></span> <a title="Permalink" class="permalink" href="index.html#identifying-inactive-systems-with-scc">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+    In the SCC Web user interface, you can limit the list of systems to see only inactive
+    hosts.
+   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      Log in to SCC at <a class="link" href="https://scc.suse.com" target="_blank">https://scc.suse.com</a> and select your organization in the
+      left pane.
+     </p></li><li class="step"><p>
+      Select <span class="guimenu">Systems</span> from the top menu to list all registered hosts by default.
+     </p></li><li class="step"><p>
+      Select <span class="guimenu">Inactive</span> from the upper-left drop-down list.
+     </p><div class="figure" id="id-1.7.3.3.3.2"><div class="figure-contents"><div class="mediaobject"><a href="images/scc-inactive-filter.png"><img src="images/scc-inactive-filter.png" width="45%" alt="Drop-down list with a filter for inactive hosts" title="Drop-down list with a filter for inactive hosts"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Drop-down list with a filter for inactive hosts </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.3.3.3.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></li><li class="step"><p>
+      If you have sufficient privileges and your inactive host is registered directly with SCC, you
+      can deregister it by clicking the three dots on its right and selecting
+      <span class="guimenu">De-register</span>.
+     </p></li></ol></div></div></section><section class="sect2" id="identifying-inactive-systems-with-rmt" data-id-title="Identifying inactive systems with RMT"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Identifying inactive systems with RMT</span></span> <a title="Permalink" class="permalink" href="index.html#identifying-inactive-systems-with-rmt">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+    By using the <code class="command">rmt-cli systems purge</code> command, you can view and remove hosts
+    that have not contacted the RMT server since a given date in the past. For more details, refer
+    to <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/cha-rmt-tools.html#sec-rmt-tools-rmt-cli-systems" target="_blank">https://documentation.suse.com/sles/html/SLES-all/cha-rmt-tools.html#sec-rmt-tools-rmt-cli-systems</a>
+   </p></section></section><section class="sect1" id="system-data-gathered-by-scc" data-id-title="System data gathered by SCC"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">System data gathered by SCC</span></span> <a title="Permalink" class="permalink" href="index.html#system-data-gathered-by-scc">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+   When a system is registered directly via SCC, or its registration information is forwarded by RMT
+   or SUSE Manager, SCC collects the following information:
+  </p><div class="table" id="id-1.8.3" data-id-title="System attributes collected by SCC"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">System attributes collected by SCC </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col style="text-align: left; " class="1"/><col style="text-align: left; " class="2"/><col style="text-align: left; " class="3"/></colgroup><thead><tr><th style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       System Attribute
+      </th><th style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       Type
+      </th><th style="text-align: left; border-bottom: 1px solid ; ">
+       Example value
+      </th></tr></thead><tbody><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+        Host Name
+      </td><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+        string
+      </td><td style="text-align: left; border-bottom: 1px solid ; ">
+       virtual.domain.net
+      </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+        CPUs
+      </td><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       int
+      </td><td style="text-align: left; border-bottom: 1px solid ; ">
+       1
+      </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       Sockets
+      </td><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       int
+      </td><td style="text-align: left; border-bottom: 1px solid ; ">
+       2
+      </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       Architecture
+      </td><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       string
+      </td><td style="text-align: left; border-bottom: 1px solid ; ">
+       x86_64
+      </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       UUID
+      </td><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       uuid
+      </td><td style="text-align: left; border-bottom: 1px solid ; ">
+       6A5072A0-311B-430E-8EDE-A8770788B92D
+      </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       Hypervisor
+      </td><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       string
+      </td><td style="text-align: left; border-bottom: 1px solid ; ">
+       KVM or VMware etc.
+      </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       Cloud Provider
+      </td><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       string
+      </td><td style="text-align: left; border-bottom: 1px solid ; ">
+       Amazon, Google, or Azure
+      </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       Last Seen Date
+      </td><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+       date
+      </td><td style="text-align: left; border-bottom: 1px solid ; ">
+       2021-05-05 (the last time that the system contacted SCC or RMT)
+      </td></tr><tr><td style="text-align: left; border-right: 1px solid ; ">
+       Total Memory
+      </td><td style="text-align: left; border-right: 1px solid ; ">
+       int
+      </td><td style="text-align: left; ">
+       4096 (in MiB)
+      </td></tr></tbody></table></div></div></section><section class="sect1" id="suseconnect-benefits" data-id-title="Benefits"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Benefits</span></span> <a title="Permalink" class="permalink" href="index.html#suseconnect-benefits">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+   The new functionality of SUSEConnect brings the following benefits to the 
+   customer:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Ability to identify all types of deployments of systems, no matter if they are derived from a
+     custom image or are clones of an already registered virtual machine.
+    </p></li><li class="listitem"><p>
+     By contacting SCC or RMT regularly, you can obtain the number of actually running registered
+     systems. This provides a better insight into the consumption of SUSE 
+     subscriptions.
+    </p></li><li class="listitem"><p>
+     Updates to registration tools provide a clearer picture of your workloads. 
+     You can filter out the systems that are no longer running or decommissioned.
+    </p></li><li class="listitem"><p>
+     By collecting regular registration and hardware information, we will continue to improve our
+     products to reflect your needs and let you manage system subscriptions more easily.
+    </p></li></ul></div></section><section class="sect1" id="suseconnect-visibility-related-topics" data-id-title="Related topics"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Related topics</span></span> <a title="Permalink" class="permalink" href="index.html#suseconnect-visibility-related-topics">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/suseconnect-visibility/xml/art_suseconnect_visibility.xml" title="Edit source document"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     For general SUSEConnect functionality, refer to
+     <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/cha-register-sle.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/cha-register-sle.html</a>.
+    </p></li><li class="listitem"><p>
+     You can find SCC at <a class="link" href="https://scc.suse.com/" target="_blank">https://scc.suse.com/</a>.
+    </p></li><li class="listitem"><p>
+     Find further information about RMT at
+     <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/book-rmt.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/book-rmt.html</a>
+    </p></li><li class="listitem"><p>
+     Find further information about SUSE Manager at
+     <a class="link" href="https://documentation.suse.com/suma/" target="_blank">https://documentation.suse.com/suma/</a>
+    </p></li></ul></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="sect1"><a href="index.html#suseconnect-whatis"><span class="title-number">1 </span><span class="title-name">What is SUSEConnect?</span></a></span></li><li><span class="sect1"><a href="index.html#suseconnect-visibility-requirements"><span class="title-number">2 </span><span class="title-name">Requirements</span></a></span></li><li><span class="sect1"><a href="index.html#suseconnect-visibility-how-it-works"><span class="title-number">3 </span><span class="title-name">How enhanced system visibility works</span></a></span></li><li><span class="sect1"><a href="index.html#identifying-inactive-systems-with-registration-servers"><span class="title-number">4 </span><span class="title-name">Identifying inactive systems</span></a></span></li><li><span class="sect1"><a href="index.html#system-data-gathered-by-scc"><span class="title-number">5 </span><span class="title-name">System data gathered by SCC</span></a></span></li><li><span class="sect1"><a href="index.html#suseconnect-benefits"><span class="title-number">6 </span><span class="title-name">Benefits</span></a></span></li><li><span class="sect1"><a href="index.html#suseconnect-visibility-related-topics"><span class="title-number">7 </span><span class="title-name">Related topics</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2023</span></div></div></footer></body></html>

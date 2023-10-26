@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Using KubeVirt on SUSE Linux Enterprise</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Using KubeVirt on SUSE Linux Enterprise"/>
+<meta name="description" content="KubeVirt is a virtual machine management add-on for Ku…"/>
+<meta name="book-title" content="Using KubeVirt on SUSE Linux Enterprise"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jfehlig@suse.com"/>
+<meta name="tracker-bsc-component" content="KubeVirt"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Using KubeVirt on SUSE Linux Enterprise"/>
+<meta property="og:description" content="KubeVirt is a virtual machine management add-on for Kubernetes. KubeVirt extends Kubernetes by adding additional virtualizat…"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using KubeVirt on SUSE Linux Enterprise"/>
+<meta name="twitter:description" content="KubeVirt is a virtual machine management add-on for Kubernetes. KubeVirt extends Kubernetes by adding additional virtualizat…"/>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/jquery-1.12.4.min.js" type="text/javascript"> </script><script src="static/js/script.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script><meta name="edit-url" content="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml"/></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#article-kubevirt">Using KubeVirt on SUSE Linux Enterprise</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="article-kubevirt" data-id-title="Using KubeVirt on SUSE Linux Enterprise"><div class="titlepage"><div><div><div class="title-container"><h1 class="title">Using KubeVirt on SUSE Linux Enterprise <a title="Permalink" class="permalink" href="#article-kubevirt">#</a></h1><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div><div class="date"><span class="imprint-label">Publication Date: </span>
+October 24, 2023
+</div><div><div class="abstract"><p>
+        KubeVirt is a virtual machine management add-on for Kubernetes.
+        KubeVirt extends Kubernetes by adding additional virtualization
+        resource types through Kubernetes' Custom Resource Definitions (CRD)
+        API. Along with the Custom Resources, KubeVirt includes controllers
+        and agents that provide virtual machine management capabilities on the
+        cluster. By using this mechanism, the Kubernetes API can be used to
+        manage virtual machine resources similar to other Kubernetes resources.
+      </p></div></div><div class="authorgroup"><div><span class="imprint-label">Authors: </span><span class="firstname">Jim</span> <span class="surname">Fehlig</span> and <span class="firstname">Vasily</span> <span class="surname">Ulyanov</span></div></div></div></div><section class="sect1" id="sec-virtualization-kubevirt" data-id-title="KubeVirt components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">KubeVirt components</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      KubeVirt consists of two RPM-based packages and six container images
+      that provide the Kubernetes virtual machine management extension. The RPM
+      packages include <span class="package">kubevirt-virtctl</span> and
+      <span class="package">kubevirt-manifests</span>. The container images include
+      <span class="package">virt-api</span>, <span class="package">virt-controller</span>,
+      <span class="package">virt-handler</span>, <span class="package">virt-launcher</span>, and
+      <span class="package">virt-operator</span>, <span class="package">libguestfs-tools</span>.
+    </p><p>
+      <span class="package">kubevirt-virtctl</span> can be installed on any machine with
+      administrator access to the cluster. It contains the
+      <span class="package">virtctl</span> tool, which provides syntactic sugar on top of
+      the <span class="package">kubectl</span> tool for virtual machine resources.
+      Although the <span class="package">kubectl</span> tool can be used to manage
+      virtual machines, it is a bit awkward since, unlike standard Kubernetes
+      resources, virtual machines maintain state. Migration is also unique to
+      virtual machines. If a standard Kubernetes resource needs to be evacuated
+      from a cluster node, it is destroyed and started again on an alternate
+      node. Since virtual machines are stateful, they cannot be destroyed and
+      must be live-migrated away if a node is under evacuation. The
+      <span class="package">virtctl</span> tool abstracts the complexity of managing
+      virtual machines with <span class="package">kubectl</span>. It can be used to stop,
+      start, pause, unpause, and migrate virtual machines.
+      <span class="package">virtclt</span> also provides access to the virtual machine's
+      serial console and graphics server.
+    </p><p>
+      <span class="package">kubevirt-manifests</span> contains the manifests, or recipes,
+      for installing KubeVirt. The most interesting files are
+      <code class="filename">/usr/share/kube-virt/manifests/release/kubevirt-cr.yaml</code>
+      and
+      <code class="filename">/usr/share/kube-virt/manifests/release/kubevirt-operator.yaml</code>.
+      <code class="filename">kubevirt-cr.yaml</code> contains the KubeVirt Custom
+      Resource definition that represents the KubeVirt service.
+      <code class="filename">kubevirt-operator.yaml</code> is the recipe for deploying
+      the KubeVirt operator, which deploys the KubeVirt service to the
+      cluster and manages its' lifecycle.
+    </p><p>
+      <span class="package">virt-api</span> is a cluster component that provides the
+      Kubernetes API extension for virtual machine resources. Like
+      <span class="package">virt-api</span>, <span class="package">virt-controller</span> is a
+      cluster component that watches for new objects created via
+      <span class="package">virt-api</span>, or updates to existing objects, and takes
+      action to ensure the object state matches the requested state.
+      <span class="package">virt-handler</span> is a DaemonSet and a node component that
+      has the job of keeping the cluster-level virtual machine object in sync
+      with the <span class="package">libvirtd</span> domain running in
+      <span class="package">virt-launcher</span>. <span class="package">virt-handler</span> can
+      also perform node-centric operations like configuring networking and/or
+      storage on the node as per the virtual machine specification.
+      <span class="package">virt-launcher</span> is also a node component and has the job
+      of running <span class="package">libvirt</span> plus <span class="package">qemu</span> to
+      provide the virtual machine environment. <span class="package">virt-launcher</span>
+      is a lowly pod resource. <span class="package">libguestfs-tools</span> is a
+      component providing a set of utilities for accessing and modifying VM
+      disk images.
+    </p><p>
+      <span class="package">virt-operator</span> implements the Kubernetes operator
+      pattern. Operators encode the human knowledge required to deploy, run,
+      and maintain an application. Operators are a Kubernetes Deployment
+      resource type and are often used to manage the custom resources and
+      custom controllers that together provide a more complex Kubernetes
+      application such as KubeVirt.
+    </p></section><section class="sect1" id="sec-virtualization-kubevirt-installation" data-id-title="Installing KubeVirt on Kubernetes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing KubeVirt on Kubernetes</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      KubeVirt can be installed on a Kubernetes cluster by installing the
+      <span class="package">kubevirt-manifests</span> package on an admin node, applying
+      the <span class="package">virt-operator</span> manifest, and creating the
+      KubeVirt custom resource. For example, on a cluster admin node execute
+      the following:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper install kubevirt-manifests
+<code class="prompt user">&gt; </code>kubectl apply -f /usr/share/kube-virt/manifests/release/kubevirt-operator.yaml
+<code class="prompt user">&gt; </code>kubectl apply -f /usr/share/kube-virt/manifests/release/kubevirt-cr.yaml</pre></div><p>
+      After creating the KubeVirt custom resource,
+      <span class="package">virt-operator</span> will deploy the remaining KubeVirt
+      components. Progress can be monitored by viewing the status of the
+      resources in the <span class="package">kubevirt</span> namespace:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl get all -n kubevirt</pre></div><p>
+      The cluster is ready to deploy virtual machines once
+      <span class="package">virt-api</span>, <span class="package">virt-controller</span>, and
+      <span class="package">virt-handler</span> are READY with STATUS 'Running'.
+    </p><p>
+      Alternatively it is possible to wait until KubeVirt custom resource
+      becomes available:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl -n kubevirt wait kv kubevirt --for condition=Available</pre></div><p>
+      Some KubeVirt functionality is disabled by default and must be enabled
+      via feature gates. For example live migration and the use of HostDisk for
+      virtual machine disk images are disabled. Enabling KubeVirt feature
+      gates can be done by altering an existing KubeVirt custom resource and
+      specifying the list of features to enable. For example, you can enable
+      live migration and the use of HostDisks:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl edit kubevirt kubevirt -n kubevirt
+    ...
+    spec:
+      configuration:
+        developerConfiguration:
+          featureGates:
+            - HostDisk
+            - LiveMigration</pre></div><div id="id-1.4.11" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        The names of feature gates are case-sensitive.
+      </p></div></section><section class="sect1" id="sec-virtualization-kubevirt-updating" data-id-title="Updating the KubeVirt deployment"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Updating the KubeVirt deployment</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-updating">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      Updating KubeVirt is similar to the initial installation. The updated
+      operator manifest from the <span class="package">kubevirt-manifests</span> package
+      is applied to the cluster.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper update kubevirt-manifests
+<code class="prompt user">&gt; </code>kubectl apply -f /usr/share/kube-virt/manifests/release/kubevirt-operator.yaml</pre></div></section><section class="sect1" id="sec-virtualization-kubevirt-deleting" data-id-title="Deleting KubeVirt from a cluster"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Deleting KubeVirt from a cluster</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-deleting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      KubeVirt can be deleted from a cluster by deleting the custom resource
+      and operator:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl delete -n kubevirt kubevirt kubevirt # or alternatively: kubectl delete -f /usr/share/kube-virt/manifests/release/kubevirt-cr.yaml
+<code class="prompt user">&gt; </code>kubectl delete -f /usr/share/kube-virt/manifests/release/kubevirt-operator.yaml</pre></div><div id="id-1.6.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        It is important to delete the custom resource first otherwise it will
+        get stuck in the <span class="package">Terminating</span> state. To fix that the
+        resource finalizer needs to be manually deleted:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl -n kubevirt patch kv kubevirt --type=json -p '[{ "op": "remove", "path": "/metadata/finalizers" }]'</pre></div></div><p>
+      After deleting the resources from Kubernetes cluster the installed
+      KubeVirt RPMs can be removed from the system:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper rm kubevirt-manifests kubevirt-virtctl</pre></div></section><section class="sect1" id="sec-virtualization-kubevirt-cdi" data-id-title="Containerized Data Importer"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Containerized Data Importer</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-cdi">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      Containerized Data Importer (CDI) is an add-on for Kubernetes focused on
+      persistent storage management. It is primarily used for building and
+      importing Virtual Machine Disks for KubeVirt.
+    </p><section class="sect2" id="sec-virtualization-kubevirt-cdi-installation" data-id-title="Installing CDI"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Installing CDI</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-cdi-installation">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        CDI can be installed on a Kubernetes cluster in a way similar to
+        KubeVirt by installing the RPMs and applying the operator and custom
+        resource manifests using kubectl:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper in containerized-data-importer-manifests
+<code class="prompt user">&gt; </code>kubectl apply -f /usr/share/cdi/manifests/release/cdi-operator.yaml
+<code class="prompt user">&gt; </code>kubectl apply -f /usr/share/cdi/manifests/release/cdi-cr.yaml</pre></div></section><section class="sect2" id="sec-virtualization-kubevirt-cdi-updating-deleting" data-id-title="Updating and deleting CDI:"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Updating and deleting CDI:</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-cdi-updating-deleting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        To update CDI:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper update containerized-data-importer-manifests
+<code class="prompt user">&gt; </code>kubectl apply -f /usr/share/cdi/manifests/release/cdi-operator.yaml</pre></div><p>
+        To delete CDI:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl delete -f /usr/share/cdi/manifests/release/cdi-cr.yaml
+<code class="prompt user">&gt; </code>kubectl delete -f /usr/share/cdi/manifests/release/cdi-operator.yaml
+<code class="prompt user">&gt; </code><code class="command">sudo</code> zypper rm containerized-data-importer-manifests</pre></div></section></section><section class="sect1" id="sec-virtualization-kubevirt-running-vm" data-id-title="Running virtual machines"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Running virtual machines</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-running-vm">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      Two of the most interesting custom resources provided by KubeVirt are
+      <span class="italic">VirtualMachine</span> (VM) and
+      <span class="italic">VirtualMachineInstance</span> (VMI). As
+      the names imply, a VMI is a running instance of a VM. The lifecycle of a
+      VMI can be managed independently from a VM, but long-lived, stateful
+      virtual machines are managed as a VM. The VM is deployed to the cluster
+      in a shutoff state, then activated by changing the desired state to
+      running. Changing a VM resource state can be done with the standard
+      Kubernetes client tool <span class="package">kubectl</span> or with the client
+      <span class="package">virtctl</span> provided by KubeVirt.
+    </p><p>
+      The VM and VMI custom resources make up part of the KubeVirt API. To
+      create a virtual machine, a VM or VMI manifest must be created that
+      adheres to the API. The API supports setting a wide variety of the common
+      virtual machine attributes, for example model of vCPU, number of vCPUs,
+      amount of memory, disks, network ports, etc. Below is a simple example of
+      a VMI manifest for a virtual machine with one Nehalem CPU, 2G of memory,
+      one disk, and one network interface:
+    </p><div class="verbatim-wrap"><pre class="screen">apiVersion: kubevirt.io/v1
+kind: VirtualMachineInstance
+metadata:
+  labels:
+    special: vmi-host-disk
+  name: sles15sp2
+spec:
+  domain:
+    cpu:
+      model: Nehalem-IBRS
+    devices:
+      disks:
+      - disk:
+          bus: virtio
+        name: host-disk
+      interfaces:
+        - name: green
+          masquerade: {}
+          ports:
+            - port: 80
+    machine:
+      type: ""
+    resources:
+      requests:
+        memory: 2048M
+  terminationGracePeriodSeconds: 0
+  networks:
+  - name: green
+    pod: {}
+  volumes:
+  - hostDisk:
+      path: /hostDisks/sles15sp2/disk.raw
+      type: Disk
+      shared: true
+    name: host-disk</pre></div><p>
+      Applying this VMI manifest to the cluster will create a virt-launcher
+      container running <span class="package">libvirt</span> and <span class="package">qemu</span>,
+      providing the familiar KVM virtual machine environment.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl apply -f sles15sp2vmi.yaml
+<code class="prompt user">&gt; </code>kubectl get vmis</pre></div><p>
+      Similar to other Kubernetes resources, VMs and VMIs can be managed with
+      the <span class="package">kubectl</span> client tool. Any
+      <span class="package">kubectl</span> operation that works with resource types will
+      work with the KubeVirt custom resources, for example describe, delete,
+      get, log, patch, etc. VM resources are a bit more awkward to manage with
+      <span class="package">kubectl</span>. Since a VM resource can be in a shutoff
+      state, turning it on requires patching the manifest to change the desired
+      state to running. Find an example below:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl patch vm sles15sp2 --type merge -p '{"spec":{"running":true}}'</pre></div><p>
+      The <span class="package">virtctl</span> tool included in the
+      <span class="package">kubevirt-virtclt</span> package provides syntactic sugar on
+      top of <span class="package">kubectl</span> for VM and VMI resources, allowing them
+      to be stopped, started, paused, unpaused, and migrated.
+      <span class="package">virtctl</span> also provides access to the virtual machine's
+      serial console and graphics server. Find an example below:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>virtctl start VM
+<code class="prompt user">&gt; </code>virtctl console VMI
+<code class="prompt user">&gt; </code>virtctl stop VM
+<code class="prompt user">&gt; </code>virtctl pause VM|VMI
+<code class="prompt user">&gt; </code>virtctl unpause VM|VMI
+<code class="prompt user">&gt; </code>virtctl vnc VMI
+<code class="prompt user">&gt; </code>virtctl migrate VM</pre></div></section><section class="sect1" id="sec-virtualization-kubevirt-live-migration" data-id-title="Live migration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Live migration</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-live-migration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      KubeVirt supports live migration of VMs. Though this functionality must
+      first be activated by adding <span class="package">LiveMigration</span> to the list
+      of feature gates in the KubeVirt custom resource.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl edit kubevirt kubevirt -n kubevirt</pre></div><div class="verbatim-wrap"><pre class="screen">spec:
+  configuration:
+    developerConfiguration:
+      featureGates:
+        - LiveMigration</pre></div><section class="sect2" id="sec-virtualization-kubevirt-live-migration-prerequisites" data-id-title="Prerequisites"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Prerequisites</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-live-migration-prerequisites">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            All the Persistent Volume Claims (PVCs) used by a VM must have
+            `ReadWriteMany` (RWX) access mode.
+          </p></li><li class="listitem"><p>
+            VM pod network binding must be of type
+            <span class="package">masquerade</span>:
+          </p><div class="verbatim-wrap"><pre class="screen">spec:
+  domain:
+    devices:
+      interfaces:
+        - name: green
+          masquerade: {}</pre></div></li></ul></div><p>
+        Whether live migration is possible or not can be checked via the
+        <span class="package">VMI.status.conditions</span> field of a running VM spec:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl describe vmi sles15sp2</pre></div><div class="verbatim-wrap"><pre class="screen">Status:
+  Conditions:
+    Status: True
+    Type: LiveMigratable
+  Migration Method: BlockMigration</pre></div></section><section class="sect2" id="sec-virtualization-kubevirt-live-migration-init" data-id-title="Initiating live migration"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Initiating live migration</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-live-migration-init">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        Live migration of a VMI can be initiated by applying the following yaml
+        file:
+      </p><div class="verbatim-wrap"><pre class="screen">apiVersion: kubevirt.io/v1
+kind: VirtualMachineInstanceMigration
+metadata:
+  name: migration-job
+spec:
+  vmiName: sles15sp2</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl apply -f migration-job.yaml</pre></div><p>
+        Alternatively it is possible to migrate a VM using
+        <span class="package">virtctl</span> tool:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>virtctl migrate VM</pre></div></section><section class="sect2" id="sec-virtualization-kubevirt-live-migration-cancel" data-id-title="Cancelling live migration"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Cancelling live migration</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-live-migration-cancel">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        Live migration can be canceled by deleting the existing migration
+        object:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl delete VirtualMachineInstanceMigration migration-job</pre></div></section></section><section class="sect1" id="sec-virtualization-kubevirt-hotplug-volumes" data-id-title="Volume hotplugging"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Volume hotplugging</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-hotplug-volumes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      KubeVirt allows hotplugging additional storage into a running VM. Both
+      block and file system volume types are supported. The hotplug volumes
+      feature can be activated via the <span class="package">HotplugVolumes</span>
+      feature gate:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl edit kubevirt kubevirt -n kubevirt</pre></div><div class="verbatim-wrap"><pre class="screen">spec:
+  configuration:
+    developerConfiguration:
+      featureGates:
+        - HotplugVolumes</pre></div><p>
+      Assuming that <span class="package">hp-volume</span> is an existing DataVolume or
+      PVC, <span class="package">virtctl</span> can be used to operate with the volume on
+      a runnig VM:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>virtctl addvolume sles15sp2 --volume-name=hp-volume
+<code class="prompt user">&gt; </code>virtctl removevolume sles15sp2 --volume-name=hp-volume</pre></div></section><section class="sect1" id="sec-virtualization-kubevirt-vmdp" data-id-title="Running Windows VMs with VMDP ISO"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Running Windows VMs with VMDP ISO</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-vmdp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      The VMDP ISO is provided in the form of a container image which can be
+      consumed by KubeVirt. To run a Windows VM with VMDP ISO attached, the
+      corresponding <span class="package">containerDisk</span> needs to be added to the
+      VM definition:
+    </p><div class="verbatim-wrap"><pre class="screen">spec:
+  domain:
+    devices:
+      disks:
+        - name: vmdp
+          cdrom:
+            bus: sata
+volumes:
+  - containerDisk:
+      image: registry.suse.com/suse/vmdp/vmdp:latest
+    name: vmdp</pre></div><div id="id-1.11.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        The sequence in which the disks are defined affects the boot order. It
+        is possible to specify the <span class="package">bootOrder</span> explicitly or
+        otherwise sort the disk items as needed.
+      </p></div></section><section class="sect1" id="sec-virtualization-kubevirt-supported-features" data-id-title="Supported features"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Supported features</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-supported-features">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Guest Agent Information
+        </p></li><li class="listitem"><p>
+          Live migration
+        </p></li><li class="listitem"><p>
+          Hotplug volumes
+        </p></li><li class="listitem"><p>
+          VMI Dedicated CPU resource
+        </p></li></ul></div><section class="sect2" id="sec-virtualization-kubevirt-supported-hardware" data-id-title="VMI virtual hardware"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.1 </span><span class="title-name">VMI virtual hardware</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-supported-hardware">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            machine type
+          </p></li><li class="listitem"><p>
+            BIOS/UEFI/SMBIOS
+          </p></li><li class="listitem"><p>
+            cpu
+          </p></li><li class="listitem"><p>
+            clock
+          </p></li><li class="listitem"><p>
+            RNG
+          </p></li><li class="listitem"><p>
+            CPU/Memory limits and requirements
+          </p></li><li class="listitem"><p>
+            tablet input
+          </p></li><li class="listitem"><p>
+            hugepage
+          </p></li></ul></div></section><section class="sect2" id="sec-virtualization-kubevirt-supported-storage" data-id-title="VMI disks and volumes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.2 </span><span class="title-name">VMI disks and volumes</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-supported-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        Disk types:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            lun
+          </p></li><li class="listitem"><p>
+            disk
+          </p></li><li class="listitem"><p>
+            cdrom
+          </p></li></ul></div><p>
+        Volume sources:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            cloudInitNoCloud
+          </p></li><li class="listitem"><p>
+            cloudInitConfigDrive
+          </p></li><li class="listitem"><p>
+            persistentVolumeClaim
+          </p></li><li class="listitem"><p>
+            dataVolume
+          </p></li><li class="listitem"><p>
+            ephemeral
+          </p></li><li class="listitem"><p>
+            containerDisk
+          </p></li><li class="listitem"><p>
+            emptyDisk
+          </p></li><li class="listitem"><p>
+            hostDisk
+          </p></li><li class="listitem"><p>
+            configMap
+          </p></li><li class="listitem"><p>
+            secret
+          </p></li><li class="listitem"><p>
+            serviceAccount
+          </p></li><li class="listitem"><p>
+            downwardMetrics
+          </p></li></ul></div><p>
+        High performance features:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            IO threads
+          </p></li><li class="listitem"><p>
+            Virtio Block Multi-Queue
+          </p></li><li class="listitem"><p>
+            Disk cache
+          </p></li></ul></div></section><section class="sect2" id="sec-virtualization-kubevirt-supported-networks" data-id-title="VMI interfaces and networks"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.3 </span><span class="title-name">VMI interfaces and networks</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-supported-networks">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        Network (back-end) types:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            pod
+          </p></li><li class="listitem"><p>
+            multus
+          </p></li></ul></div><p>
+        Interface (front-end) types:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            bridge
+          </p></li><li class="listitem"><p>
+            masquerade
+          </p></li></ul></div></section></section><section class="sect1" id="sec-virtualization-kubevirt-debug" data-id-title="Debugging"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">Debugging</span></span> <a title="Permalink" class="permalink" href="#sec-virtualization-kubevirt-debug">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/blob/main/xml/art-kubevirt.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      If issues are encountered the following debug resources are available to
+      help identify the problem.
+    </p><p>
+      The status of all KubeVirt resources can be examined with the
+      <code class="command">kubectl get</code> command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl get all -n kubevirt</pre></div><p>
+      Resources with failed status can be further queried by examining their
+      definition and expanded status information.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl describe deployment virt-operator
+<code class="prompt user">&gt; </code>kubectl get deployment virt-operator -o yaml -n kubevirt
+<code class="prompt user">&gt; </code>kubectl describe pod virt-handler-xbjkg -n kubevirt
+<code class="prompt user">&gt; </code>kubectl get pod virt-handler-xbjkg -o yaml -n kubevirt</pre></div><p>
+      Logs from the problematic KubeVirt pod can contain a wealth of
+      information since <span class="package">stderr</span> and service logging from
+      within the pod is generally available via the Kubernetes log service:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl logs virt-operator-558c57bc4-mg68w -n kubevirt
+  <code class="prompt user">&gt; </code>kubectl logs virt-handler-xbjkg -n kubevirt</pre></div><p>
+      If the underlying pod is running but there are problems with the service
+      running in it, a shell can be accessed to inspect the pod environment and
+      poke at its service:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl -n kubevirt exec -it virt-handler-xbjkg -- /bin/bash</pre></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="sect1"><a href="#sec-virtualization-kubevirt"><span class="title-number">1 </span><span class="title-name">KubeVirt components</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-installation"><span class="title-number">2 </span><span class="title-name">Installing KubeVirt on Kubernetes</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-updating"><span class="title-number">3 </span><span class="title-name">Updating the KubeVirt deployment</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-deleting"><span class="title-number">4 </span><span class="title-name">Deleting KubeVirt from a cluster</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-cdi"><span class="title-number">5 </span><span class="title-name">Containerized Data Importer</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-running-vm"><span class="title-number">6 </span><span class="title-name">Running virtual machines</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-live-migration"><span class="title-number">7 </span><span class="title-name">Live migration</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-hotplug-volumes"><span class="title-number">8 </span><span class="title-name">Volume hotplugging</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-vmdp"><span class="title-number">9 </span><span class="title-name">Running Windows VMs with VMDP ISO</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-supported-features"><span class="title-number">10 </span><span class="title-name">Supported features</span></a></span></li><li><span class="sect1"><a href="#sec-virtualization-kubevirt-debug"><span class="title-number">11 </span><span class="title-name">Debugging</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2023</span></div></div></footer></body></html>
