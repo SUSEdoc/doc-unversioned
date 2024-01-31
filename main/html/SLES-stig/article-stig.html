@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>SUSE Linux Enterprise Server | Hardening SUSE Linux Enterprise with STIG</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Hardening SUSE Linux Enterprise with STIG | SUSE Linux Ente…"/>
+<meta name="description" content="This document introduces you to auditing and hardening…"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="book-title" content="Hardening SUSE Linux Enterprise with STIG"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="ssarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Security"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Hardening SUSE Linux Enterprise with STIG | SUSE Linux…"/>
+<meta property="og:description" content="This document introduces you to auditing and hardening SUSE Linux Enterprise with the Security Technical Implementation Guid…"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hardening SUSE Linux Enterprise with STIG | SUSE Linux…"/>
+<meta name="twitter:description" content="This document introduces you to auditing and hardening SUSE Linux Enterprise with the Security Technical Implementation Guid…"/>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/jquery-1.12.4.min.js" type="text/javascript"> </script><script src="static/js/script.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script><meta name="edit-url" content="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml"/></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Hardening SUSE Linux Enterprise with STIG</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Hardening SUSE Linux Enterprise with STIG</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="article-stig" data-id-title="Hardening SUSE Linux Enterprise with STIG"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="productname"><span class="phrase">SUSE Linux Enterprise Server</span></span></span></div><div><div class="title-container"><h1 class="title">Hardening SUSE Linux Enterprise with STIG <a title="Permalink" class="permalink" href="index.html#">#</a></h1><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div><div class="date"><span class="imprint-label">Publication Date: </span>
+January 31, 2024
+</div><div><div class="abstract"><p>
+        This document introduces you to auditing and hardening SUSE Linux Enterprise with the
+        Security Technical Implementation Guide (STIG) by the
+        <span class="orgname">Defense Information Systems Agency (DISA)</span>
+        .
+      </p></div></div></div></div><div id="stig-disclaimer" data-id-title="Disclaimer" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Disclaimer</div><p>
+      SUSE seeks to provide customers with quick and easy guides that can
+      assist them in maintaining security compliance. Implementation of the
+      settings contained within this guide without its prior testing in a
+      non-operational environment is highly discouraged. The developers of
+      these profiles and documentation have made reasonable efforts to ensure
+      overall compliance. They assume no responsibility for its use by other
+      parties, and make no guarantee, expressed or implied, about its quality,
+      reliability or any other characteristic.
+    </p></div><section class="sect1" id="stig-whatis" data-id-title="What is STIG?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is STIG?</span></span> <a title="Permalink" class="permalink" href="index.html#stig-whatis">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      STIG stands for <code class="literal">Security Technical Implementation Guide</code>. The
+      <span class="orgname">Defense Information Systems Agency (DISA)</span>
+      organization, which is a parent agency of the United States
+      <span class="orgname">Department of Defense (DoD)</span>
+      , approves and publishes <code class="systemitem">Security Technical Implementation Guides (STIGs)</code> and
+      updates them every 90 days.
+    </p><p>
+      STIGs are a set of rules and best practices for configuring systems to
+      defend against potential threats. Each implementation guide is tailored
+      to a specific product and version, defining a configuration standard with
+      cybersecurity requirements for this product and version.
+    </p><p>
+      These requirements must be met when the system connects to a DoD network.
+      But Security Technical Implementation Guides are also used outside of the government sector.
+    </p></section><section class="sect1" id="stig-benefits" data-id-title="Benefits"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Benefits</span></span> <a title="Permalink" class="permalink" href="index.html#stig-benefits">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      When a Security Technical Implementation Guide is implemented for a system, the system is hardened. The
+      goals are to minimize attacks and to prevent system access (both
+      physically and via a network) and to define processes for maintenance
+      (applying software updates) and vulnerability patching. Security Technical Implementation Guides can also
+      cover configuration settings, for example, for operating systems,
+      routers, databases, firewall rules, domain name servers and switches.
+    </p><p>
+      STIGs are ubiquitous across all systems.
+    </p></section><section class="sect1" id="stig-use" data-id-title="Hardening SUSE Linux Enterprise Server with STIG"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Hardening <span class="productname"><span class="phrase">SUSE Linux Enterprise Server</span></span> with STIG</span></span> <a title="Permalink" class="permalink" href="index.html#stig-use">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      There are several ways to harden your systems with the STIG.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.3.1"><span class="term">During installation with YaST or AutoYaST</span></dt><dd><p>
+            Starting with SUSE Linux Enterprise 15 SP4, YaST and AutoYaST let you check certain
+            basic aspects of the system at installation time. You can also
+            enable a full scan or scan and remediation, respectively, at first
+            boot of the system.
+          </p><p>
+            For details, see
+            <a class="link" href="https://documentation.suse.com/sles/15/html/SLES-all/cha-install.html#sec-yast-install-proposal-security-profile" target="_blank"><em class="citetitle">SUSE Linux Enterprise Server
+            Deployment Guide</em></a>.
+          </p></dd><dt id="id-1.7.3.2"><span class="term">With OpenSCAP</span></dt><dd><p>
+            You can scan or remediate an existing system to bring it to a
+            compliant state. OpenSCAP can be used to check and remediate
+            local systems as well as remote systems.
+          </p></dd><dt id="id-1.7.3.3"><span class="term">With STIG Viewer</span></dt><dd><p>
+            You can manually review the rules from DISA and apply them to a
+            dedicated system.
+          </p></dd></dl></div></section><section class="sect1" id="stig-openscap-sle15" data-id-title="Applying a STIG profile"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Applying a STIG profile</span></span> <a title="Permalink" class="permalink" href="index.html#stig-openscap-sle15">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      The contents delivered with the <em class="citetitle">SCAP Security Guide</em> can be used
+      to check or check and remediate systems according to a specific profile.
+    </p><p>
+      Regarding STIG, SUSE supports the following
+      <em class="citetitle">SCAP Security Guide</em> profiles:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          DISA STIG for SUSE Linux Enterprise 15
+        </p></li><li class="listitem"><p>
+          DISA STIG for SUSE Linux Enterprise 12
+        </p></li></ul></div><p>
+      The following sections give certain examples on how to scan SUSE Linux Enterprise with
+      <code class="command">oscap</code> for STIG compliance and how to perform a
+      remediation. For more background on OpenSCAP and the
+      <em class="citetitle">SCAP Security Guide</em>, see the article
+      <a class="link" href="https://documentation.suse.com/compliance/all/html/SLES-openscap/article-openscap.html" target="_blank">
+      <em class="citetitle">Hardening SUSE Linux Enterprise with OpenSCAP</em></a>.
+    </p><section class="sect2" id="stig-openscap-scan-sle15" data-id-title="Scanning a SLE system for STIG compliance"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Scanning a SLE system for STIG compliance</span></span> <a title="Permalink" class="permalink" href="index.html#stig-openscap-scan-sle15">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        The following example shows how to scan SUSE Linux Enterprise 15 locally with
+        <code class="command">oscap</code> for vulnerability issues according to the
+        profile <code class="literal">DISA STIG for SUSE Linux Enterprise 15</code>. You can save
+        the results in XML format and genberate an HTML report can be
+        generated.
+      </p><div class="complex-example"><div class="example" id="ex-stig-oscap-scan-sle15" data-id-title="Scanning SUSE Linux Enterprise with oscap"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Scanning SUSE Linux Enterprise with oscap </span></span><a title="Permalink" class="permalink" href="index.html#ex-stig-oscap-scan-sle15">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap</code> xccdf eval<span class="callout" id="co-oscap-eval">1</span> \
+     --profile <em class="replaceable">stig</em><span class="callout" id="co-oscap-eval-profile">2</span> \
+     --results <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-eval-results">3</span> \
+     --report <em class="replaceable">/tmp/report.html</em><span class="callout" id="co-oscap-eval-report">4</span> \
+     /usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml<span class="callout" id="co-oscap-eval-ssg">5</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Calls the <code class="command">oscap xccdf</code> module and tells it to
+              perform an evaluation (vulnerability scan).
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval-profile"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the profile to use, in this case,
+              <code class="literal">stig</code>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval-results"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Saves the results of the evaluation to
+              <em class="replaceable">/tmp/results.xml</em>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval-report"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Generates an HTML report called
+              <em class="replaceable">/tmp/report.html</em> in addition to the
+              results in XML.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval-ssg"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the <code class="literal">SCAP Security Guide</code> policy file to use. In
+              this example, we use a policy file in the
+              <code class="literal">DataStream</code> format that applies to SUSE Linux Enterprise code
+              15. To list all available policies, run: <code class="command">ls -1
+              /usr/share/xml/scap/ssg/content/ssg-*-ds.xml</code>. For more
+              information about a particular policy, run <code class="command">oscap
+              info</code> on the file.
+            </p></td></tr></table></div><p>
+          The evaluation process usually takes a few minutes, depending on the
+          number of selected rules.
+        </p></div></div></div></section><section class="sect2" id="stig-openscap-remediate-sle15" data-id-title="Making a SLE system STIG-compliant"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Making a SLE system STIG-compliant</span></span> <a title="Permalink" class="permalink" href="index.html#stig-openscap-remediate-sle15">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        The following examples show how to scan and remediate SUSE Linux Enterprise locally
+        with <code class="command">oscap</code> according to the profile <code class="literal">DISA
+        STIG for SUSE Linux Enterprise 15</code>.
+      </p><section class="sect3" id="oscap-remediate-sle-fly" data-id-title="Remediating SUSE Linux Enterprise with oscap (on the fly)"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.2.1 </span><span class="title-name">Remediating SUSE Linux Enterprise with oscap (on the fly)</span></span> <a title="Permalink" class="permalink" href="index.html#oscap-remediate-sle-fly">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          For remediation with <code class="command">oscap</code> on the fly, use the
+          <code class="option">--remediate</code> command-line option.
+        </p><div class="complex-example"><div class="example" id="ex-oscap-remediate-sle15-fly" data-id-title="Remediating SLE 15 with oscap (on the fly)"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Remediating SLE 15 with oscap (on the fly) </span></span><a title="Permalink" class="permalink" href="index.html#ex-oscap-remediate-sle15-fly">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap</code> xccdf eval --remediate<span class="callout" id="co-oscap-remedy-fly">1</span> \
+      --profile <em class="replaceable">stig</em><span class="callout" id="co-oscap-remedy-fly-profile">2</span> \
+      --results <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-remedy-fly-results">3</span> \
+      /usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml<span class="callout" id="co-oscap-remedy-fly-ssg">4</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Calls the <code class="command">oscap xccdf</code> module and tells it to
+                perform an evaluation plus a remediation of the target system
+                in one go.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly-profile"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the profile to use, in this case,
+                <code class="literal">stig</code>.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly-results"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Saves the results of the evaluation to
+                <em class="replaceable">/tmp/results.xml</em>.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly-ssg"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the <code class="literal">SCAP Security Guide</code> policy file to use. In
+                this example, we use a policy file in the
+                <code class="literal">DataStream</code> format that applies to SUSE Linux Enterprise code
+                15. To list all available policies, run: <code class="command">ls -1
+                /usr/share/xml/scap/ssg/content/ssg-*-ds.xml</code>. For
+                more information about a particular policy, run <code class="command">oscap
+                info</code> on the file.
+              </p></td></tr></table></div><p>
+            In the resulting <em class="replaceable">/tmp/results.xml</em> file,
+            the first <code class="sgmltag-element">TestResult</code> element
+            shows the result of the scan <span class="emphasis"><em>before</em></span> the
+            remediation. The second <code class="sgmltag-element">TestResult</code>
+            element shows the result of the scan <span class="emphasis"><em>after</em></span>
+            applying the remediation. In the second
+            <code class="sgmltag-element">TestResult</code> element, if the result of a
+            rule is <code class="literal">fixed</code>, this means that the fix was
+            successfully applied, and this rule now passes evaluation. If the
+            result of a rule is <code class="literal">error</code>, this means that the
+            remediation for this rule was not successful, and the rule still
+            does not pass evaluation.
+          </p></div></div></div></section><section class="sect3" id="oscap-remediate-sle-post" data-id-title="Remediating SUSE Linux Enterprise with oscap (after scanning)"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.2.2 </span><span class="title-name">Remediating SUSE Linux Enterprise with oscap (after scanning)</span></span> <a title="Permalink" class="permalink" href="index.html#oscap-remediate-sle-post">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          In this example, we first execute a scan and then run the remediation
+          as next step.
+        </p><div class="example" id="ex-oscap-remediate-sle15-post" data-id-title="Remediating SLE with oscap (after scanning)"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Remediating SLE with oscap (after scanning) </span></span><a title="Permalink" class="permalink" href="index.html#ex-oscap-remediate-sle15-post">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap</code> xccdf eval<span class="callout" id="co-oscap-remedy-post1">1</span> \
+        --profile <em class="replaceable">stig</em><span class="callout" id="co-oscap-remedy-post1-profile">2</span> \
+        --results <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-remedy-post1-results">3</span> \
+        /usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml<span class="callout" id="co-oscap-remedy-post1-ssg">4</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post1"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Calls the <code class="command">oscap xccdf</code> module and tells
+                    it to perform an evaluation.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post1-profile"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Specifies the profile to use, in this case,
+                    <code class="literal">stig</code>.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post1-results"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Saves the results of the evaluation as an XCCDF file to
+                    <em class="replaceable">/tmp/results.xml</em>.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post1-ssg"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Specifies the <code class="literal">SCAP Security Guide</code> policy file to use.
+                    In this example, we use a policy file in the
+                    <code class="literal">DataStream</code> format that applies to SUSE Linux Enterprise
+                    code 15. To list all available policies, run: <code class="command">ls
+                    -1 /usr/share/xml/scap/ssg/content/ssg-*-ds.xml</code>.
+                    For more information about a particular policy, run
+                    <code class="command">oscap info</code> on the file.
+                  </p></td></tr></table></div><p>
+                During this step, the system is only evaluated, and the results
+                are stored in a <code class="sgmltag-element">TestResult</code> element
+                in <em class="replaceable">/tmp/results.xml</em>.
+              </p></li><li class="step"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap</code> xccdf remediate<span class="callout" id="co-oscap-remedy-post2-command">1</span> \
+        --results <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-remedy-post2-results">2</span> \
+        <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-remedy-post2-ssg">3</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post2-command"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Calls the <code class="command">oscap xccdf</code> module and tells
+                    it to perform a remediation.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post2-results"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Saves the results of the remediation to
+                    <em class="replaceable">/tmp/results.xml</em>.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post2-ssg"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Uses the <em class="replaceable">/tmp/results.xml</em> XCCDF
+                    file from the first step (evaluation) as input file.
+                  </p></td></tr></table></div><p>
+                During this step, the results file from the first step is used
+                as input for the <code class="command">oscap</code> command. You can
+                safely store the results from the second step in the same file
+                that you use as input file,
+                <em class="replaceable">/tmp/results.xml</em>. During this run,
+                <code class="command">oscap</code> creates a new
+                <code class="sgmltag-element">xccdf:TestResult</code> element in the
+                file. The new element is based on the previous one and inherits
+                all the data. The newly created
+                <code class="sgmltag-element">xccdf:TestResult</code> element differs
+                only in the <code class="sgmltag-element">rule-result</code> elements
+                which failed in the first run. Only for those is the
+                remediation executed.
+              </p></li></ol></div></div></div></div></section><section class="sect3" id="stig-remediate-sle-ansible" data-id-title="Remediating a SLE system with Ansible"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.2.3 </span><span class="title-name">Remediating a SLE system with Ansible</span></span> <a title="Permalink" class="permalink" href="index.html#stig-remediate-sle-ansible">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          You can use the Ansible playbooks provided by the
+          <code class="literal">SCAP Security Guide</code> to remediate a local system.
+        </p><p>
+          The <span class="package">ansible</span> package is available from
+          <code class="literal">SUSE Package Hub</code>. Register your SUSE Linux Enterprise system and
+          enable the <code class="literal">SUSE Package Hub</code> extension. For SUSE Linux Enterprise
+          12, you additionally need to enable the <code class="literal">Public
+          Cloud</code> module. Then install the package with <code class="command">sudo
+          zypper in ansible</code>.
+        </p><div class="complex-example"><div class="example" id="ex-remediate-sle15-ansible" data-id-title="Remediating SLE 15 with Ansible"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name">Remediating SLE 15 with Ansible </span></span><a title="Permalink" class="permalink" href="index.html#ex-remediate-sle15-ansible">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div><div class="example-contents"><p>
+            For example, to remediate your system using the STIG Ansible
+            playbook for SUSE Linux Enterprise 15 provided by the <code class="literal">SCAP Security Guide</code>, use
+            the following command.
+          </p><div id="id-1.8.7.5.4.3" data-id-title="System configuration changes" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: System configuration changes</div><p>
+              The following command alters the configuration of your system
+              immediately. Make sure to test this thoroughly in a
+              non-production system first.
+            </p></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> ansible-playbook -i "localhost," -c local \
+      /usr/share/scap-security-guide/ansible/sle15-playbook-stig.yml</pre></div><p>
+            After the playbook has finished, you are prompted to log in to your
+            system, which is now compliant to the chosen policy.
+          </p><div class="informalfigure"><div class="mediaobject"><a href="images/gnome-login-screen-stig.png"><img src="images/gnome-login-screen-stig.png" width="90%" alt="GNOME login screen on a STIG-compliant system" title="GNOME login screen on a STIG-compliant system"/></a></div></div></div></div></div></section></section></section><section class="sect1" id="stig-custom-tailoring" data-id-title="Using a tailored STIG profile"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Using a tailored STIG profile</span></span> <a title="Permalink" class="permalink" href="index.html#stig-custom-tailoring">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      The standard or default STIG profile is sufficient for most
+      deployments. In addition, you can create, use for evaluation and apply
+      <span class="emphasis"><em>tailoring files</em></span> to tailor SCAP Security Guide content. Using
+      tailoring files, you can change the behavior of a profile without
+      directly modifying its standard configurations.
+    </p><p>
+      The following sections provide examples of creating tailoring files using
+      either SCAP Workbench or the <code class="command">autotailor</code> command-line
+      utility, and then applying the tailoring file using the
+      <code class="command">ssg-apply</code> command-line utility.
+    </p><div id="id-1.9.4" data-id-title="Generalized tailoring" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Generalized tailoring</div><p>
+        Although the following sections provide examples of tailoring for the
+        STIG profile, you use a similar procedure for tailoring other
+        profiles that are valid for your target system.
+      </p></div><section class="sect2" id="stig-create-tailoring" data-id-title="Creating a tailoring file"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Creating a tailoring file</span></span> <a title="Permalink" class="permalink" href="index.html#stig-create-tailoring">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        Tailoring files are XML files containing information about the
+        deviation from the standard SCAP Security Guide content for a profile. You create a
+        tailoring file when you override certain default rules of a standard
+        profile, and save that information along with necessary metadata as an
+        XML file. Once created, you can apply the tailoring file using a
+        suitable program such as the <code class="command">ssg-apply</code> utility.
+      </p><p>
+        SUSE recommends using any of the following methods of creating a
+        tailoring file:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Manually, using the SCAP Workbench. This method is best suited when
+            you are unsure of the rules that you want to override in the
+            standard content of a profile, and would prefer the convenience of
+            a graphical software.
+          </p></li><li class="listitem"><p>
+            Automatically, using the <code class="command">autotailor</code> command-line
+            tool which is bundled with the <span class="package">openscap-utils</span>
+            package. This method is best suited when you are sure of all the
+            information that you need to create a tailoring file.
+          </p></li></ul></div><section class="sect3" id="stig-create-tailoring-scap-workbench" data-id-title="Creating tailoring files using SCAP Workbench"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.1 </span><span class="title-name">Creating tailoring files using SCAP Workbench</span></span> <a title="Permalink" class="permalink" href="index.html#stig-create-tailoring-scap-workbench">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          This section provides an example procedure for creating a tailoring
+          file based on the standard STIG profile, using the SCAP Workbench
+          graphical software. You can use a similar procedure to create
+          tailoring files for any other valid profile.
+        </p><p>
+          As a prerequisite, ensure that you have installed the necessary
+          packages, as described in the section
+          <a class="link" href="https://documentation.suse.com/compliance/all/html/SLES-openscap/index.html#openscap-installation" target="_blank">https://documentation.suse.com/compliance/all/html/SLES-openscap/index.html#openscap-installation</a>.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Start SCAP Workbench by invoking it in the terminal:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">scap-workbench</code></pre></div></li><li class="step"><p>
+              Depending on whether you are using SUSE Linux Enterprise 15 or SUSE Linux Enterprise 12, select
+              either <span class="guilabel">SLe15</span> or <span class="guilabel">SLe12</span>
+              from the <span class="guimenu">Select content to load</span> drop-down
+              list. In this example procedure, we select
+              <span class="guilabel">SLe15</span>.
+            </p><div class="figure" id="id-1.9.5.5.4.2.2"><div class="figure-contents"><div class="mediaobject"><a href="images/scap-workbench-select-content-to-load.png"><img src="images/scap-workbench-select-content-to-load.png" width="95%" alt="SCAP Workbench‐Select Content to Load" title="SCAP Workbench‐Select Content to Load"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">SCAP Workbench—select content to load </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5.5.4.2.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></li><li class="step"><p>
+              Click <span class="guilabel">Load Content</span>.
+            </p></li><li class="step"><p>
+              In the next window, titled <span class="guilabel">Guide to the Secure
+              Configuation of SUSE Linux Enterprise 15</span>, perform the
+              following steps:
+            </p><ol type="a" class="substeps"><li class="step"><p>
+                  From the <span class="guimenu">Profile</span> drop-down list, select
+                  the profile that you want to customize. In this example, we
+                  select <span class="guilabel">DISA STIG for SUSE Linux Enterprise 15
+                  (242)</span>. The number within parenthesis at the end of
+                  the profile name represents the number of rules that comprise
+                  your selected profile. For example, DISA STIG for SUSE
+                  Linux Enterprise 15 has 242 rules.
+                </p></li><li class="step"><p>
+                  <span class="emphasis"><em>Optionally</em></span>, if your target is a remote
+                  system, select the <span class="guimenu">Remote Machine (over
+                  SSH)</span> and provide necessary information.
+                </p><p>
+                  In this example procedure, we assume that the target system
+                  is your <span class="guimenu">Local Machine</span>.
+                </p><div class="figure" id="id-1.9.5.5.4.4.2.2.3"><div class="figure-contents"><div class="mediaobject"><a href="images/scap-workbench-profile-disa-stig.png"><img src="images/scap-workbench-profile-disa-stig.png" width="95%" alt="SCAP Workbench‐DISA STIG profile" title="SCAP Workbench‐DISA STIG profile"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 2: </span><span class="title-name">SCAP Workbench—DISA STIG profile </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5.5.4.4.2.2.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></li><li class="step"><p>
+                  Click <span class="guimenu">Customize</span>, edit the <span class="guilabel">New
+                  Profile ID</span> field if necessary, and click
+                  <span class="guimenu">OK</span>. The default <span class="guilabel">New Profile
+                  ID</span> provided by SCAP Workbench for the selected
+                  profile is
+                  <code class="literal">xccdf_org.ssgproject.content_profile_stig_customized</code>.
+                </p><div class="figure" id="id-1.9.5.5.4.4.2.3.2"><div class="figure-contents"><div class="mediaobject"><a href="images/scap-workbench-profile-stig-customize.png"><img src="images/scap-workbench-profile-stig-customize.png" width="95%" alt="SCAP Workbench‐Customize STIG profile" title="SCAP Workbench‐Customize STIG profile"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 3: </span><span class="title-name">SCAP Workbench—customize STIG profile </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5.5.4.4.2.3.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></li></ol></li><li class="step"><p>
+              In the next window titled <span class="guilabel">Customizing "DISA STIG for
+              SUSE Linux Enterprise 15 [CUSTOMIZED]"—SCAP
+              Workbench</span>, perform the following steps:
+            </p><ol type="a" class="substeps"><li class="step"><p>
+                  Override the default rules by selecting or deselecting them.
+                  For example, we select the checkbox next to the rule
+                  <span class="guilabel">Limit Users' SSH Access</span> to further
+                  harden the target system's access over SSH. You can select or
+                  deselect multiple rules.
+                </p><div id="id-1.9.5.5.4.5.2.1.2" data-id-title="When unsure, read the rules description" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: When unsure, read the rule's description</div><p>
+                    Before selecting or deselecting the checkbox next to the
+                    rule, you can click the rule and read the
+                    <span class="guilabel">Description</span> provide at the right pane
+                    of the window.
+                  </p></div><div class="figure" id="id-1.9.5.5.4.5.2.1.3"><div class="figure-contents"><div class="mediaobject"><a href="images/scap-workbench-select-rule.png"><img src="images/scap-workbench-select-rule.png" width="95%" alt="SCAP Workbench‐Select Rule" title="SCAP Workbench‐Select Rule"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 4: </span><span class="title-name">SCAP Workbench—select rule </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5.5.4.5.2.1.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></li><li class="step"><p>
+                  When you are sure about the override of rules, click
+                  <span class="guimenu">OK</span>.
+                </p></li></ol></li><li class="step"><p>
+              On returning to the <span class="emphasis"><em>home</em></span> window of SCAP
+              Workbench, notice that the <span class="guilabel">Customization</span>
+              field has changed to <span class="guilabel">(unsaved changes)</span>.
+            </p><p>
+              Using the menu at the top left of the window, save the
+              customization by clicking
+              <span class="guimenu">File</span> › <span class="guimenu">Save Customization
+              Only</span> and choosing the path of the
+              tailoring file as
+              <code class="filename">/tmp/ssg-sle15-ds-tailoring.xml</code>.
+            </p><p>
+              When saved, the <span class="guilabel">Customization</span> field displays
+              the path to the tailoring file. In addition, the name of the new
+              <span class="guilabel">Profile</span> contains the suffix
+              <code class="literal">(243)</code>, which indicates that an additional rule
+              has been selected, as compared to the default of 242 rules.
+            </p><div class="figure" id="id-1.9.5.5.4.6.4"><div class="figure-contents"><div class="mediaobject"><a href="images/scap-workbench-tailor-file-save.png"><img src="images/scap-workbench-tailor-file-save.png" width="95%" alt="SCAP Workbench‐Save Tailoring File" title="SCAP Workbench‐Save Tailoring File"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5: </span><span class="title-name">SCAP Workbench—save tailoring file </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5.5.4.6.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></li><li class="step"><p>
+              <span class="emphasis"><em>Optionally</em></span>, inspect the tailoring file by
+              opening it with a text editor of your choice. Based on the
+              example override of rules, the tailoring file contains the
+              following information.
+            </p><div class="verbatim-wrap"><pre class="screen">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xccdf:Tailoring xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" id="xccdf_scap-workbench_tailoring_default"&gt;
+  &lt;xccdf:benchmark href="/tmp/scap-workbench-sbgnfq/ssg-sle15-ds.xml"/&gt;
+  &lt;xccdf:version time="2024-01-25T07:21:34"&gt;1&lt;/xccdf:version&gt;
+  &lt;xccdf:Profile id="xccdf_org.ssgproject.content_profile_stig_customized" extends="xccdf_org.ssgproject.content_profile_stig"&gt;
+    &lt;xccdf:title xmlns:xhtml="http://www.w3.org/1999/xhtml" xml:lang="en-US" override="true"&gt;DISA STIG for SUSE Linux Enterprise 15 [CUSTOMIZED]&lt;/xccdf:title&gt;
+    &lt;xccdf:description xmlns:xhtml="http://www.w3.org/1999/xhtml" xml:lang="en-US" override="true"&gt;This profile contains configuration checks that align to the
+DISA STIG for SUSE Linux Enterprise 15 V1R4.&lt;/xccdf:description&gt;
+    &lt;xccdf:select idref="xccdf_org.ssgproject.content_rule_sshd_limit_user_access" selected="true"/&gt;
+  &lt;/xccdf:Profile&gt;
+&lt;/xccdf:Tailoring&gt;</pre></div></li></ol></div></div></section><section class="sect3" id="stig-create-taloring-autotailor" data-id-title="Creating tailoring files using autotailor"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.2 </span><span class="title-name">Creating tailoring files using <code class="command">autotailor</code></span></span> <a title="Permalink" class="permalink" href="index.html#stig-create-taloring-autotailor">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          There might be deployments where installing a graphical software such
+          as SCAP Workbench is not suitable. In even more sensitive
+          deployments, the customization of a remote target machine over SSH
+          from a client machine running SCAP Workbench might also not be an
+          option.
+        </p><p>
+          In such situations, the <code class="command">autotailor</code> command-line
+          tool that comes bundled with the <span class="package">openscap-utils</span> is
+          a suitable choice. However, you must be sure of all the information
+          necessary for creating the tailoring file.
+        </p><p>
+          To create a tailoring file with <code class="command">autotailor</code>, use
+          the following syntax:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">autotailor</code> \
+  --select <em class="replaceable">RULE_ID</em><span class="callout" id="autotailor-select-rule-id">1</span> \
+  --unselect <em class="replaceable">RULE_ID</em><span class="callout" id="autotailor-unselect-rule-id">2</span> \
+  --var-value <em class="replaceable">VAR=VALUE</em><span class="callout" id="autotailor-var-value">3</span> \
+  --output <em class="replaceable">TAILORING_FILE</em><span class="callout" id="autotailor-tailoring-file-path">4</span> \
+  --new-profile-id <em class="replaceable">NEW_PROFILE_ID</em><span class="callout" id="autotailor-new-profile-id">5</span> \
+  <em class="replaceable">DS_FILENAME</em><span class="callout" id="autotailor-scap-content-path">6</span> \
+  <em class="replaceable">BASE_PROFILE_ID</em><span class="callout" id="autotailor-base-profile-id">7</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-select-rule-id"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              <code class="code">--select <em class="replaceable">RULE_ID</em></code> adds a
+              rule with <em class="replaceable">RULE_ID</em>. To select multiple
+              rules, you can use this argument multiple times.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-unselect-rule-id"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              <code class="code">--unselect <em class="replaceable">RULE_ID</em></code>
+              discards a rule with <em class="replaceable">RULE_ID</em>. To
+              discard multiple rules, you can use this argument multiple times.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-var-value"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              <code class="code">--var-value <em class="replaceable">VAR=VALUE</em></code>
+              specifies modification of the XCCDF value in the form
+              <em class="replaceable">VARIABLE=VALUE</em>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-tailoring-file-path"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              <em class="replaceable">TAILORING_FILE</em> specifies the path of
+              the tailoring file, which is the final
+              <span class="emphasis"><em>output</em></span> of the <code class="command">autotailor</code>
+              tool.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-new-profile-id"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the ID of the new customized profile that you want to
+              create.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-scap-content-path"><span class="callout">6</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the path to the SCAP source data stream that is
+              tailored.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-base-profile-id"><span class="callout">7</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the original or base profile ID that you want to
+              customize.
+            </p></td></tr></table></div><div class="procedure"><div class="procedure-contents"><ul class="procedure"><li class="step"><p>
+              As an <span class="strong"><strong>example</strong></span>, run the
+              following command to generate a tailoring file that is similar to
+              the one created by using SCAP Workbench in the previous section:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">autotailor</code> \
+  --select sshd_limit_user_access<span class="callout" id="autotailor-example-select-rule-id">1</span> \
+  --output /tmp/ssg-sle15-ds-tailoring.xml<span class="callout" id="autotailor-example-tailoring-file-path">2</span> \
+  --new-profile-id stig_customized<span class="callout" id="autotailor-example-new-profile-id">3</span> \
+  /usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml<span class="callout" id="autotailor-example-scap-content-path">4</span> \
+  stig<span class="callout" id="autotailor-example-base-profile-id">5</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-example-select-rule-id"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  The ID of the <span class="guilabel">Limit Users' SSH Access</span>
+                  rule.
+                </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-example-tailoring-file-path"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  The path to the tailoring file, which is the output.
+                </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-example-new-profile-id"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  The ID of the new customized profile.
+                </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-example-scap-content-path"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  The path to the SCAP Security Guide content of the original STIG
+                  profile.
+                </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#autotailor-example-base-profile-id"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  The name of the original STIG profile.
+                </p></td></tr></table></div></li></ul></div></div><p>
+          For more information about the <code class="command">autotailor</code> tool,
+          read its help information by running <code class="command">autotailor -h</code>
+          or refer to its man page by running <code class="command">man
+          autotailor</code>.
+        </p></section></section><section class="sect2" id="stig-scan-tailoring" data-id-title="Scanning using a tailoring file"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Scanning using a tailoring file</span></span> <a title="Permalink" class="permalink" href="index.html#stig-scan-tailoring">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        You can use a tailoring file and the <code class="command">oscap</code>
+        command-line tool to scan and evaluate your target system based on a
+        customized data stream.
+      </p><p>
+        To evaluate your target system using a tailoring file created earlier,
+        perform the following steps:
+      </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            List the profiles in the tailoring file by running the following
+            command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap info /tmp/ssg-sle15-ds-tailoring.xml</code><span class="callout" id="stig-eval-tailor-file-list-profiles">1</span>
+Document type: XCCDF Tailoring
+Imported: <em class="replaceable">TIMESTAMP</em>
+Benchmark Hint: /tmp/scap-workbench-VIdbAj/ssg-sle15-ds.xml
+Profiles:
+	Title: DISA STIG for SUSE Linux Enterprise 15 [CUSTOMIZED]
+		Id: xccdf_org.ssgproject.content_profile_stig_customized</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#stig-eval-tailor-file-list-profiles"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                The path to the tailoring file created earlier, using either
+                SCAP Workbench or <code class="command">autotailor</code>.
+              </p></td></tr></table></div></li><li class="step"><p>
+            Evaluate the target system based on the tailoring file by running
+            the following command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap xccdf eval \</code>
+ --profile xccdf_org.ssgproject.content_profile_stig_customized<span class="callout" id="stig-eval-tailor-new-profile">1</span> \
+ --tailoring-file /tmp/ssg-sle15-ds-tailoring.xml<span class="callout" id="stig-eval-tailor-file">2</span> \
+ --results /tmp/results.xml<span class="callout" id="stig-eval-tailor-results-xml">3</span> \
+ /usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml<span class="callout" id="stig-eval-tailor-ssg-content">4</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#stig-eval-tailor-new-profile"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                The ID reference of the new customized profile.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#stig-eval-tailor-file"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                The path to the tailoring file created earlier.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#stig-eval-tailor-results-xml"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                The path to store the results of the evaluation in a
+                machine-readable XML format.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#stig-eval-tailor-ssg-content"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                The path to the SCAP Security Guide content for the standard STIG profile.
+              </p></td></tr></table></div><div id="id-1.9.6.4.2.4" data-id-title="Redirection of results" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Redirection of results</div><p>
+              Apart from storing the results of the scan in an XML file,
+              <code class="command">oscap</code> displays the results of the evaluation
+              in a human-readable format on the screen. If you redirect the
+              stream of human-readable results to a file, the debug logs are
+              displayed on the screen.
+            </p></div></li></ol></div></div></section><section class="sect2" id="stig-apply-tailoring" data-id-title="Applying a tailoring file"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3 </span><span class="title-name">Applying a tailoring file</span></span> <a title="Permalink" class="permalink" href="index.html#stig-apply-tailoring">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        After you create a tailoring file either using SCAP Workbench or
+        <code class="command">autotailor</code>, you must apply the custom profile to
+        harden your target system. SUSE recommends using the
+        <code class="command">ssg-apply</code> command-line tool.
+      </p><section class="sect3" id="stig-apply-tailoring-autotailor" data-id-title="Applying tailoring file using ssg-apply"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.3.1 </span><span class="title-name">Applying tailoring file using <code class="command">ssg-apply</code></span></span> <a title="Permalink" class="permalink" href="index.html#stig-apply-tailoring-autotailor">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          <code class="command">ssg-apply</code> is a command-line tool maintained by
+          SUSE and is part of the <span class="package">ssg-apply</span> package. You
+          can install it by running the following command:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install -y ssg-apply</code></pre></div><p>
+          For detailed information on <span class="package">ssg-apply</span>, refer to
+          <code class="filename">/usr/share/doc/packages/ssg-apply/README</code>.
+        </p><p>
+          To apply the tailoring file that you have already created using SCAP
+          Workbench or <code class="command">autotailor</code>, perform the following
+          steps:
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              As a best practice, create a copy of
+              <code class="filename">/etc/ssg-apply/default.conf</code> with the name
+              <code class="filename">/etc/ssg-apply/override.conf</code>. The new file
+              must contain information pointing to the overridden or customized
+              configuration.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cp /etc/ssg-apply/default.conf /etc/ssg-apply/override.conf</code></pre></div></li><li class="step"><p>
+              Edit the <code class="filename">/etc/ssg-apply/override.conf</code> file
+              to make its content similar to the following:
+            </p><div class="verbatim-wrap"><pre class="screen"> #
+ # This is the configuration file for the ssg-apply executable.
+ #
+
+ #
+ # content-file - scap-security-guide content to be used for eval/remediation
+ #
+ content-file=/usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml
+
+ #
+ # profile - profile as specified in content-file
+ #
+ profile=stig
+
+ #
+ # remediation setting - Take care before changing this setting to "yes",
+ # as enabling remediation will likely make changes to the system.
+ #
+ remediate=no
+
+ #
+ # tailoring-file - tailoring file to disable specific rules
+ #
+ tailoring-file=/tmp/ssg-sle15-ds-tailoring.xml<span class="callout" id="ssg-apply-override-conf-tailoring-file">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#ssg-apply-override-conf-tailoring-file"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  The path to the tailoring file created using SCAP Workbench
+                  or <code class="command">autotailor</code>.
+                </p></td></tr></table></div></li><li class="step"><p>
+              Apply the tailoring file by running the following command:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ssg-apply</code></pre></div></li><li class="step"><p>
+              <span class="emphasis"><em>Optionally</em></span>, after running
+              <code class="command">ssg-apply</code>, you can observe the following:
+            </p><ol type="a" class="substeps"><li class="step"><p>
+                  The output of OpenSCAP in the
+                  <code class="filename">/var/log/ssg-apply/ssg-apply-<em class="replaceable">TIMESTAMP</em>.out</code>
+                  files.
+                </p><p>
+                  For example, you can find the line number containing the
+                  mention of the <span class="guilabel">Limit Users' SSH Access</span>
+                  rule using the following command:
+                </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cat /var/log/ssg-apply/ssg-apply-<em class="replaceable">TIMESTAMP</em>.out | grep -n sshd_limit_user_access</code>
+<span class="strong"><strong>1180</strong></span>:xccdf_org.ssgproject.content_rule_sshd_limit_user_access</pre></div><p>
+                  Then you can locate the lines containing the status of the
+                  <span class="guilabel">Limit Users' SSH Access</span> rule in the
+                  <code class="filename">/var/log/ssg-apply/ssg-apply-<em class="replaceable">TIMESTAMP</em>.out</code>
+                  file:
+                </p><div class="verbatim-wrap"><pre class="screen">1179	Limit Users' SSH Access
+1180	xccdf_org.ssgproject.content_rule_sshd_limit_user_access
+1181	CCE-91343-4
+1182	faillt</pre></div></li><li class="step"><p>
+                  The debug logs in the
+                  <code class="filename">/var/log/ssg-apply/ssg-apply-<em class="replaceable">TIMESTAMP</em>.log</code>
+                  files.
+                </p></li></ol></li></ol></div></div></section></section></section><section class="sect1" id="stig-viewer" data-id-title="Working with checklists in DISA STIG Viewer"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Working with checklists in DISA STIG Viewer</span></span> <a title="Permalink" class="permalink" href="index.html#stig-viewer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      <span class="guimenu">DISA STIG Viewer</span> is a Java-based graphical user interface
+      to open content and create checklists for managing the STIG security
+      settings on your system or network.
+    </p><section class="sect2" id="stig-viewer-install" data-id-title="Installing DISA STIG Viewer"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Installing DISA STIG Viewer</span></span> <a title="Permalink" class="permalink" href="index.html#stig-viewer-install">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        The <span class="guimenu">DISA STIG Viewer</span> application is available as a ZIP
+        archive from
+        <a class="link" href="https://public.cyber.mil/stigs/stig-viewing-tools/" target="_blank">https://public.cyber.mil/stigs/stig-viewing-tools/</a>.
+        Download the Linux version of the <span class="guimenu">DISA STIG Viewer</span>.
+      </p><p>
+        To install <span class="guimenu">DISA STIG Viewer</span>, unpack the ZIP archive. In
+        the directory with the extracted files, start the
+        <span class="guimenu">DISA STIG Viewer</span> with <code class="command">./STIGViewer</code>.
+      </p><div class="figure" id="fig-stig-viewer-main"><div class="figure-contents"><div class="mediaobject"><a href="images/disa-stig-viewer-main.png"><img src="images/disa-stig-viewer-main.png" width="90%" alt="DISA STIG Viewer—main window" title="DISA STIG Viewer—main window"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 6: </span><span class="title-name">DISA STIG Viewer—main window </span></span><a title="Permalink" class="permalink" href="index.html#fig-stig-viewer-main">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></section><section class="sect2" id="stig-viewer-use" data-id-title="Using DISA STIG Viewer"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Using DISA STIG Viewer</span></span> <a title="Permalink" class="permalink" href="index.html#stig-viewer-use">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        To view a Security Technical Implementation Guide for SUSE Linux Enterprise, you have the following two options.
+      </p><div class="procedure" id="id-1.10.4.3" data-id-title="Importing from a ZIP archive"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Importing from a ZIP archive </span></span><a title="Permalink" class="permalink" href="index.html#id-1.10.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div><div class="procedure-contents"><p>
+          You can download a ZIP archive with the STIG checklist for your
+          SUSE Linux Enterprise version (<code class="literal">12</code> or <code class="literal">15</code>).
+        </p><ol class="procedure" type="1"><li class="step"><p>
+            Go to
+            <a class="link" href="https://public.cyber.mil/stigs/downloads/" target="_blank">https://public.cyber.mil/stigs/downloads/</a>.
+          </p></li><li class="step"><p>
+            In the <span class="guimenu">Search</span> field, enter
+            <code class="literal">SUSE</code> and select and download the Security Technical Implementation Guide
+            checklist that matches the SUSE Linux Enterprise system you want to harden.
+          </p></li><li class="step"><p>
+            In <span class="guimenu">DISA STIG Viewer</span>, click <span class="guimenu">File</span> › <span class="guimenu">Import STIG</span>
+            and select the downloaded ZIP archive.
+          </p></li><li class="step"><p>
+            Enable the checkbox beneath the entry in the <span class="guimenu">STIG
+            Explorer</span> panel to show the individual rules in the middle
+            panel and details for each rule on the right-hand side.
+          </p><div class="informalfigure"><div class="mediaobject"><a href="images/disa-stig-viewer-explorer.png"><img src="images/disa-stig-viewer-explorer.png" width="90%" alt="DISA STIG Viewer—explorer" title="DISA STIG Viewer—explorer"/></a></div></div></li></ol></div></div><div class="procedure" id="id-1.10.4.4" data-id-title="Importing from XCCDF XML"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Importing from XCCDF XML </span></span><a title="Permalink" class="permalink" href="index.html#id-1.10.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/article_stig.xml" title="Edit source document"> </a></div></div><div class="procedure-contents"><p>
+          Use the <code class="command">oscap</code> command-line tool to generate an
+          XCCDF XML file that can be opened with
+          <span class="guimenu">DISA STIG Viewer</span>.
+        </p><ol class="procedure" type="1"><li class="step"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap</code> xccdf eval<span class="callout" id="co-stigviewer-oscap-eval">1</span> \
+      --profile <em class="replaceable">stig</em><span class="callout" id="co-stigviewer-oscap-eval-profile">2</span> \
+      --stig-viewer <em class="replaceable">/tmp/results_stig.xml</em><span class="callout" id="co-stigviewer-oscap-eval-results">3</span> \
+      /usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml<span class="callout" id="co-stigviewer-oscap-eval-ssg">4</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-stigviewer-oscap-eval"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Calls the <code class="command">oscap xccdf</code> module and tells it to
+                perform an evaluation (vulnerability scan).
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-stigviewer-oscap-eval-profile"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Tells <code class="command">oscap</code> to use the
+                <code class="literal">stig</code> profile for the scan.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-stigviewer-oscap-eval-results"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Saves the results of the evaluation to
+                <em class="replaceable">/tmp/results_stig.xml</em>. This is an
+                XCCDF XML file that can be imported into
+                <span class="guimenu">DISA STIG Viewer</span>.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-stigviewer-oscap-eval-ssg"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the <code class="literal">SCAP Security Guide</code> policy file to use. In
+                this example, we use a policy file in the
+                <code class="literal">DataStream</code> format that applies to SUSE Linux Enterprise code
+                15.
+              </p></td></tr></table></div></li><li class="step"><p>
+            In <span class="guimenu">DISA STIG Viewer</span>, click <span class="guimenu">File</span> › <span class="guimenu">Import STIG</span>
+            and select the XML file you generated.
+          </p></li><li class="step"><p>
+            Enable the checkbox beneath the entry in the <span class="guimenu">STIG
+            Explorer</span> panel to show the individual rules in the middle
+            panel.
+          </p></li></ol></div></div><p>
+        For more information about <span class="guimenu">DISA STIG Viewer</span>, refer to
+        the comprehensive <em class="citetitle">STIG Viewer 2.x User Guide</em>,
+        which is available for download at
+        <a class="link" href="https://public.cyber.mil/stigs/downloads/" target="_blank">https://public.cyber.mil/stigs/downloads/</a>, or
+        the README file that you can access from within
+        <span class="guimenu">DISA STIG Viewer</span> by selecting <span class="guimenu">Help</span> › <span class="guimenu">View Readme</span>.
+      </p></section></section><section class="sect1" id="id-1.11" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.11">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/common_copyright_quick.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+  Copyright © 2006–2024
+
+  SUSE LLC and contributors. All rights reserved.
+ </p><p>
+  Permission is granted to copy, distribute and/or modify this document under
+  the terms of the GNU Free Documentation License, Version 1.2 or (at your
+  option) version 1.3; with the Invariant Section being this copyright notice
+  and license. A copy of the license version 1.2 is included in the section
+  entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+ </p><p>
+  For SUSE trademarks, see
+  <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All
+  third-party trademarks are the property of their respective owners. Trademark
+  symbols (®, ™ etc.) denote trademarks of SUSE and its affiliates.
+  Asterisks (*) denote third-party trademarks.
+ </p><p>
+  All information found in this book has been compiled with utmost attention to
+  detail. However, this does not guarantee complete accuracy. Neither
+  SUSE LLC, its affiliates, the authors nor the translators shall be
+  held liable for possible errors or the consequences thereof.
+ </p></section><section class="sect1" id="id-1.12" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">GNU Free Documentation License</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.12">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/stig/xml/common_license_gfdl1.2.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+  Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St,
+  Fifth Floor, Boston, MA 02110-1301 USA. Everyone is permitted to copy and
+  distribute verbatim copies of this license document, but changing it is not
+  allowed.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.4"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.4">#</a></h5></div><p>
+  The purpose of this License is to make a manual, textbook, or other
+  functional and useful document "free" in the sense of freedom: to assure
+  everyone the effective freedom to copy and redistribute it, with or without
+  modifying it, either commercially or non-commercially. Secondarily, this
+  License preserves for the author and publisher a way to get credit for their
+  work, while not being considered responsible for modifications made by
+  others.
+ </p><p>
+  This License is a kind of "copyleft", which means that derivative works of
+  the document must themselves be free in the same sense. It complements the
+  GNU General Public License, which is a copyleft license designed for free
+  software.
+ </p><p>
+  We have designed this License to use it for manuals for free software,
+  because free software needs free documentation: a free program should come
+  with manuals providing the same freedoms that the software does. But this
+  License is not limited to software manuals; it can be used for any textual
+  work, regardless of subject matter or whether it is published as a printed
+  book. We recommend this License principally for works whose purpose is
+  instruction or reference.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.8"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.8">#</a></h5></div><p>
+  This License applies to any manual or other work, in any medium, that
+  contains a notice placed by the copyright holder saying it can be distributed
+  under the terms of this License. Such a notice grants a world-wide,
+  royalty-free license, unlimited in duration, to use that work under the
+  conditions stated herein. The "Document", below, refers to any such manual or
+  work. Any member of the public is a licensee, and is addressed as "you". You
+  accept the license if you copy, modify or distribute the work in a way
+  requiring permission under copyright law.
+ </p><p>
+  A "Modified Version" of the Document means any work containing the Document
+  or a portion of it, either copied verbatim, or with modifications and/or
+  translated into another language.
+ </p><p>
+  A "Secondary Section" is a named appendix or a front-matter section of the
+  Document that deals exclusively with the relationship of the publishers or
+  authors of the Document to the Document's overall subject (or to related
+  matters) and contains nothing that could fall directly within that overall
+  subject. (Thus, if the Document is in part a textbook of mathematics, a
+  Secondary Section may not explain any mathematics.) The relationship could be
+  a matter of historical connection with the subject or with related matters,
+  or of legal, commercial, philosophical, ethical or political position
+  regarding them.
+ </p><p>
+  The "Invariant Sections" are certain Secondary Sections whose titles are
+  designated, as being those of Invariant Sections, in the notice that says
+  that the Document is released under this License. If a section does not fit
+  the above definition of Secondary then it is not allowed to be designated as
+  Invariant. The Document may contain zero Invariant Sections. If the Document
+  does not identify any Invariant Sections then there are none.
+ </p><p>
+  The "Cover Texts" are certain short passages of text that are listed, as
+  Front-Cover Texts or Back-Cover Texts, in the notice that says that the
+  Document is released under this License. A Front-Cover Text may be at most 5
+  words, and a Back-Cover Text may be at most 25 words.
+ </p><p>
+  A "Transparent" copy of the Document means a machine-readable copy,
+  represented in a format whose specification is available to the general
+  public, that is suitable for revising the document straightforwardly with
+  generic text editors or (for images composed of pixels) generic paint
+  programs or (for drawings) some widely available drawing editor, and that is
+  suitable for input to text formatters or for automatic translation to a
+  variety of formats suitable for input to text formatters. A copy made in an
+  otherwise Transparent file format whose markup, or absence of markup, has
+  been arranged to thwart or discourage subsequent modification by readers is
+  not Transparent. An image format is not Transparent if used for any
+  substantial amount of text. A copy that is not "Transparent" is called
+  "Opaque".
+ </p><p>
+  Examples of suitable formats for Transparent copies include plain ASCII
+  without markup, Texinfo input format, LaTeX input format, SGML or XML using a
+  publicly available DTD, and standard-conforming simple HTML, PostScript or
+  PDF designed for human modification. Examples of transparent image formats
+  include PNG, XCF and JPG. Opaque formats include proprietary formats that can
+  be read and edited only by proprietary word processors, SGML or XML for which
+  the DTD and/or processing tools are not generally available, and the
+  machine-generated HTML, PostScript or PDF produced by some word processors
+  for output purposes only.
+ </p><p>
+  The "Title Page" means, for a printed book, the title page itself, plus such
+  following pages as are needed to hold, legibly, the material this License
+  requires to appear in the title page. For works in formats which do not have
+  any title page as such, "Title Page" means the text near the most prominent
+  appearance of the work's title, preceding the beginning of the body of the
+  text.
+ </p><p>
+  A section "Entitled XYZ" means a named subunit of the Document whose title
+  either is precisely XYZ or contains XYZ in parentheses following text that
+  translates XYZ in another language. (Here XYZ stands for a specific section
+  name mentioned below, such as "Acknowledgements", "Dedications",
+  "Endorsements", or "History".) To "Preserve the Title" of such a section when
+  you modify the Document means that it remains a section "Entitled XYZ"
+  according to this definition.
+ </p><p>
+  The Document may include Warranty Disclaimers next to the notice which states
+  that this License applies to the Document. These Warranty Disclaimers are
+  considered to be included by reference in this License, but only as regards
+  disclaiming warranties: any other implication that these Warranty Disclaimers
+  may have is void and has no effect on the meaning of this License.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.19"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.19">#</a></h5></div><p>
+  You may copy and distribute the Document in any medium, either commercially
+  or non-commercially, provided that this License, the copyright notices, and
+  the license notice saying this License applies to the Document are reproduced
+  in all copies, and that you add no other conditions whatsoever to those of
+  this License. You may not use technical measures to obstruct or control the
+  reading or further copying of the copies you make or distribute. However, you
+  may accept compensation in exchange for copies. If you distribute a large
+  enough number of copies you must also follow the conditions in section 3.
+ </p><p>
+  You may also lend copies, under the same conditions stated above, and you may
+  publicly display copies.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.22"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.22">#</a></h5></div><p>
+  If you publish printed copies (or copies in media that commonly have printed
+  covers) of the Document, numbering more than 100, and the Document's license
+  notice requires Cover Texts, you must enclose the copies in covers that
+  carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the
+  front cover, and Back-Cover Texts on the back cover. Both covers must also
+  clearly and legibly identify you as the publisher of these copies. The front
+  cover must present the full title with all words of the title equally
+  prominent and visible. You may add other material on the covers in addition.
+  Copying with changes limited to the covers, as long as they preserve the
+  title of the Document and satisfy these conditions, can be treated as
+  verbatim copying in other respects.
+ </p><p>
+  If the required texts for either cover are too voluminous to fit legibly, you
+  should put the first ones listed (as many as fit reasonably) on the actual
+  cover, and continue the rest onto adjacent pages.
+ </p><p>
+  If you publish or distribute Opaque copies of the Document numbering more
+  than 100, you must either include a machine-readable Transparent copy along
+  with each Opaque copy, or state in or with each Opaque copy a
+  computer-network location from which the general network-using public has
+  access to download using public-standard network protocols a complete
+  Transparent copy of the Document, free of added material. If you use the
+  latter option, you must take reasonably prudent steps, when you begin
+  distribution of Opaque copies in quantity, to ensure that this Transparent
+  copy will remain thus accessible at the stated location until at least one
+  year after the last time you distribute an Opaque copy (directly or through
+  your agents or retailers) of that edition to the public.
+ </p><p>
+  It is requested, but not required, that you contact the authors of the
+  Document well before redistributing any large number of copies, to give them
+  a chance to provide you with an updated version of the Document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.27"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.27">#</a></h5></div><p>
+  You may copy and distribute a Modified Version of the Document under the
+  conditions of sections 2 and 3 above, provided that you release the Modified
+  Version under precisely this License, with the Modified Version filling the
+  role of the Document, thus licensing distribution and modification of the
+  Modified Version to whoever possesses a copy of it. In addition, you must do
+  these things in the Modified Version:
+ </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+    Use in the Title Page (and on the covers, if any) a title distinct from
+    that of the Document, and from those of previous versions (which should, if
+    there were any, be listed in the History section of the Document). You may
+    use the same title as a previous version if the original publisher of that
+    version gives permission.
+   </p></li><li class="listitem"><p>
+    List on the Title Page, as authors, one or more persons or entities
+    responsible for authorship of the modifications in the Modified Version,
+    together with at least five of the principal authors of the Document (all
+    of its principal authors, if it has fewer than five), unless they release
+    you from this requirement.
+   </p></li><li class="listitem"><p>
+    State on the Title page the name of the publisher of the Modified Version,
+    as the publisher.
+   </p></li><li class="listitem"><p>
+    Preserve all the copyright notices of the Document.
+   </p></li><li class="listitem"><p>
+    Add an appropriate copyright notice for your modifications adjacent to the
+    other copyright notices.
+   </p></li><li class="listitem"><p>
+    Include, immediately after the copyright notices, a license notice giving
+    the public permission to use the Modified Version under the terms of this
+    License, in the form shown in the Addendum below.
+   </p></li><li class="listitem"><p>
+    Preserve in that license notice the full lists of Invariant Sections and
+    required Cover Texts given in the Document's license notice.
+   </p></li><li class="listitem"><p>
+    Include an unaltered copy of this License.
+   </p></li><li class="listitem"><p>
+    Preserve the section Entitled "History", Preserve its Title, and add to it
+    an item stating at least the title, year, new authors, and publisher of the
+    Modified Version as given on the Title Page. If there is no section
+    Entitled "History" in the Document, create one stating the title, year,
+    authors, and publisher of the Document as given on its Title Page, then add
+    an item describing the Modified Version as stated in the previous sentence.
+   </p></li><li class="listitem"><p>
+    Preserve the network location, if any, given in the Document for public
+    access to a Transparent copy of the Document, and likewise the network
+    locations given in the Document for previous versions it was based on.
+    These may be placed in the "History" section. You may omit a network
+    location for a work that was published at least four years before the
+    Document itself, or if the original publisher of the version it refers to
+    gives permission.
+   </p></li><li class="listitem"><p>
+    For any section Entitled "Acknowledgements" or "Dedications", Preserve the
+    Title of the section, and preserve in the section all the substance and
+    tone of each of the contributor acknowledgements and/or dedications given
+    therein.
+   </p></li><li class="listitem"><p>
+    Preserve all the Invariant Sections of the Document, unaltered in their
+    text and in their titles. Section numbers or the equivalent are not
+    considered part of the section titles.
+   </p></li><li class="listitem"><p>
+    Delete any section Entitled "Endorsements". Such a section may not be
+    included in the Modified Version.
+   </p></li><li class="listitem"><p>
+    Do not retitle any existing section to be Entitled "Endorsements" or to
+    conflict in title with any Invariant Section.
+   </p></li><li class="listitem"><p>
+    Preserve any Warranty Disclaimers.
+   </p></li></ol></div><p>
+  If the Modified Version includes new front-matter sections or appendices that
+  qualify as Secondary Sections and contain no material copied from the
+  Document, you may at your option designate some or all of these sections as
+  invariant. To do this, add their titles to the list of Invariant Sections in
+  the Modified Version's license notice. These titles must be distinct from any
+  other section titles.
+ </p><p>
+  You may add a section Entitled "Endorsements", provided it contains nothing
+  but endorsements of your Modified Version by various parties--for example,
+  statements of peer review or that the text has been approved by an
+  organization as the authoritative definition of a standard.
+ </p><p>
+  You may add a passage of up to five words as a Front-Cover Text, and a
+  passage of up to 25 words as a Back-Cover Text, to the end of the list of
+  Cover Texts in the Modified Version. Only one passage of Front-Cover Text and
+  one of Back-Cover Text may be added by (or through arrangements made by) any
+  one entity. If the Document already includes a cover text for the same cover,
+  previously added by you or by arrangement made by the same entity you are
+  acting on behalf of, you may not add another; but you may replace the old
+  one, on explicit permission from the previous publisher that added the old
+  one.
+ </p><p>
+  The author(s) and publisher(s) of the Document do not by this License give
+  permission to use their names for publicity for or to assert or imply
+  endorsement of any Modified Version.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.34"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.34">#</a></h5></div><p>
+  You may combine the Document with other documents released under this
+  License, under the terms defined in section 4 above for modified versions,
+  provided that you include in the combination all of the Invariant Sections of
+  all of the original documents, unmodified, and list them all as Invariant
+  Sections of your combined work in its license notice, and that you preserve
+  all their Warranty Disclaimers.
+ </p><p>
+  The combined work need only contain one copy of this License, and multiple
+  identical Invariant Sections may be replaced with a single copy. If there are
+  multiple Invariant Sections with the same name but different contents, make
+  the title of each such section unique by adding at the end of it, in
+  parentheses, the name of the original author or publisher of that section if
+  known, or else a unique number. Make the same adjustment to the section
+  titles in the list of Invariant Sections in the license notice of the
+  combined work.
+ </p><p>
+  In the combination, you must combine any sections Entitled "History" in the
+  various original documents, forming one section Entitled "History"; likewise
+  combine any sections Entitled "Acknowledgements", and any sections Entitled
+  "Dedications". You must delete all sections Entitled "Endorsements".
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.38"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.38">#</a></h5></div><p>
+  You may make a collection consisting of the Document and other documents
+  released under this License, and replace the individual copies of this
+  License in the various documents with a single copy that is included in the
+  collection, provided that you follow the rules of this License for verbatim
+  copying of each of the documents in all other respects.
+ </p><p>
+  You may extract a single document from such a collection, and distribute it
+  individually under this License, provided you insert a copy of this License
+  into the extracted document, and follow this License in all other respects
+  regarding verbatim copying of that document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.41"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.41">#</a></h5></div><p>
+  A compilation of the Document or its derivatives with other separate and
+  independent documents or works, in or on a volume of a storage or
+  distribution medium, is called an "aggregate" if the copyright resulting from
+  the compilation is not used to limit the legal rights of the compilation's
+  users beyond what the individual works permit. When the Document is included
+  in an aggregate, this License does not apply to the other works in the
+  aggregate which are not themselves derivative works of the Document.
+ </p><p>
+  If the Cover Text requirement of section 3 is applicable to these copies of
+  the Document, then if the Document is less than one half of the entire
+  aggregate, the Document's Cover Texts may be placed on covers that bracket
+  the Document within the aggregate, or the electronic equivalent of covers if
+  the Document is in electronic form. Otherwise they must appear on printed
+  covers that bracket the whole aggregate.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.44"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.44">#</a></h5></div><p>
+  Translation is considered a kind of modification, so you may distribute
+  translations of the Document under the terms of section 4. Replacing
+  Invariant Sections with translations requires special permission from their
+  copyright holders, but you may include translations of some or all Invariant
+  Sections in addition to the original versions of these Invariant Sections.
+  You may include a translation of this License, and all the license notices in
+  the Document, and any Warranty Disclaimers, provided that you also include
+  the original English version of this License and the original versions of
+  those notices and disclaimers. In case of a disagreement between the
+  translation and the original version of this License or a notice or
+  disclaimer, the original version will prevail.
+ </p><p>
+  If a section in the Document is Entitled "Acknowledgements", "Dedications",
+  or "History", the requirement (section 4) to Preserve its Title (section 1)
+  will typically require changing the actual title.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.47"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.47">#</a></h5></div><p>
+  You may not copy, modify, sublicense, or distribute the Document except as
+  expressly provided for under this License. Any other attempt to copy, modify,
+  sublicense or distribute the Document is void, and will automatically
+  terminate your rights under this License. However, parties who have received
+  copies, or rights, from you under this License will not have their licenses
+  terminated so long as such parties remain in full compliance.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.49"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.49">#</a></h5></div><p>
+  The Free Software Foundation may publish new, revised versions of the GNU
+  Free Documentation License from time to time. Such new versions will be
+  similar in spirit to the present version, but may differ in detail to address
+  new problems or concerns. See
+  <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+ </p><p>
+  Each version of the License is given a distinguishing version number. If the
+  Document specifies that a particular numbered version of this License "or any
+  later version" applies to it, you have the option of following the terms and
+  conditions either of that specified version or of any later version that has
+  been published (not as a draft) by the Free Software Foundation. If the
+  Document does not specify a version number of this License, you may choose
+  any version ever published (not as a draft) by the Free Software Foundation.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.52"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.12.52">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+  If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+  replace the “with...Texts.” line with this:
+ </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+  If you have Invariant Sections without Cover Texts, or some other combination
+  of the three, merge those two alternatives to suit the situation.
+ </p><p>
+  If your document contains nontrivial examples of program code, we recommend
+  releasing these examples in parallel under your choice of free software
+  license, such as the GNU General Public License, to permit their use in free
+  software.
+ </p></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="sect1"><a href="index.html#stig-whatis"><span class="title-number">1 </span><span class="title-name">What is STIG?</span></a></span></li><li><span class="sect1"><a href="index.html#stig-benefits"><span class="title-number">2 </span><span class="title-name">Benefits</span></a></span></li><li><span class="sect1"><a href="index.html#stig-use"><span class="title-number">3 </span><span class="title-name">Hardening <span class="productname"><span class="phrase">SUSE Linux Enterprise Server</span></span> with STIG</span></a></span></li><li><span class="sect1"><a href="index.html#stig-openscap-sle15"><span class="title-number">4 </span><span class="title-name">Applying a STIG profile</span></a></span></li><li><span class="sect1"><a href="index.html#stig-custom-tailoring"><span class="title-number">5 </span><span class="title-name">Using a tailored STIG profile</span></a></span></li><li><span class="sect1"><a href="index.html#stig-viewer"><span class="title-number">6 </span><span class="title-name">Working with checklists in DISA STIG Viewer</span></a></span></li><li><span class="sect1"><a href="index.html#id-1.11"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="sect1"><a href="index.html#id-1.12"><span class="title-number">8 </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>
