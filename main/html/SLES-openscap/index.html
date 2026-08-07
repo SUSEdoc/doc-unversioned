@@ -1,0 +1,1710 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Hardening 
+  SUSE Linux Enterprise Server
+  
+  
+ with OpenSCAP | 
+  SUSE Linux Enterprise Server
+  
+  
+</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2023-03-06"/>
+<meta name="dcterms.modified" content="2026-02-18"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-06"/>
+<meta name="title" content="Hardening SUSE Linux Enterprise Server with OpenSCAP |…"/>
+<meta name="description" content="How to audit and harden SUSE Linux Enterprise Server with OpenSCAP and the SCAP Security Guide"/>
+<meta name="product-name" content="&#10;  SUSE Linux Enterprise Server&#10;  &#10;  &#10;"/>
+<meta name="book-title" content="Hardening &#10;  SUSE Linux Enterprise Server&#10;  &#10;  &#10; with OpenSCAP"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Security"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Hardening SUSE Linux Enterprise Server with OpenSCAP"/>
+<meta property="og:description" content="Harden SLES with OpenSCAP"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hardening SUSE Linux Enterprise Server with OpenSCAP"/>
+<meta name="twitter:description" content="Harden SLES with OpenSCAP"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Hardening SUSE Linux Enterprise Server with OpenSCAP | SUSE Linux Enterprise Server",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Hardening SUSE Linux Enterprise Server with OpenSCAP",
+    "description": "How to audit and harden SUSE Linux Enterprise Server with OpenSCAP and the SCAP Security Guide",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2023-03-06T00:00+02:00",
+    "dateModified": "2026-02-18T00:00+02:00",
+    "datePublished": "2026-08-06T23:55+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Auditing"
+      },
+      {
+        "@type": "Thing",
+        "name": "Compliance"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script><meta name="edit-url" content="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml"/></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Hardening 
+  SUSE Linux Enterprise Server
+  
+  
+ with OpenSCAP</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Hardening <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> with OpenSCAP</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="article-openscap" data-id-title="Hardening SUSE Linux Enterprise Server with OpenSCAP"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span></span></div><div><div class="title-container"><h1 class="title">Hardening <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> with OpenSCAP <a title="Permalink" class="permalink" href="index.html#">#</a></h1><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div><div class="date"><span class="imprint-label">Publication Date: </span>
+August 06, 2026
+</div><div><div class="abstract"><p>
+        This document introduces you to auditing and hardening <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> with OpenSCAP and the
+        <code class="literal">SCAP Security Guide</code>.
+      </p></div></div></div></div><div id="openscap-disclaimer" data-id-title="Disclaimer" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Disclaimer</div><p>
+      SUSE seeks to provide customers with quick and easy guides that can assist them in
+      maintaining security compliance. Implementation of the settings contained within this guide
+      without its prior testing in a non-operational environment is highly discouraged. The
+      developers of these profiles and documentation have made reasonable efforts to ensure overall
+      compliance. They assume no responsibility for its use by other parties, and make no
+      guarantee, expressed or implied, about its quality, reliability or any other characteristic.
+    </p></div><section class="sect1" id="openscap-whatis" data-id-title="What are SCAP and OpenSCAP?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What are SCAP and OpenSCAP?</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-whatis">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      SCAP stands for <code class="systemitem">Security Content Automation
+      Protocol</code>. It is a framework of specifications that support automated
+      configuration, vulnerability scanning, and policy compliance evaluation of systems deployed
+      in an organization. It also standardizes how vulnerabilities and security configurations are
+      communicated both to machines and human beings.
+    </p><p>
+      OpenSCAP is a collection of open source tools that implement the SCAP framework for Linux.
+      SCAP is maintained by the
+      <span class="orgname">National Institute of Standards and Technology (NIST)</span>
+      . OpenSCAP received the SCAP 1.2 certification by NIST in 2014.
+    </p></section><section class="sect1" id="openscap-benefits" data-id-title="Benefits"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Benefits</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-benefits">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      The OpenSCAP tools, together with the <code class="literal">SCAP Security Guide</code>, can be used for auditing
+      your system in an automated way. The <code class="literal">SCAP Security Guide</code> implements security guidances
+      recommended by respected authorities. These security guidances are transformed into a
+      machine-readable format which then can be used by OpenSCAP and other tools.
+    </p></section><section class="sect1" id="openscap-prepare-infrastructure" data-id-title="Infrastructure Preparation"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Infrastructure Preparation</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-prepare-infrastructure">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      Before installation and hardening, it is recommended to prepare your IT infrastructure for
+      the implementation of the SCAP Security Guide. As a preparation, do the following steps approximately in
+      the order mentioned:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Create an inventory of the hosts on which SCAP Security Guide will be installed.
+        </p></li><li class="step"><p>
+          Create an inventory of IT and business services that will be in the scope of the
+          installation.
+        </p></li><li class="step"><p>
+          Split the inventory into a few groups, considering that the configuration of hosts
+          belonging to a group will be identical.
+        </p></li><li class="step"><p>
+          Select the standard or profile you are planning to implement in your infrastructure. For
+          example, you can use Security Technical Implementation Guide from Defense Information Systems Agency, Payment Card Industry Data Security Standard and Health Insurance Portability and Accountability Act.
+        </p></li><li class="step"><p>
+          For each group member, create a list of rules and recommendations you plan to implement.
+          You should consider the following:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Preconditions necessary for some of the rules
+            </p></li><li class="listitem"><p>
+              Configuration parameters for each recommendation, if they exist
+            </p></li><li class="listitem"><p>
+              Recommendations to be applied manually
+            </p></li><li class="listitem"><p>
+              Recommendations to be applied automatically
+            </p></li><li class="listitem"><p>
+              Recommendations to be excluded
+            </p></li><li class="listitem"><p>
+              Additional security controls or measures will be implemented to address excluded
+              recommendations
+            </p></li></ul></div></li><li class="step"><p>
+          Create a test environment that simulates your environment. Use it as a reference before
+          implementing the technology in your real environment. You should consider the following:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              The remediation has to be executed more than twice, because:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  The recommendations are executed in alphabetical order
+                </p></li><li class="listitem"><p>
+                  Between some recommendations, there are dependencies
+                </p></li><li class="listitem"><p>
+                  The operating system needs to be restarted after each pass
+                </p></li></ul></div></li><li class="listitem"><p>
+              A 100% hardening is impossible, and you have to specify an acceptable level of risk
+              for members of each group
+            </p><div id="id-1.7.3.6.2.2.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+                The acceptable level is a number of rules that will show the result “not pass” in
+                case of an audit. Document these rules and apply additional security controls to
+                compensate for them.
+              </p></div></li></ul></div></li><li class="step"><p>
+          Use the test environment to test new patches and new updates of SCAP Security Guide.
+        </p></li><li class="step"><p>
+          In case of an error during the remediation, you can try the following:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Apply the rule manually
+            </p></li><li class="listitem"><p>
+              Exclude the rule using tailoring and use an additional security control instead
+            </p></li><li class="listitem"><p>
+              Register a bug, providing details about the version of SCAP Security Guide, logs from execution and
+              steps performed by you
+            </p></li></ul></div></li><li class="step"><p>
+          Create an implementation plan covering your production environment.
+        </p></li><li class="step"><p>
+          Create backups.
+        </p></li></ol></div></div></section><section class="sect1" id="openscap-installation" data-id-title="Installation"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Installation</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      To use the OpenSCAP tools and the <code class="literal">SCAP Security Guide</code> for hardening your target system
+      by scanning and remediating vulnerabilities, install the following core packages:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span class="package">openscap-utils</span>
+        </p></li><li class="listitem"><p>
+          <span class="package">scap-security-guide</span>
+        </p></li></ul></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install openscap-utils scap-security-guide</code></pre></div><div id="id-1.8.5" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        These packages are dependencies for other optional packages discussed below.
+      </p></div><p>
+      Optionally, install the following packages:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span class="package">scap-workbench</span>: This package provides the SCAP Workbench graphical
+          utility to perform common <code class="systemitem">oscap</code> tasks.
+        </p><div id="id-1.8.7.1.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+            The <span class="package">scap-workbench</span> package, being a GUI software, is available only
+            for desktop installations of <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span>.
+          </p></div></li><li class="listitem"><p>
+          <span class="package">ssg-apply</span>: When used along with SCAP Workbench, this package helps you
+          conveniently apply a tailoring file for customized hardening.
+        </p></li></ul></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install scap-workbench ssg-apply</code></pre></div><div id="id-1.8.9" data-id-title="Security best practice for SCAP Workbench" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Security best practice for SCAP Workbench</div><p>
+        As a security best practice, avoid installing an application software such as SCAP
+        Workbench on the target system that you are planning to harden. Instead, install SCAP
+        Workbench on a client machine and apply the hardening on the target system, while
+        maintaining an air gap before the target system is connected to a potentially insecure
+        network.
+      </p></div></section><section class="sect1" id="openscap-components" data-id-title="Important SCAP components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Important SCAP components</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-components">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      SCAP consists of the following important components which interact with each other.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.3.1"><span class="term">Open Vulnerability and Assessment Language (OVAL)</span></dt><dd><p>
+            An XML format for testing the presence of a specific state.
+          </p></dd><dt id="id-1.9.3.2"><span class="term">Extensible Configuration Checklist Description Format (XCCDF)</span></dt><dd><p>
+            An XML format that specifies security checklists, benchmarks and configuration
+            documentation. The XCCDF file includes a benchmark as a set of different profiles
+            related to different groups. Each group is a set of rules which have OVAL definitions.
+            Each profile is related to different good practices such as STIG, HIPAA, PCI-DSS, or
+            ANSSI.
+          </p></dd><dt id="id-1.9.3.3"><span class="term">Common Platform Enumeration (CPE)</span></dt><dd><p>
+            A structured naming scheme to identify information technology systems, platforms and
+            software packages. It is maintained by NIST and NDV. The naming scheme consists of the
+            following elements:
+            <code class="literal">cpe:/<em class="replaceable">part</em>:<em class="replaceable">vendor</em>:<em class="replaceable">product</em>:<em class="replaceable">version</em>:<em class="replaceable">update</em>:<em class="replaceable">edition</em>:<em class="replaceable">language</em></code>
+          </p></dd><dt id="id-1.9.3.4"><span class="term">DataStreams (DS)</span></dt><dd><p>
+            An XML format which packs different SCAP components (CPE, XCCDF, OVAL) into a single
+            file. It can be used to distribute SCAP content over the network. The DataStreams files
+            are useful because they include everything you need when you want to harden and audit
+            your SUSE Linux system.
+          </p></dd><dt id="id-1.9.3.5"><span class="term">Common Configuration Enumeration (CCE)</span></dt><dd><p>
+            Unique identifiers to security-related system configuration issues.
+          </p></dd></dl></div></section><section class="sect1" id="openscap-ssg" data-id-title="SCAP Security Guide content and directories"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">SCAP Security Guide content and directories</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-ssg">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      SUSE ships the <code class="literal">SCAP Security Guide</code> (SSG) toolset in the
+      <span class="package">scap-security-guide</span> package. It contains the latest set of security
+      polices for Linux systems. The <code class="literal">SCAP Security Guide</code> is maintained upstream in the
+      <a class="link" href="https://github.com/ComplianceAsCode/" target="_blank">ComplianceAsCode</a>
+      repository.
+    </p><p>
+      After you have installed the package, the SSG security content and the related files are
+      available in your system from the following directories:
+    </p><div class="variablelist" id="ssg-directories" data-id-title="Overview of files and directories"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Overview of files and directories </span></span><a title="Permalink" class="permalink" href="index.html#ssg-directories">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div><dl class="variablelist"><dt id="id-1.10.4.2"><span class="term"><code class="filename">/usr/share/xml/scap/ssg/content/</code></span></dt><dd><p>
+            Contains the SSG security content. It consists of several
+            <a class="xref" href="index.html#openscap-components" title="5. Important SCAP components">Important SCAP components</a>, which are all
+            based on XML. All XML files in that directory are named according to the SCAP component
+            and to the product they apply to.
+          </p><p>
+            You can view all available security policies by getting a list of datastream files:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l /usr/share/xml/scap/ssg/content/ssg-*-ds.xml</code></pre></div></dd><dt id="id-1.10.4.3"><span class="term"><code class="filename">/usr/share/doc/scap-security-guide/guides/</code></span></dt><dd><p>
+            Contains profiles for different hardening policies in human-readable format. They
+            describe the profiles that are included in the DataStream files. The profiles
+            applicable to <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> are product-specific and differ between each codestream.
+            Each profile is a guide on securing your operating system to ensure compliance with a
+            regulation.
+          </p><p>
+            The guides usually have the following structure:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Short description
+              </p></li><li class="listitem"><p>
+                Profile Title. For example: <em class="citetitle">DISA STIG for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span>
+                <em class="replaceable">MAJOR_VERSION</em></em>
+              </p></li><li class="listitem"><p>
+                Profile ID. For example:
+                <em class="citetitle">xccdf_org.ssgproject.content_profile_stig</em>
+              </p></li><li class="listitem"><p>
+                Revision History. Information about the current version and status of the profile.
+                For example: <em class="citetitle">xccdf_org.ssgproject.content_profile_stig</em>
+              </p></li><li class="listitem"><p>
+                Platforms (in CPE notation). Which product or system the profile applies to. For
+                example: <em class="citetitle">cpe:/o:suse:linux_enterprise_server:15</em>
+              </p></li><li class="listitem"><p>
+                A table of contents
+              </p></li><li class="listitem"><p>
+                A checklist which consists of groups (and subgroups) with rules
+              </p><p>
+                Each rule consists of a short description, the rationale behind the rule, a
+                severity (low, medium or high) and a unique identifier in the <code class="literal">Common
+                Configuration Enumeration (CCE)</code> format. The CCE number for each rule is
+                provided to SUSE by NIST.
+              </p><p>
+                Each rule also lists references to different good practices. For example, the rule
+                known by the unique identifier <code class="literal">CCE-83289-9</code> in STIG has a
+                reference to a specific good practice <code class="literal">A.12.4.1</code> in ISO/IEC
+                27001:2013.
+              </p><p>
+                If remediation options exist for a rule, they are listed in different formats.
+              </p></li></ul></div></dd><dt id="id-1.10.4.4"><span class="term"><code class="filename">/usr/share/scap-security-guide</code></span></dt><dd><p>
+            Contains subdirectories with fix scripts which can be used to remediate the target
+            system in case a vulnerability is found during a scan. Fix scripts are available in the
+            following two formats: Shell scripts
+            (<code class="filename">bash/<em class="replaceable">*.sh</em></code>) and Ansible snippets
+            (<code class="filename">ansible/<em class="replaceable">*.yml</em></code>).
+            
+          </p></dd></dl></div></section><section class="sect1" id="openscap-ssg-profiles" data-id-title="SCAP Security Guide profiles"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">SCAP Security Guide profiles</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-ssg-profiles">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      The <code class="literal">SCAP Security Guide</code> contains multiple profiles. The applicable profiles are specific to the individual product and its underlying development stream.
+    </p><p>
+      They are maintained and hosted at the following repositories:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <a class="link" href="https://github.com/ComplianceAsCode/content/tree/master/products/sle15/profiles" target="_blank">https://github.com/ComplianceAsCode/content/tree/master/products/sle15/profiles</a>
+        </p></li><li class="listitem"><p>
+          <a class="link" href="https://github.com/ComplianceAsCode/content/tree/master/products/sle12/profiles" target="_blank">https://github.com/ComplianceAsCode/content/tree/master/products/sle12/profiles</a>
+        </p></li><li class="listitem"><p>
+          <a class="link" href="https://github.com/ComplianceAsCode/content/tree/master/products/sle16/profiles" target="_blank">https://github.com/ComplianceAsCode/content/tree/master/products/sle16/profiles</a>
+        </p></li></ul></div><p>
+      After the installation of the <span class="package">scap-security-guide</span> package, human-readable
+      versions of the profiles are available in your file system in
+      <code class="filename">/usr/share/doc/scap-security-guide/guides</code>.
+    </p><p>
+      To list the guides for each profile in an HTML format, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l /usr/share/doc/scap-security-guide/guides/ssg*.html</code></pre></div><p>
+      You can then see the guide related to a specific profile in your web browser.<span class="phrase"> For example, to
+      see the SLE 15 STIG profile using the Mozilla Firefox web browser, run the following command:</span>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">firefox
+/usr/share/doc/scap-security-guide/guides/ssg-sle15-guide-stig.html</code></pre></div><p>
+      Alternatively, find the same content online as static HTML pages:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <a class="link" href="https://complianceascode.github.io/content-pages/guides/index.html" target="_blank">https://complianceascode.github.io/content-pages/guides/index.html</a>
+        </p></li></ul></div><p>
+      In the online versions, scroll to the appropriate product and select one of the
+      available profiles.
+    </p><section class="sect2" id="openscap-ssg-profiles-info" data-id-title="Viewing information on SCAP Security Guide profiles"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Viewing information on SCAP Security Guide profiles</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-ssg-profiles-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        Each security policy can have multiple profiles, which provide policies implemented
+        according to specific security baselines. Every profile can select different rules and use
+        different values. You can list these profiles using the following command format:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap info --fetch-remote-resources
+/usr/share/xml/scap/ssg/content/ssg-<em class="replaceable">OPERATING-SYSTEM</em>-<em class="replaceable">TYPE-OF-FILE</em>.xml</code><span class="callout" id="ssg-profiles-info-view">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#ssg-profiles-info-view"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            In the above command:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Replace <em class="replaceable">OPERATING-SYSTEM</em> with <span class="phrase">either
+                <code class="literal">sle16</code> or <code class="literal">sle15</code> or <code class="literal">sle12</code></span>
+              </p></li><li class="listitem"><p>
+                Replace <em class="replaceable">TYPE-OF-FILE</em> with either <code class="literal">ds</code>
+                or <code class="literal">xccdf</code>
+              </p></li></ul></div></td></tr></table></div><p>
+        For example, you can view information about the <code class="literal">ds</code> files of
+        <span class="phrase"><span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15</span><span class="phrase"><span class="productname"><span class="phrase">SLES</span></span></span> using the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap info
+/usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml</code></pre></div><p>
+        The following technical terms appear in the <code class="command">oscap info</code> output for <code class="literal">ds</code> and <code class="literal">xccdf</code> files:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="formalpara-title">Document type. </span>
+              Describes what format the file is in. Common types include XCCDF, OVAL, Source Data
+              Stream, and Result Data Stream.
+            </p></li><li class="listitem"><p><span class="formalpara-title">Checklist version. </span>
+              The XCCDF version only shown for XCCDF files. Common values are
+              <code class="literal">1.1</code> and <code class="literal">1.2</code>.
+            </p></li><li class="listitem"><p><span class="formalpara-title">Imported. </span>
+              The date the file was imported for use with OpenSCAP. As OpenSCAP uses the local
+              file system and has no proprietary database format, the imported date is the same as
+              the file modification date.
+            </p></li><li class="listitem"><p><span class="formalpara-title">Status. </span>
+              The XCCDF Benchmark status. Common values include "accepted", "draft", "deprecated",
+              and "incomplete". Please refer to the XCCDF specification for details. This is only
+              shown for XCCDF files.
+            </p></li><li class="listitem"><p><span class="formalpara-title">Generated. </span>
+              The date the file was created. This date is shown for XCCDF files and Checklists, and
+              is sourced from the XCCDF Status element.
+            </p></li><li class="listitem"><p><span class="formalpara-title">Profiles. </span>
+              Available profile IDs that you can use for the <code class="option">--profile</code> command
+              line attribute with <code class="command">oscap xccdf eval</code> command.
+            </p></li><li class="listitem"><p><span class="formalpara-title">Checklists. </span>
+              Lists available checklists incorporated in the Data Stream that you can use for the
+              <code class="option">--benchmark-id</code> command line attribute with the <code class="command">oscap xccdf
+              eval</code> command. Also, each checklist has detailed information displayed.
+            </p></li></ul></div><p>
+        For example, for Security Technical Implementation Guide profiles, the following is relevant:
+        <code class="literal">xccdf_org.ssgproject.content_profile_stig</code>
+      </p></section><section class="sect2" id="openscap-ssg-profiles-sle16" data-id-title="SUSE Linux Enterprise Server 16 profiles"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name"><span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 16 profiles</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-ssg-profiles-sle16">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        For <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 16, the following profiles are <span><span class="emphasis"><strong>supported</strong></span></span> by SUSE:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>ANSSI-BP-028 (enhanced)</p></li><li class="listitem"><p>ANSSI-BP-028 (high)</p></li><li class="listitem"><p>ANSSI-BP-028 (intermediary)</p></li><li class="listitem"><p>ANSSI-BP-028 (minimal)</p></li><li class="listitem"><p>Health Insurance Portability and Accountability Act (HIPAA)</p></li><li class="listitem"><p>PCI-DSS v4 Control Baseline for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 16</p></li></ul></div><div id="id-1.11.14.4" data-id-title="Text-based list as updated information on supported profiles" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Text-based list as updated information on supported profiles</div><p>
+        If there is a mismatch between the supported profiles listed above and the profiles shown in
+        the image below, refer to the text-based list above as the updated information. The image
+        below is for illustration only, and may not reflect the updated list of supported profiles.
+       </p></div><div class="figure" id="id-1.11.14.5"><div class="figure-contents"><div class="mediaobject"><a href="images/openscap-ssg-static-html-sle16.png"><img src="images/openscap-ssg-static-html-sle16.png" width="90%" alt="SCAP Security Guide profiles for SUSE Linux Enterprise Server 16" title="SCAP Security Guide profiles for SUSE Linux Enterprise Server 16"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">SCAP Security Guide profiles for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 16 </span></span><a title="Permalink" class="permalink" href="index.html#id-1.11.14.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></section><section class="sect2" id="openscap-ssg-profiles-sle15" data-id-title="SUSE Linux Enterprise Server 15 profiles"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name"><span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15 profiles</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-ssg-profiles-sle15">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        For <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15, the following profiles are <span><span class="emphasis"><strong>supported</strong></span></span> by SUSE:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            ANSSI-BP-028 (enhanced)
+          </p></li><li class="listitem"><p>
+            ANSSI-BP-028 (high)
+          </p></li><li class="listitem"><p>
+            ANSSI-BP-028 (intermediary)
+          </p></li><li class="listitem"><p>
+            ANSSI-BP-028 (minimal)
+          </p></li><li class="listitem"><p>
+            DISA STIG for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15
+          </p></li><li class="listitem"><p>
+            Hardening for Public Cloud Image of <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> for SAP Applications 15
+          </p></li><li class="listitem"><p>
+            Health Insurance Portability and Accountability Act (HIPAA)
+          </p></li><li class="listitem"><p>
+            PCI-DSS v4 Control Baseline for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15
+          </p></li><li class="listitem"><p>
+            Public Cloud Hardening for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15
+          </p></li><li class="listitem"><p>
+            Standard System Security Profile for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15
+          </p></li><li class="listitem"><p>
+            General System Security Profile for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> (SLES) 15
+          </p></li></ul></div><div id="id-1.11.15.4" data-id-title="Text-based list as updated information on supported profiles" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Text-based list as updated information on supported profiles</div><p>
+        If there is a mismatch between the supported profiles listed above and the profiles shown in
+        the image below, refer to the text-based list above as the updated information. The image
+        below is for illustration only, and may not reflect the updated list of supported profiles.
+       </p></div><div class="figure" id="id-1.11.15.5"><div class="figure-contents"><div class="mediaobject"><a href="images/openscap-ssg-static-html-sle15.png"><img src="images/openscap-ssg-static-html-sle15.png" width="90%" alt="SCAP Security Guide profiles for SUSE Linux Enterprise Server 15" title="SCAP Security Guide profiles for SUSE Linux Enterprise Server 15"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 2: </span><span class="title-name">SCAP Security Guide profiles for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15 </span></span><a title="Permalink" class="permalink" href="index.html#id-1.11.15.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></section><section class="sect2" id="openscap-ssg-profiles-sle12" data-id-title="SUSE Linux Enterprise Server 12 profiles"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.4 </span><span class="title-name"><span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 12 profiles</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-ssg-profiles-sle12">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        For <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 12, the following profiles are <span><span class="emphasis"><strong>supported</strong></span></span> by SUSE:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            ANSSI-BP-028 (enhanced)
+          </p></li><li class="listitem"><p>
+            ANSSI-BP-028 (high)
+          </p></li><li class="listitem"><p>
+            ANSSI-BP-028 (intermediary)
+          </p></li><li class="listitem"><p>
+            ANSSI-BP-028 (minimal)
+          </p></li><li class="listitem"><p>
+            DISA STIG for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 12
+          </p></li><li class="listitem"><p>
+            PCI-DSS v.4 Control Baseline for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 12
+          </p></li><li class="listitem"><p>
+            Standard System Security Profile for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 12
+          </p></li></ul></div><div id="id-1.11.16.4" data-id-title="Text-based list as updated information on supported profiles" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Text-based list as updated information on supported profiles</div><p>
+        If there is a mismatch between the supported profiles listed above and the profiles shown in
+        the image below, refer to the text-based list above as the updated information. The image
+        below is for illustration only, and may not reflect the updated list of supported profiles.
+       </p></div><div class="figure" id="id-1.11.16.5"><div class="figure-contents"><div class="mediaobject"><a href="images/openscap-ssg-static-html-sle12.png"><img src="images/openscap-ssg-static-html-sle12.png" width="90%" alt="SCAP Security Guide profiles for SUSE Linux Enterprise Server 12" title="SCAP Security Guide profiles for SUSE Linux Enterprise Server 12"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 3: </span><span class="title-name">SCAP Security Guide profiles for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 12 </span></span><a title="Permalink" class="permalink" href="index.html#id-1.11.16.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></section></section><section class="sect1" id="openscap-customize-scap-security-guide" data-id-title="Customizing the SCAP Security Guide"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Customizing the SCAP Security Guide</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-customize-scap-security-guide">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      To customize the SCAP Security Guide for policies and profiles of your choice, perform the following steps:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Run the SCAP Workbench GUI software installed earlier.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">scap-workbench</code></pre></div></li><li class="step"><p>
+          Select a variant for the target system—one of SLe12, SLe15, and SLe16, then select
+          <span class="guilabel">Load Content</span>.
+        </p></li><li class="step"><p>
+          Using the <span class="guilabel">Profile</span> drop-down list, select a profile with the desired
+          policy, then select <span class="guilabel">Customize</span>.
+        </p></li><li class="step"><p>
+          Set a new ID for your custom profile. Set the ID in the following format:
+          <code class="literal">xccdf_<em class="replaceable">REVERSE-DNS</em>_profile_<em class="replaceable">REST-OF-THE-ID</em></code>.
+          For example,
+          <code class="literal">xccdf_org.<em class="replaceable">mycorporation</em>_profile_<em class="replaceable">server</em></code>.
+        </p><div id="id-1.12.3.4.2" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning</div><p>
+            You cannot change the ID of the custom profile later, using the SCAP Workbench.
+          </p></div></li><li class="step"><p>
+          Deselect the rules that you do not want in the custom profile. For example, you can
+          deselect the following rule: <code class="literal">Record Events that Modify the System’s
+          Discretionary Access Controls - chmod</code>.
+        </p></li><li class="step"><p>
+          To save the changes to the profile, select <span class="guilabel">OK</span>. The main guide window
+          is displayed again.
+        </p><ul class="stepalternatives">
+          <li class="step"><p>
+              To save only the customization, select <span class="guilabel">Select customization
+              file</span>&gt;<span class="guilabel">Open</span>&gt;<span class="guilabel">Save customization
+              only</span>. This creates a small file containing only the changes made to the
+              original profile, and is called a customization or <span><em class="emphasis">tailoring</em></span>
+              file. The advantage of this approach is that when a new version of the profile is
+              available, you can simply apply your tailoring to it, instead of customizing it from
+              scratch.
+            </p></li>
+          <li class="step"><p>
+              Alternatively, you can save the entire modified content in a directory. In that case,
+              select the file, followed by <span class="guilabel">Save all</span>&gt;<span class="guilabel">Into a
+              directory</span>.
+            </p></li>
+        </ul></li><li class="step"><p>
+          To use the customization file with the <code class="command">oscap</code> command-line tool, use
+          the <code class="option">--tailoring-file <em class="replaceable">NAME-OF-TAILORING-FILE</em></code>
+          option. For example:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+--profile xccdf_org.ssgproject.content_profile_stig_customized \
+--report report_sle15_stig.html \
+--tailoring-file ssg-sle15-ds-tailoring.xml \
+/usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml
+</code></pre></div></li></ol></div></div></section><section class="sect1" id="openscap-scan" data-id-title="Vulnerability scanning"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Vulnerability scanning</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-scan">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><section class="sect2" id="openscap-scan-targets" data-id-title="Targets to scan"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.1 </span><span class="title-name">Targets to scan</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-scan-targets">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        The content provided by the <code class="literal">SCAP Security Guide</code> can be used to scan the following
+        targets for vulnerabilities:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            bare-metal machines
+          </p></li><li class="listitem"><p>
+            virtual machines
+          </p></li><li class="listitem"><p>
+            virtual machine images
+          </p></li><li class="listitem"><p>
+            containers
+          </p></li><li class="listitem"><p>
+            container images
+          </p></li></ul></div><p>
+        Automated checks help to identify the target and to select only the rules that make sense
+        for this specific target. For example, checks for separate partitions make sense for
+        bare-metal machines but not for containers.
+      </p></section><section class="sect2" id="openscap-scan-tools" data-id-title="Tools for scanning"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.2 </span><span class="title-name">Tools for scanning</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-scan-tools">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><div id="id-1.13.3.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+          Before using the tools described in this section, ensure that you have installed them as
+          described in <a class="xref" href="index.html#openscap-installation" title="4. Installation">Section 4, “Installation”</a>, as they are interdependent.
+        </p></div><p>
+        Depending on your setup and the target to scan (remote or local), you can use either of the
+        following tools:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.13.3.4.1"><span class="term">oscap</span></dt><dd><p>
+              A command-line interface that can be used to scan local machines. Both the
+              <span class="package">openscap-utils</span> and <span class="package">scap-security-guide</span> package
+              need to be installed on the local machine.
+            </p><p>
+              To understand the basic usage of <code class="command">oscap</code>, run it with the
+              <code class="command">-h</code> option:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap -h</code>
+
+  oscap
+
+  OpenSCAP command-line tool
+
+  Usage: oscap [options] module operation [operation-options-and-arguments]
+
+  Common options:
+    --verbose &lt;verbosity_level&gt;   - Turn on verbose mode at specified verbosity level.
+                                    Verbosity level must be one of: DEVEL, INFO, WARNING, ERROR.
+    --verbose-log-file &lt;file&gt;     - Write verbose information into file.
+
+  oscap options:
+    -h --help                     - show this help
+    -q --quiet                    - quiet mode
+    -V --version                  - print info about supported SCAP versions
+
+  Commands:
+      ds - Data stream utilities
+      oval - Open Vulnerability and Assessment Language
+      xccdf - eXtensible Configuration Checklist Description Format
+      cvss - Common Vulnerability Scoring System
+      cpe - Common Platform Enumeration
+      cve - Common Vulnerabilities and Exposures
+      cvrf - Common Vulnerability Reporting Framework
+      info - Print information about a SCAP file.</pre></div><p>
+              To understand <code class="literal">oscap</code> in greater detail, read its man pages by
+              running the <code class="command">man oscap</code>.
+            </p></dd><dt id="id-1.13.3.4.2"><span class="term">oscap-ssh</span></dt><dd><p>
+              A command-line interface that can be used to scan a remote machine via SSH with an
+              interface resembling the <code class="command">oscap</code> tool. On the local machine, the
+              package <span class="package">openscap-utils</span> needs to be installed. On the remote
+              machine, the <span class="package">openscap-utils</span> package needs to be installed.
+            </p><p>
+              To understand the basic usage of <code class="command">oscap-ssh</code>, run it with the
+              <code class="command">-h</code> option:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap -h</code>
+
+  oscap-ssh -- Tool for running oscap over SSH and collecting results.
+
+  Usage:
+
+  $ oscap-ssh user@host 22 info INPUT_CONTENT
+  $ oscap-ssh user@host 22 xccdf eval [options] INPUT_CONTENT
+
+  Only source data streams are supported as INPUT_CONTENT!
+
+  supported oscap xccdf eval options are:
+    --profile
+    --tailoring-file
+    --tailoring-id
+    --cpe (external OVAL dependencies are not supported yet!)
+    --oval-results
+    --results
+    --results-arf
+    --report
+    --skip-valid
+    --skip-validation
+    --fetch-remote-resources
+    --local-files
+    --progress
+    --datastream-id
+    --xccdf-id
+    --benchmark-id
+    --remediate
+
+  $ oscap-ssh user@host 22 oval eval [options] INPUT_CONTENT
+
+  supported oscap oval eval options are:
+    --id
+    --variables
+    --directives
+    --results
+    --report
+    --skip-valid
+    --skip-validation
+    --datastream-id
+    --oval-id
+
+  $ oscap-ssh user@host 22 oval collect [options] INPUT_CONTENT
+
+  supported oscap oval collect options are:
+    --id
+    --syschar
+    --variables
+    --skip-valid
+    --skip-validation
+
+  specific option for oscap-ssh (must be first argument):
+    --sudo
+
+  To supply additional options to ssh/scp, define the SSH_ADDITIONAL_OPTIONS variable
+  For instance, to ignore known hosts records, define SSH_ADDITIONAL_OPTIONS='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+
+  specific option for oscap-ssh (must be first argument):
+
+  See `man oscap` to learn more about semantics of these options.</pre></div><p>
+              To understand <code class="literal">oscap-ssh</code> in greater detail, read its man pages by
+              running <code class="command">man oscap-ssh</code>.
+            </p></dd><dt id="id-1.13.3.4.3"><span class="term">SCAP Workbench</span></dt><dd><p>
+              SCAP Workbench is a graphical user interface for OpenSCAP. You can use it for
+              convenience instead of using <code class="literal">oscap</code>. For example, you can use SCAP
+              Workbench for scanning a single machine, either local or remote (via SSH).
+            </p><p>
+              To use SCAP Workbench, both the <span class="package">scap-workbench</span> and
+              <span class="package">scap-security-guide</span> packages need to be installed on the local
+              machine. On the remote machine, the <span class="package">openscap-utils</span> package needs
+              to be installed.
+            </p><p>
+              To start SCAP Workbench, run the following command:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">scap-workbench</code></pre></div><div class="figure" id="id-1.13.3.4.3.2.5"><div class="figure-contents"><div class="mediaobject"><a href="images/scap-workbench.png"><img src="images/scap-workbench.png" width="95%" alt="Start screen of SCAP Workbench" title="Start screen of SCAP Workbench"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 4: </span><span class="title-name">SCAP Workbench </span></span><a title="Permalink" class="permalink" href="index.html#id-1.13.3.4.3.2.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div><p>
+              Although not recommended, you can invoke and perform certain basic operations by
+              using SCAP Workbench as a command-line tool. To know more, read its man page by
+              running <code class="command">man scap-workbench</code>.
+            </p></dd></dl></div></section><section class="sect2" id="openscap-scan-sle15" data-id-title="Scanning a SUSE Linux Enterprise Server system"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.3 </span><span class="title-name">Scanning a <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> system</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-scan-sle15">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        You can scan your system locally with <code class="command">oscap</code> for
+        vulnerability issues according to a certain profile. You can save the results in XML format
+        and generate an HTML report.
+      </p><div class="complex-example"><div class="example" id="ex-oscap-scan-sle15" data-id-title="Scanning SLES with oscap"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Scanning <span class="productname"><span class="phrase">SLES</span></span> with oscap </span></span><a title="Permalink" class="permalink" href="index.html#ex-oscap-scan-sle15">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap</code> xccdf eval<span class="callout" id="co-oscap-eval">1</span> \
+    --profile <em class="replaceable">stig</em><span class="callout" id="co-oscap-eval-profile">2</span> \
+    --results <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-eval-results">3</span> \
+    --report <em class="replaceable">/tmp/report.html</em><span class="callout" id="co-oscap-eval-report">4</span> \
+    <span class="phrase"><span class="phrase">/usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml</span>
+   </span><span class="callout" id="co-oscap-eval-ssg">5</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Calls the <code class="command">oscap xccdf</code> module and tells it to perform an evaluation
+              (vulnerability scan).
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval-profile"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the profile to use, in this case, <code class="literal">stig</code>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval-results"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Saves the results of the evaluation to <em class="replaceable">/tmp/results.xml</em>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval-report"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Generates an HTML report called <em class="replaceable">/tmp/report.html</em> in
+              addition to the results in XML.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-eval-ssg"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the <code class="literal">SCAP Security Guide</code> policy file to use. In this example, we use a
+              policy file in the <code class="literal">DataStream</code> format. To list all available policies, run: <code class="command">ls -1
+              /usr/share/xml/scap/ssg/content/ssg-*-ds.xml</code>. For more information about a
+              particular policy, run <code class="command">oscap info</code> on the file.
+            </p></td></tr></table></div><p>
+          The evaluation process usually takes a few minutes, depending on the number of selected
+          rules.
+        </p></div></div></div></section><section class="sect2" id="openscap-evaluate-rules" data-id-title="Evaluating with rules"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.4 </span><span class="title-name">Evaluating with rules</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-evaluate-rules">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        For each rule, we have the following fields:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="formalpara-title">Rule. </span>
+              For example, <span class="guilabel">Install AIDE</span>
+            </p></li><li class="listitem"><p><span class="formalpara-title">Rule ID. </span>
+              For example,
+              <span class="guilabel">xccdf_org.ssgproject.content_rule_package_aide_installed</span>
+            </p></li></ul></div><p>
+        After determining the security policy and profile, use <code class="command">oscap xccdf eval</code>
+        to perform an evaluation against them. For example, to evaluate the profile
+        <code class="literal">xccdf_org.ssgproject.content_profile_stig</code> and generate an HTML report,
+        you can use the following command format
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+--profile <em class="replaceable">xccdf_org.ssgproject.content_profile_stig</em> \
+--report report_<em class="replaceable">OPERATING-SYSTEM</em>_stig.html \
+/usr/share/xml/scap/ssg/content/ssg-<em class="replaceable">OPERATING-SYSTEM</em>-ds.xml</code><span class="callout" id="evaluate-all-rules">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#evaluate-all-rules"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Replace <em class="replaceable">OPERATING-SYSTEM</em> with <span class="phrase">either
+            <code class="literal">sle16</code> or <code class="literal">sle15</code> or <code class="literal">sle12</code></span>
+          </p></td></tr></table></div><p>
+        To evaluate with a specific rule, you can specify the <span class="guilabel">Rule ID</span> using
+        the <code class="option">--rule</code> command option. For example, you can evaluate only with the
+        rule <span class="guilabel">xccdf_org.ssgproject.content_rule_package_aide_installed</span>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+--profile <em class="replaceable">xccdf_org.ssgproject.content_profile_stig</em> \
+--report report_<em class="replaceable">OPERATING-SYSTEM</em>_stig.html \
+--rule <em class="replaceable">xccdf_org.ssgproject.content_rule_package_aide_installed</em>
+/usr/share/xml/scap/ssg/content/ssg-<em class="replaceable">OPERATING-SYSTEM</em>-ds.xml</code><span class="callout" id="evaluate-specific-rule">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#evaluate-specific-rule"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Replace <em class="replaceable">OPERATING-SYSTEM</em> with <span class="phrase">either
+            <code class="literal">sle16</code> or <code class="literal">sle15</code> or <code class="literal">sle12</code></span>
+          </p></td></tr></table></div><p>
+        To evaluate <span><em class="emphasis">without</em></span> a specific rule, you can specify to skip the
+        <span class="guilabel">Rule ID</span> using the <code class="option">--skip-rule</code> command option. For
+        example, you can evaluate without the rule
+        <span class="guilabel">xccdf_org.ssgproject.content_rule_package_aide_installed</span>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+--profile <em class="replaceable">xccdf_org.ssgproject.content_profile_stig</em> \
+--report report_<em class="replaceable">OPERATING-SYSTEM</em>_stig.html \
+--skip-rule <em class="replaceable">xccdf_org.ssgproject.content_rule_package_aide_installed</em>
+/usr/share/xml/scap/ssg/content/ssg-<em class="replaceable">OPERATING-SYSTEM</em>-ds.xml</code><span class="callout" id="evaluate-without-rule">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#evaluate-without-rule"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Replace <em class="replaceable">OPERATING-SYSTEM</em> with <span class="phrase">either
+            <code class="literal">sle16</code> or <code class="literal">sle15</code> or <code class="literal">sle12</code></span>
+          </p></td></tr></table></div></section><section class="sect2" id="openscap-external-remote-resources-eval" data-id-title="Using external or remote resources for scanning"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.5 </span><span class="title-name">Using external or remote resources for scanning</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-external-remote-resources-eval">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        SCAP content may reference external resources. For example, the SCAP Security Guide uses an external OVAL
+        file to check whether the system is up to date and patched against known security
+        vulnerabilities. However, OpenSCAP can handle remote resources differently, based on the
+        options used while invoking the <code class="command">oscap</code> command. In addition, you can use
+        strategies like downloading specific remote resources in advance, and pointing the
+        OpenSCAP tool towards the downloaded resources while invoking it.
+      </p><section class="sect3" id="id-1.13.6.3" data-id-title="Default warning for remote resources by OpenSCAP while performing evaluation"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">9.5.1 </span><span class="title-name">Default warning for remote resources by OpenSCAP while performing evaluation</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.13.6.3">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          While evaluating SCAP content with external resources, the OpenSCAP tool displays a
+          <span><span class="emphasis"><strong>warning</strong></span></span>. For example, OpenSCAP displays the
+          following warning while performing the default evaluation of a system based on the SCAP Security Guide:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>oscap xccdf eval \
+--profile xccdf_org.ssgproject.content_profile_stig \
+--results ssg-sle15-xccdf-stig-results.xml \
+/usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml
+
+WARNING: Datastream component 'scap_org.open-scap_cref_pub-projects-security-oval-suse.linux.enterprise.15-
+patch.xml.bz2' points out to the remote 'https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.
+15-patch.xml.bz2'. Use '--fetch-remote-resources' option to download it.
+
+WARNING: Skipping 'https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2' file
+which is referenced from datastream
+
+WARNING: Skipping ./pub-projects-security-oval-suse.linux.enterprise.15-patch.xml.bz2 file which is referenced
+from XCCDF content</pre></div><p>
+          The following sections describe certain strategies to force OpenSCAP to fetch remote
+          resources in real time, or download them in advance and use for evaluation and scanning
+          the system.
+        </p></section><section class="sect3" id="openscap-fetching-remote-resource" data-id-title="Fetching remote resources for evaluation"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">9.5.2 </span><span class="title-name">Fetching remote resources for evaluation</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-fetching-remote-resource">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          If you trust your local content and the remote content it references, you can use the
+          <code class="option">--fetch-remote-resources</code> option to automatically download it when
+          invoking the OpenSCAP tool.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>oscap xccdf eval \
+--fetch-remote-resources \
+--profile xccdf_org.ssgproject.content_profile_stig \
+--results ssg-sle15-xccdf-stig-results.xml \
+/usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml
+
+Downloading: https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2 ... ok
+
+--- Starting Evaluation —
+...</pre></div><p>
+          However, if access to the Internet is unavailable at the time of evaluation, or is
+          considered a security risk, you can instruct OpenSCAP to use local files instead of
+          remote resources.
+        </p></section><section class="sect3" id="openscap-downloading-saving-remote-resource" data-id-title="Downloading and saving remote resources locally for evaluation"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">9.5.3 </span><span class="title-name">Downloading and saving remote resources locally for evaluation</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-downloading-saving-remote-resource">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          On systems without Internet access, or in security sensitive deployments where OpenSCAP
+          cannot connect to the Internet, download the remote content using other tools and save it
+          locally. You can then pass it to OpenSCAP as a local file using the
+          <code class="option">--local-files</code> option, instead of the
+          <code class="option">--fetch-remote-resources</code> option.
+        </p><p>
+          For example, to prevent OpenSCAP from accessing the Internet but still use the patch
+          file
+          <a class="link" href="https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2" target="_blank">https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2</a>,
+          perform the following procedure.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              <span><em class="emphasis">(Optional)</em></span> Create a directory for storing the downloaded remote
+              resources.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>mkdir ~/scap-files <span class="callout" id="scap-files-directory">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#scap-files-directory"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  Directory to store downloaded remote resources. If you have identified a suitable
+                  directory, skip this step.
+                </p></td></tr></table></div></li><li class="step"><p>
+              Download the remote resource and save it as a local file.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>wget -O ~/scap-files/pub-projects-security-oval-suse.linux.enterprise.15-patch.xml.bz2<span class="callout" id="scap-local-file">1</span> \
+https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2<span class="callout" id="scap-remote-resource">2</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#scap-local-file"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  The path to the locally saved file.
+                </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#scap-remote-resource"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                  The remote resource to be downloaded and saved locally.
+                </p></td></tr></table></div><div id="id-1.13.6.5.4.2.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+                In this example, the name of the local file is
+                <span><span class="emphasis"><strong>not</strong></span></span> arbitrary. Notice the following
+                information in the SCAP source data stream file available at
+                <code class="filename">/usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml</code>:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>cat /usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml | \
+grep -n "scap_org.open-scap_cref_pub-projects-security-oval-suse.linux.enterprise.15-patch.xml.bz2"
+
+17:          &lt;cat:uri name="pub-projects-security-oval-suse.linux.enterprise.15.xml" uri="#scap_org.open-scap_cref_pub-projects-security-oval-suse.linux.enterprise.15-patch.xml.bz2"/&gt;
+25:      &lt;ds:component-ref id="scap_org.open-scap_cref_pub-projects-security-oval-suse.linux.enterprise.15-patch.xml.bz2" xlink:href="https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2"/&gt;</pre></div></div></li><li class="step"><p>
+              Run the evaluation using the local files downloaded earlier from the remote source.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>oscap xccdf eval \
+ --local-files ~/scap-files \
+ --profile xccdf_org.ssgproject.content_profile_stig \
+ --results ssg-sle15-xccdf-stig-results.xml \
+ /usr/share/xml/scap/ssg/content/ssg-sle15-ds.xml
+
+ WARNING: Using local file '~/scap-files/pub-projects-security-oval-suse.linux.enterprise.15-patch.xml.bz2'
+ instead of 'https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2'
+
+ --- Starting Evaluation —</pre></div><div id="id-1.13.6.5.4.3.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+                Download and use the specific files that are relevant for your <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> product
+                version, and avoid more generic ones. Being specific about the purpose and the
+                files helps reduce the usage of server resources such as the processor, memory,
+                storage and bandwidth. In addition, smaller file sizes also reduce the time
+                required to complete the evaluation. For example, if you are interested only in
+                <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15 SP5, use the file available at
+                <a class="link" href="https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-sp5-patch.xml.bz2" target="_blank">https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-sp5-patch.xml.bz2</a>.
+              </p></div></li><li class="step"><p>
+              <span><em class="emphasis">Optionally</em></span>, you can generate an HTML report from the XML results
+              file.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>oscap xccdf generate report ssg-sle15-xccdf-stig-results.xml &gt;
+ssg-sle15-xccdf-stig-report.html</pre></div><div id="id-1.13.6.5.4.4.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+                You can generate an HTML report directly using the <code class="command">oscap xccdf eval
+                --report</code> option, but separating the scan and the HTML report generation
+                leads to less usage of server resources.
+              </p></div></li></ol></div></div></section></section><section class="sect2" id="openscap-scanning-audits-oval-files" data-id-title="Scanning and auditing systems using OVAL files"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.6 </span><span class="title-name">Scanning and auditing systems using OVAL files</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-scanning-audits-oval-files">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        Using the OVAL content files for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> products, you can assess your <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> systems and
+        generate reports on the RPM package names and versions that are known to be affected by
+        security issues in published CVEs.
+      </p><p>
+        The OVAL data provided by SUSE includes the following:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            The patch-style OVAL data, which expresses all security updates on a patch level. These
+            can include multiple CVEs per patch.
+          </p></li><li class="listitem"><p>
+            The vulnerability OVAL data, which expresses security vulnerabilities on a CVE level.
+          </p></li></ul></div><p>
+        For detailed information on OVAL support provided by SUSE, refer to
+        <a class="link" href="https://www.suse.com/support/security/oval/" target="_blank">https://www.suse.com/support/security/oval/</a>.
+      </p><p>
+        You can download OVAL files provided by SUSE from
+        <a class="link" href="https://ftp.suse.com/pub/projects/security/oval/" target="_blank">https://ftp.suse.com/pub/projects/security/oval/</a>. As a
+        best practice for scanning and auditing systems using OVAL files, perform the following
+        procedure:
+      </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            <span><em class="emphasis">(Optional)</em></span> Create a directory for downloading and storing remote
+            resources.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>mkdir ~/oval-files <span class="callout" id="oval-files-directory">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#oval-files-directory"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Directory to store downloaded remote resources such as OVAL patch files. If you
+                have identified a suitable directory, skip this step.
+              </p></td></tr></table></div></li><li class="step"><p>
+            Download the remote resource and save it as a local file.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>wget -O ~/oval-files/suse.linux.enterprise.15-patch.xml.bz2<span class="callout" id="oval-local-file">1</span> \
+https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2<span class="callout" id="oval-remote-resource">2</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#oval-local-file"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                The path to the locally saved file.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#oval-remote-resource"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                The remote resource to be downloaded and saved locally.
+              </p></td></tr></table></div></li><li class="step"><p>
+            Run the evaluation using the local files downloaded earlier from the remote source.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>oscap oval eval \
+--results sle15-oval-results.xml \
+~/oval-files/suse.linux.enterprise.15-patch.xml.bz2 \
+
+Definition oval:org.opensuse.security:def:45435: false
+Definition oval:org.opensuse.security:def:45434: false
+Definition oval:org.opensuse.security:def:45433: false
+Definition oval:org.opensuse.security:def:45432: false
+Definition oval:org.opensuse.security:def:45431: false
+Definition oval:org.opensuse.security:def:45430: false
+Definition oval:org.opensuse.security:def:45429: false
+...
+
+Evaluation done.</pre></div><div id="id-1.13.7.7.3.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+              Download and use the specific files that are relevant for your <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> product version,
+              and avoid more generic ones. Being specific about the purpose and the files helps
+              reduce the usage of server resources such as the processor, memory, storage and
+              bandwidth. In addition, smaller file sizes also reduce the time required to complete
+              the evaluation. For example, if you are interested only in <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15 SP5, use the file
+              available at
+              <a class="link" href="https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-sp5-patch.xml.bz2" target="_blank">https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-sp5-patch.xml.bz2</a>.
+            </p></div></li><li class="step"><p>
+            <span><em class="emphasis">Optionally</em></span>, you can generate an HTML report from the XML results
+            file.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>oscap oval generate report sle15-oval-results.xml &gt;
+sle15-oval-report.html</pre></div><div id="id-1.13.7.7.4.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+              You can generate an HTML report directly using the <code class="command">oscap oval eval
+              --report</code> option, but separating the scan and the HTML report generation
+              leads to less usage of server resources.
+            </p></div></li></ol></div></div></section></section><section class="sect1" id="openscap-remediate" data-id-title="Vulnerability remediation"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Vulnerability remediation</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-remediate">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+      Beyond scanning and reporting, the <code class="literal">SCAP Security Guide</code> security profiles can automatically remediate the target system by applying necessary fixes.
+    </p><div id="id-1.14.3" data-id-title="Automatic remediation not always available" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Automatic remediation not always available</div><p>
+        Automatic remediation is <span><em class="emphasis">not</em></span> offered in case the automatic application
+        of a fix is too dangerous to be enforced in a running target system.
+      </p></div><section class="sect2" id="openscap-remediate-process" data-id-title="OpenSCAP remediation process"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.1 </span><span class="title-name">OpenSCAP remediation process</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-remediate-process">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        OpenSCAP allows to automatically remediate target systems that have been found in a
+        non-compliant state. This requires an XCCDF file with instructions. The overall process is
+        as follows:
+      </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            The <code class="command">oscap</code> command-line tool performs a system scan.
+          </p></li><li class="step"><p>
+            Each rule that fails is marked as a candidate for remediation.
+          </p></li><li class="step"><p>
+            Within the XCCDF file, <code class="command">oscap</code> then searches for an appropriate
+            &lt;xccdf:fix&gt; element, resolves it, prepares the environment, and executes the fix
+            script. The fix scripts can be either Bash <code class="filename">*.sh</code> files or Ansible
+            playbook <code class="filename">*.yml</code> files.
+          </p></li><li class="step"><p>
+            After the execution of the script, the respective rule is evaluated again to check if
+            the fix was successful.
+          </p></li></ol></div></div><p>
+        All results of the remediation are stored in an output XCCDF file.
+      </p></section><section class="sect2" id="openscap-remediate-options" data-id-title="OpenSCAP remediation options"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.2 </span><span class="title-name">OpenSCAP remediation options</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-remediate-options">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        For remediating a target system with <code class="command">oscap</code>, you have the following
+        options:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.14.5.3.1"><span class="term">Remediation on the fly</span></dt><dd><p>
+              You can remediate a target system on the fly, while you are scanning it. In this
+              case, evaluation and remediation are performed as a part of a single command. For
+              details, see <a class="xref" href="index.html#oscap-remediate-sle-fly" title="10.4.1. Remediating SUSE Linux Enterprise Server (on the fly)">Section 10.4.1, “Remediating <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> (on the fly)”</a>.
+            </p></dd><dt id="id-1.14.5.3.2"><span class="term">Remediation after scanning</span></dt><dd><p>
+              You can remediate a target system after you have scanned it. In the first step, the
+              system is only evaluated, and the results are stored in the XCCDF results file. In
+              the second step, <code class="command">oscap</code> executes the fix scripts and verifies the
+              result. For details, see <a class="xref" href="index.html#oscap-remediate-sle-post" title="10.4.2. Remediating SUSE Linux Enterprise Server (after scanning)">Section 10.4.2, “Remediating <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> (after scanning)”</a>.
+            </p></dd><dt id="id-1.14.5.3.3"><span class="term">Review mode</span></dt><dd><p>
+              The review mode allows to save remediation instructions to a file for further review.
+              The remediation content is not executed during this operation. For details, see
+              <a class="xref" href="index.html#oscap-remediate-sle-review" title="10.4.4. Storing SLES remediation instructions for review">Section 10.4.4, “Storing <span class="productname"><span class="phrase">SLES</span></span> remediation instructions for review”</a>.
+            </p></dd></dl></div></section><section class="sect2" id="openscap-remediate-specific-profile-shell-script" data-id-title="Remediating for a specific profile using shell scripts"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.3 </span><span class="title-name">Remediating for a specific profile using shell scripts</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-remediate-specific-profile-shell-script">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        For simple remediation of a profile without any condition, you can use the shell scripts
+        that are shipped with the SCAP Security Guide.
+      </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            Find the shell scripts that performs remediation without any condition:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l /usr/share/scap-security-guide/bash/</code></pre></div><p>
+            The names of the scripts follow the format:
+            <code class="filename"><em class="replaceable">NAME-OF-PRODUCT</em>-script-<em class="replaceable">NAME-OF-PROFILE</em>.sh</code>.
+          </p><p>
+            <em class="replaceable">NAME-OF-PRODUCT</em> can be<span class="phrase">:
+            <code class="literal">sle12</code> or <code class="literal">sle15</code> or
+            <code class="literal">sle16</code>.</span>.
+          </p><p>
+            The supported profiles are as follows: <code class="literal">stig</code>,
+            <code class="literal">anssi_bp28_xxx</code>, <code class="literal">hipaa</code>,
+            <code class="literal">pci-dss-4</code>, and <code class="literal">pcs-hardening</code>.
+          </p><div id="id-1.14.6.3.1.6" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+              The standard profile is officially <span><em class="emphasis">not supported</em></span>.
+            </p></div></li><li class="step"><p>
+            Understand the format of the shell scripts and the rules within. In the scripts, each
+            rule or recommendation maintains the following format:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Starts with <code class="literal"># BEGIN fix
+                (<em class="replaceable">CURRENT-NUMBER</em>/<em class="replaceable">TOTAL-NUMBER-OF-RULES</em>)
+                for <em class="replaceable">RULE-ID</em></code>
+              </p></li><li class="listitem"><p>
+                Ends with <code class="literal"># END fix for <em class="replaceable">RULE-ID</em></code>.
+              </p></li></ul></div><div id="id-1.14.6.3.2.3" data-id-title="Exceptions to the rule format" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Exceptions to the rule format</div><p>
+              There are certain rules that contains a line ending with <code class="literal">IS
+              MISSING!</code> in between the <code class="literal">BEGIN</code> and <code class="literal">END</code>
+              lines for a rule block. These rules do not have a remediation part; you have to do
+              remediation manually to apply it.
+            </p></div></li><li class="step"><p>
+            Although the recommended approach for excluding rules from remediation is to use
+            tailoring, you can also do it manually if there are bugs, or for tests. In that case,
+            open the intended script with a text editor and comment out the necessary lines between
+            <code class="literal">BEGIN</code> and <code class="literal">END</code> for a rule block.
+          </p></li><li class="step"><p>
+            Make the script executable: and run it.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  -s <code class="command">chmod +x
+<em class="replaceable">NAME-OF-PRODUCT</em>-script-<em class="replaceable">NAME-OF-PROFILE</em>.sh</code></pre></div></li><li class="step"><p>
+            Run the script:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">./<em class="replaceable">NAME-OF-PRODUCT</em>-script-<em class="replaceable">NAME-OF-PROFILE</em>.sh</code></pre></div></li></ol></div></div></section><section class="sect2" id="openscap-remediate-sle" data-id-title="Remediating a SLES system with oscap"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.4 </span><span class="title-name">Remediating a <span class="productname"><span class="phrase">SLES</span></span> system with <code class="command">oscap</code></span></span> <a title="Permalink" class="permalink" href="index.html#openscap-remediate-sle">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        The following examples show how to scan and remediate <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> locally with
+        <code class="command">oscap</code> to comply with a certain profile.
+      </p><section class="sect3" id="oscap-remediate-sle-fly" data-id-title="Remediating SUSE Linux Enterprise Server (on the fly)"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">10.4.1 </span><span class="title-name">Remediating <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> (on the fly)</span></span> <a title="Permalink" class="permalink" href="index.html#oscap-remediate-sle-fly">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          To remediate a system (on the fly), you can use a combination of <code class="option">--eval</code>
+          and <code class="option">--remediate</code> options of the <code class="command">oscap</code> command. In this
+          case, the system is first scanned (audited), and then the command attempts to fix the
+          system. During the execution of the audit, you will see after each rule status as
+          <code class="literal">pass</code>, <code class="literal">fail</code>, or <code class="literal">not applicable</code>.
+          During the execution of the remediation, you will see the status as
+          <code class="literal">fixed</code> or <code class="literal">error</code>, after some of the rules.
+        </p><div class="complex-example"><div class="example" id="ex-oscap-remediate-sle-fly" data-id-title="Remediating SLES systems (on the fly)"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Remediating <span class="productname"><span class="phrase">SLES</span></span> systems (on the fly) </span></span><a title="Permalink" class="permalink" href="index.html#ex-oscap-remediate-sle-fly">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap</code> xccdf eval --remediate<span class="callout" id="co-oscap-remedy-fly">1</span> \
+--profile <em class="replaceable">stig</em><span class="callout" id="co-oscap-remedy-fly-profile">2</span> \
+--results <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-remedy-fly-results">3</span> \
+--report <em class="replaceable">/tmp/report.html</em><span class="callout" id="co-oscap-remedy-fly-report">4</span> \
+--skip-rule xccdf_org.ssgproject.content_rule_accounts_authorized_local_users<span class="callout" id="co-oscap-remedy-skip-rules">5</span> \
+/usr/share/xml/scap/ssg/content/ssg-<em class="replaceable">PRODUCT-NAME</em>-ds.xml<span class="callout" id="co-oscap-remedy-fly-ssg">6</span></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Calls the <code class="command">oscap xccdf</code> module and tells it to perform an
+                evaluation plus a remediation of the target system in one go.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly-profile"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the profile to use, in this case, <code class="literal">stig</code>.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly-results"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Saves the results of the evaluation to <em class="replaceable">/tmp/results.xml</em>.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly-report"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Saves the report of the evaluation to <em class="replaceable">/tmp/report.html</em>.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-skip-rules"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Rules that you want to skip.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-fly-ssg"><span class="callout">6</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the <code class="literal">SCAP Security Guide</code> policy file to use. Replace
+                <em class="replaceable">PRODUCT-NAME</em> with <code class="literal">sle16</code> or
+                <code class="literal">sle15</code> or <code class="literal">sle12</code>.
+              </p></td></tr></table></div><p>
+            In the resulting <em class="replaceable">/tmp/results.xml</em> file, the first
+            <code class="sgmltag-element">TestResult</code> element shows the result of the scan
+            <span><em class="emphasis">before</em></span> the remediation. The second
+            <code class="sgmltag-element">TestResult</code> element shows the result of the scan
+            <span><em class="emphasis">after</em></span> applying the remediation. In the second
+            <code class="sgmltag-element">TestResult</code> element, if the result of a rule is
+            <code class="literal">fixed</code>, this means that the fix was successfully applied, and this
+            rule now passes evaluation. If the result of a rule is <code class="literal">error</code>, this
+            means that the remediation for this rule was not successful, and the rule still does
+            not pass evaluation.
+          </p></div></div></div><div id="id-1.14.7.3.4" data-id-title="Usage of the --skip-rule option" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Usage of the <code class="option">--skip-rule</code> option</div><p>
+            In the above examples, the <code class="literal">--skip-rule</code> option is optional. However,
+            it is necessary to use it if you did not change the variable
+            <code class="literal">var_accounts_authorized_local_users_regex</code>. Otherwise, you will not
+            be able to do a <code class="command">sudo</code> after reboot.
+          </p></div></section><section class="sect3" id="oscap-remediate-sle-post" data-id-title="Remediating SUSE Linux Enterprise Server (after scanning)"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">10.4.2 </span><span class="title-name">Remediating <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> (after scanning)</span></span> <a title="Permalink" class="permalink" href="index.html#oscap-remediate-sle-post">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          In this example, we first execute a scan and then run the remediation as next step.
+        </p><div class="example" id="ex-oscap-remediate-sle15-post" data-id-title="Remediating SLES (after scanning)"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Remediating <span class="productname"><span class="phrase">SLES</span></span> (after scanning) </span></span><a title="Permalink" class="permalink" href="index.html#ex-oscap-remediate-sle15-post">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap</code> xccdf eval<span class="callout" id="co-oscap-remedy-post1">1</span> \
+      --profile <em class="replaceable">stig</em><span class="callout" id="co-oscap-remedy-post1-profile">2</span> \
+      --results <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-remedy-post1-results">3</span> \
+      /usr/share/xml/scap/ssg/content/ssg-<span class="phrase">sle15</span>-ds.xml<span class="callout" id="co-oscap-remedy-post1-ssg">4</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post1"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Calls the <code class="command">oscap xccdf</code> module and tells it to perform an
+                    evaluation.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post1-profile"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Specifies the profile to use, in this case, <code class="literal">stig</code>.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post1-results"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Saves the results of the evaluation as an XCCDF file to
+                    <em class="replaceable">/tmp/results.xml</em>.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post1-ssg"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Specifies the <code class="literal">SCAP Security Guide</code> policy file to use. In this example, we
+                    use a policy file in the <code class="literal">DataStream</code> format that applies to
+                    <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span><span class="phrase"> 15</span>. To list all available policies, run: <code class="command">ls -1
+                    /usr/share/xml/scap/ssg/content/ssg-*-ds.xml</code>. For more information
+                    about a particular policy, run <code class="command">oscap info</code> on the file.
+                  </p></td></tr></table></div><p>
+                During this step, the system is only evaluated, and the results are stored in a
+                <code class="sgmltag-element">TestResult</code> element in
+                <em class="replaceable">/tmp/results.xml</em>.
+              </p></li><li class="step"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap</code> xccdf remediate<span class="callout" id="co-oscap-remedy-post2-command">1</span> \
+     --results <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-remedy-post2-results">2</span> \
+     <em class="replaceable">/tmp/results.xml</em><span class="callout" id="co-oscap-remedy-post2-ssg">3</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post2-command"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Calls the <code class="command">oscap xccdf</code> module and tells it to perform a
+                    remediation.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post2-results"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Saves the results of the remediation to
+                    <em class="replaceable">/tmp/results.xml</em>.
+                  </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-remedy-post2-ssg"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Uses the <em class="replaceable">/tmp/results.xml</em> XCCDF file from the first
+                    step (evaluation) as input file.
+                  </p></td></tr></table></div><p>
+                During this step, the results file from the first step is used as input for the
+                <code class="command">oscap</code> command. You can safely store the results from the second
+                step in the same file that you use as input file,
+                <em class="replaceable">/tmp/results.xml</em>. During this run,
+                <code class="command">oscap</code> creates a new <code class="sgmltag-element">xccdf:TestResult</code>
+                element in the file. The new element is based on the previous one and inherits all
+                the data. The newly created <code class="sgmltag-element">xccdf:TestResult</code> element
+                differs only in the <code class="sgmltag-element">rule-result</code> elements which failed in
+                the first run. Only for those is the remediation executed.
+              </p></li></ol></div></div></div></div></section><section class="sect3" id="oscap-remediate-bash-ansible" data-id-title="Remediating systems using oscap and scripts"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">10.4.3 </span><span class="title-name">Remediating systems using <code class="command">oscap</code> and scripts</span></span> <a title="Permalink" class="permalink" href="index.html#oscap-remediate-bash-ansible">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          To remediate a system, you have to generate a script that will fix the system. You have
+          to decide in advance the profile and type of the script—bash or Ansible.
+        </p><div id="id-1.14.7.5.3" data-id-title="Evaluate the system before remediation" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Evaluate the system before remediation</div><p>
+            Before running the examples in this section, ensure that you have evaluated the system
+            using the <code class="command">oscap xccdf eval</code> commands.
+          </p></div><div class="example" id="id-1.14.7.5.4" data-id-title="Remediating SUSE Linux Enterprise Server systems using oscap and bash"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name">Remediating <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> systems using <code class="command">oscap</code> and bash </span></span><a title="Permalink" class="permalink" href="index.html#id-1.14.7.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf generate fix --profile stig --fetch-remote-resources –
+fix-type bash --output <em class="replaceable">GENERATED-BASH-REMEDIATION-SCRIPT-NAME</em>.sh
+/usr/share/xml/scap/ssg/content/ssg-<em class="replaceable">PRODUCT-NAME</em>-ds.xml</code><span class="callout" id="oscap-bash-remediation">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#oscap-bash-remediation"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Replace <em class="replaceable">PRODUCT-NAME</em> with <code class="literal">sle12</code> or
+                <code class="literal">sle15</code> or <code class="literal">sle16</code>.
+              </p></td></tr></table></div></div></div><div class="example" id="id-1.14.7.5.5" data-id-title="Remediating SUSE Linux Enterprise Server systems using oscap and Ansible"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 5: </span><span class="title-name">Remediating <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> systems using <code class="command">oscap</code> and Ansible </span></span><a title="Permalink" class="permalink" href="index.html#id-1.14.7.5.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf generate fix --profile stig --fetch-remote-resources – fix-type ansible --output <em class="replaceable">GENERATED-ANSIBLE-REMEDIATION-SCRIPT-NAME</em>.yml /usr/share/xml/scap/ssg/content/ssg-<em class="replaceable">PRODUCT-NAME</em>-ds.xml</code><span class="callout" id="oscap-ansible-remediation">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#oscap-ansible-remediation"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Replace <em class="replaceable">PRODUCT-NAME</em> with <code class="literal">sle12</code> or
+                <code class="literal">sle15</code> or <code class="literal">sle16</code>.
+              </p></td></tr></table></div></div></div><p>
+          After running any of the above commands, you can run the generated script to remediate
+          the system.
+        </p></section><section class="sect3" id="oscap-remediate-sle-review" data-id-title="Storing SLES remediation instructions for review"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">10.4.4 </span><span class="title-name">Storing <span class="productname"><span class="phrase">SLES</span></span> remediation instructions for review</span></span> <a title="Permalink" class="permalink" href="index.html#oscap-remediate-sle-review">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+          You can also run <code class="command">oscap</code> in review mode to store remediation
+          instructions to a file for further review. During this operation, the remediation content
+          is <span><em class="emphasis">not</em></span> executed. The following shows how to generate remediation
+          instructions in the form of a shell script:
+        </p><div class="example" id="ex-oscap-remediate-sle15-review" data-id-title="Storing SLES remediation instructions for review"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 6: </span><span class="title-name">Storing <span class="productname"><span class="phrase">SLES</span></span> remediation instructions for review </span></span><a title="Permalink" class="permalink" href="index.html#ex-oscap-remediate-sle15-review">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap</code> xccdf generate fix<span class="callout" id="co-oscap-generate-fix">1</span> \
+     --template urn:xccdf:fix:script:sh<span class="callout" id="co-oscap-generate-template">2</span> \
+     --profile <em class="replaceable">stig</em><span class="callout" id="co-oscap-generate-profile">3</span> \
+     --output <em class="replaceable">my-remediation-script.sh</em><span class="callout" id="co-oscap-generate-output">4</span> \
+     /usr/share/xml/scap/ssg/content/ssg-<span class="phrase">sle15</span>-ds.xml<span class="callout" id="co-oscap-generate-ssg">5</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-generate-fix"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Calls the <code class="command">oscap xccdf</code> module and tells it to generate a file
+                with remediation instructions.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-generate-template"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the template to use, in this case, a shell script.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-generate-profile"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the profile to use, in this case, <code class="literal">stig</code>.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-generate-output"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the file to which the remediation instructions are written.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-oscap-generate-ssg"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specifies the <code class="literal">SCAP Security Guide</code> policy file to use. In this example, we use
+                a policy file in the <code class="literal">DataStream</code> format that applies to <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span>
+                15. To list all available policies, run: <code class="command">ls -1
+                /usr/share/xml/scap/ssg/content/ssg-*-ds.xml</code>. For more information about
+                a particular policy, run <code class="command">oscap info</code> on the file.
+              </p></td></tr></table></div></div></div></section></section><section class="sect2" id="openscap-remediate-sle-ansible" data-id-title="Remediating a SLES system with Ansible"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.5 </span><span class="title-name">Remediating a <span class="productname"><span class="phrase">SLES</span></span> system with Ansible</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-remediate-sle-ansible">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        You can use the Ansible playbooks provided by the <code class="literal">SCAP Security Guide</code> to remediate a
+        local system.
+      </p><p>
+        The <span class="package">ansible</span> package is available from <code class="literal">SUSE Package
+        Hub</code>. Register your <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> system and enable the <code class="literal">SUSE Package
+        Hub</code> extension. For <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 12, you additionally need to enable the <code class="literal">Public
+        Cloud</code> module. Then install the package with <code class="command">sudo zypper in
+        ansible</code>.
+      </p><div class="complex-example"><div class="example" id="ex-remediate-sle15-ansible" data-id-title="Remediating SLES 15 with Ansible"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 7: </span><span class="title-name">Remediating <span class="productname"><span class="phrase">SLES</span></span> 15 with Ansible </span></span><a title="Permalink" class="permalink" href="index.html#ex-remediate-sle15-ansible">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div><div class="example-contents"><p>
+          For example, to remediate your system using the STIG Ansible playbook for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span> 15
+          provided by the <code class="literal">SCAP Security Guide</code>, use the following command.
+        </p><div id="id-1.14.8.4.3" data-id-title="System configuration changes" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: System configuration changes</div><p>
+            The following command alters the configuration of your system immediately. Make sure to
+            test this thoroughly in a non-production system first.
+          </p></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>ansible-playbook -i "localhost," -c local \
+/usr/share/scap-security-guide/ansible/sle15-playbook-stig.yml</pre></div><p>
+          After the playbook has finished, you are prompted to log in to your system, which is now
+          compliant to the chosen policy.
+        </p></div></div></div></section><section class="sect2" id="openscap-remediate-specific-profile-ansible" data-id-title="Remediating for a specific profile using Ansible"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.6 </span><span class="title-name">Remediating for a specific profile using Ansible</span></span> <a title="Permalink" class="permalink" href="index.html#openscap-remediate-specific-profile-ansible">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+        For simple remediation of a profile without any condition, you can use the shell scripts
+        that are shipped with the SCAP Security Guide.
+      </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            List the Ansible playbooks that are shipped with the SCAP Security Guide.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l /usr/share/scap-security-guide/ansible/</code></pre></div><p>
+            The file names are in the following format:
+            <code class="filename"><em class="replaceable">NAME-OF-PRODUCT</em>-playbook-<em class="replaceable">NAME-OF-PROFILE</em>.yml</code>.
+          </p></li><li class="step"><p>
+            Create a file <code class="filename">ansible_inventory.yml</code> and include the following
+            configuration snippet:
+          </p><div class="verbatim-wrap"><pre class="screen">all:
+  hosts:
+	       localhost
+  vars:
+ 	     ansible_connection: local</pre></div></li><li class="step"><p>
+                Then run the following command:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-playbook -i ansible_inventory.yml
+<em class="replaceable">NAME-OF-PRODUCT</em>-playbook-<em class="replaceable">NAME-OF-PROFILE</em>.yml</code><span class="callout" id="scap-ansible">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#scap-ansible"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                    Substitute <em class="replaceable">NAME-OF-PRODUCT</em> with <code class="literal">sle12</code> or <code class="literal">sle15</code> or <code class="literal">sle16</code>. In addition, substitute
+                    <em class="replaceable">NAME-OF-PROFILE</em> with any of the supported profiles,
+                    as seen in the file names within the directory
+                    <code class="filename">/usr/share/scap-security-guide/ansible/</code>.
+                  </p></td></tr></table></div><p>
+                To skip some of the rules during the execution, use the <code class="option">--tag</code>
+                option. You can find the tag of a specific rule by searching for the rule’s tag in
+                the playbook file. For example, to skip some rules for <span class="productname">
+  <span class="phrase">SUSE Linux Enterprise Server</span>
+  
+  
+</span>, run the following
+                command:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-playbook -i ansible_inventory.yml sle15-playbook-<em class="replaceable">NAME-OF-PROFILE</em>.yml –tag “--tags "package_aide_installed,aide_build_database”</code></pre></div></li><li class="step"><p>
+                To skip some of the rules during the execution, use the <code class="option">--tag</code>
+                option. You can find the tag of a specific rule by searching for the rule’s tag in
+                the playbook file. For example, to skip some rules for <span class="productname"><span class="phrase">SLES</span></span>, run the following
+                command:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update run ansible-playbook -i ansible_inventory.yml
+slmicro<span class="phrase">5</span><span class="phrase">6</span>-playbook-<em class="replaceable">NAME-OF-PROFILE</em>.yml –tag “--tags
+"package_aide_installed,aide_build_database”</code></pre></div></li><li class="step"><p>
+    Reboot the system again to swith to the new snapshot:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div></li></ol></div></div><div id="id-1.14.9.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+                  You might need to repeat the steps above more than twice, because of the
+                  following reasons:
+                </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                      Some of the rules require a restart of the system to take effect.
+                    </p></li><li class="listitem"><p>
+                      The rules are executed in an alphabetical order.
+                    </p></li></ul></div></div></section></section><section class="sect1" id="oscap-related-topics" data-id-title="Related topics"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">Related topics</span></span> <a title="Permalink" class="permalink" href="index.html#oscap-related-topics">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/article_openscap.xml" title="Edit source document"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Check out the <code class="literal">SCAP Security Guide</code> pages online at
+          <a class="link" href="https://www.open-scap.org/security-policies/scap-security-guide/" target="_blank">https://www.open-scap.org/security-policies/scap-security-guide/</a>.
+        </p></li><li class="listitem"><p>
+          For general instructions on how to use the <code class="literal">SCAP Security Guide</code>, see the README in
+          <a class="link" href="https://github.com/ComplianceAsCode/content/" target="_blank">https://github.com/ComplianceAsCode/content/</a>.
+        </p></li><li class="listitem"><p>
+          Find the <em class="citetitle">OpenSCAP User Manual</em> at
+          <a class="link" href="https://static.open-scap.org/openscap-1.2/oscap_user_manual.html" target="_blank">https://static.open-scap.org/openscap-1.2/oscap_user_manual.html</a>.
+        </p></li></ul></div></section><section class="sect1" id="id-1.16" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">12 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.16">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/common_copyright_quick.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+  Copyright © 2006–2026
+
+  SUSE LLC and contributors. All rights reserved.
+ </p><p>
+  Permission is granted to copy, distribute and/or modify this document under
+  the terms of the GNU Free Documentation License, Version 1.2 or (at your
+  option) version 1.3; with the Invariant Section being this copyright notice
+  and license. A copy of the license version 1.2 is included in the section
+  entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+ </p><p>
+  For SUSE trademarks, see
+  <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All
+  third-party trademarks are the property of their respective owners. Trademark
+  symbols (®, ™ etc.) denote trademarks of SUSE and its affiliates.
+  Asterisks (*) denote third-party trademarks.
+ </p><p>
+  All information found in this book has been compiled with utmost attention to
+  detail. However, this does not guarantee complete accuracy. Neither
+  SUSE LLC, its affiliates, the authors nor the translators shall be
+  held liable for possible errors or the consequences thereof.
+ </p></section><section class="sect1" id="id-1.17" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">13 </span><span class="title-name">GNU Free Documentation License</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.17">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a><a target="_blank" class="icon-editsource" href="https://github.com/SUSE/doc-unversioned/edit/main/openscap/xml/common_license_gfdl1.2.xml" title="Edit source document"> </a></div></div></div></div></div><p>
+  Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St,
+  Fifth Floor, Boston, MA 02110-1301 USA. Everyone is permitted to copy and
+  distribute verbatim copies of this license document, but changing it is not
+  allowed.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.4"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.4">#</a></h5></div><p>
+  The purpose of this License is to make a manual, textbook, or other
+  functional and useful document "free" in the sense of freedom: to assure
+  everyone the effective freedom to copy and redistribute it, with or without
+  modifying it, either commercially or non-commercially. Secondarily, this
+  License preserves for the author and publisher a way to get credit for their
+  work, while not being considered responsible for modifications made by
+  others.
+ </p><p>
+  This License is a kind of "copyleft", which means that derivative works of
+  the document must themselves be free in the same sense. It complements the
+  GNU General Public License, which is a copyleft license designed for free
+  software.
+ </p><p>
+  We have designed this License to use it for manuals for free software,
+  because free software needs free documentation: a free program should come
+  with manuals providing the same freedoms that the software does. But this
+  License is not limited to software manuals; it can be used for any textual
+  work, regardless of subject matter or whether it is published as a printed
+  book. We recommend this License principally for works whose purpose is
+  instruction or reference.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.8"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.8">#</a></h5></div><p>
+  This License applies to any manual or other work, in any medium, that
+  contains a notice placed by the copyright holder saying it can be distributed
+  under the terms of this License. Such a notice grants a world-wide,
+  royalty-free license, unlimited in duration, to use that work under the
+  conditions stated herein. The "Document", below, refers to any such manual or
+  work. Any member of the public is a licensee, and is addressed as "you". You
+  accept the license if you copy, modify or distribute the work in a way
+  requiring permission under copyright law.
+ </p><p>
+  A "Modified Version" of the Document means any work containing the Document
+  or a portion of it, either copied verbatim, or with modifications and/or
+  translated into another language.
+ </p><p>
+  A "Secondary Section" is a named appendix or a front-matter section of the
+  Document that deals exclusively with the relationship of the publishers or
+  authors of the Document to the Document's overall subject (or to related
+  matters) and contains nothing that could fall directly within that overall
+  subject. (Thus, if the Document is in part a textbook of mathematics, a
+  Secondary Section may not explain any mathematics.) The relationship could be
+  a matter of historical connection with the subject or with related matters,
+  or of legal, commercial, philosophical, ethical or political position
+  regarding them.
+ </p><p>
+  The "Invariant Sections" are certain Secondary Sections whose titles are
+  designated, as being those of Invariant Sections, in the notice that says
+  that the Document is released under this License. If a section does not fit
+  the above definition of Secondary then it is not allowed to be designated as
+  Invariant. The Document may contain zero Invariant Sections. If the Document
+  does not identify any Invariant Sections then there are none.
+ </p><p>
+  The "Cover Texts" are certain short passages of text that are listed, as
+  Front-Cover Texts or Back-Cover Texts, in the notice that says that the
+  Document is released under this License. A Front-Cover Text may be at most 5
+  words, and a Back-Cover Text may be at most 25 words.
+ </p><p>
+  A "Transparent" copy of the Document means a machine-readable copy,
+  represented in a format whose specification is available to the general
+  public, that is suitable for revising the document straightforwardly with
+  generic text editors or (for images composed of pixels) generic paint
+  programs or (for drawings) some widely available drawing editor, and that is
+  suitable for input to text formatters or for automatic translation to a
+  variety of formats suitable for input to text formatters. A copy made in an
+  otherwise Transparent file format whose markup, or absence of markup, has
+  been arranged to thwart or discourage subsequent modification by readers is
+  not Transparent. An image format is not Transparent if used for any
+  substantial amount of text. A copy that is not "Transparent" is called
+  "Opaque".
+ </p><p>
+  Examples of suitable formats for Transparent copies include plain ASCII
+  without markup, Texinfo input format, LaTeX input format, SGML or XML using a
+  publicly available DTD, and standard-conforming simple HTML, PostScript or
+  PDF designed for human modification. Examples of transparent image formats
+  include PNG, XCF and JPG. Opaque formats include proprietary formats that can
+  be read and edited only by proprietary word processors, SGML or XML for which
+  the DTD and/or processing tools are not generally available, and the
+  machine-generated HTML, PostScript or PDF produced by some word processors
+  for output purposes only.
+ </p><p>
+  The "Title Page" means, for a printed book, the title page itself, plus such
+  following pages as are needed to hold, legibly, the material this License
+  requires to appear in the title page. For works in formats which do not have
+  any title page as such, "Title Page" means the text near the most prominent
+  appearance of the work's title, preceding the beginning of the body of the
+  text.
+ </p><p>
+  A section "Entitled XYZ" means a named subunit of the Document whose title
+  either is precisely XYZ or contains XYZ in parentheses following text that
+  translates XYZ in another language. (Here XYZ stands for a specific section
+  name mentioned below, such as "Acknowledgements", "Dedications",
+  "Endorsements", or "History".) To "Preserve the Title" of such a section when
+  you modify the Document means that it remains a section "Entitled XYZ"
+  according to this definition.
+ </p><p>
+  The Document may include Warranty Disclaimers next to the notice which states
+  that this License applies to the Document. These Warranty Disclaimers are
+  considered to be included by reference in this License, but only as regards
+  disclaiming warranties: any other implication that these Warranty Disclaimers
+  may have is void and has no effect on the meaning of this License.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.19"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.19">#</a></h5></div><p>
+  You may copy and distribute the Document in any medium, either commercially
+  or non-commercially, provided that this License, the copyright notices, and
+  the license notice saying this License applies to the Document are reproduced
+  in all copies, and that you add no other conditions whatsoever to those of
+  this License. You may not use technical measures to obstruct or control the
+  reading or further copying of the copies you make or distribute. However, you
+  may accept compensation in exchange for copies. If you distribute a large
+  enough number of copies you must also follow the conditions in section 3.
+ </p><p>
+  You may also lend copies, under the same conditions stated above, and you may
+  publicly display copies.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.22"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.22">#</a></h5></div><p>
+  If you publish printed copies (or copies in media that commonly have printed
+  covers) of the Document, numbering more than 100, and the Document's license
+  notice requires Cover Texts, you must enclose the copies in covers that
+  carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the
+  front cover, and Back-Cover Texts on the back cover. Both covers must also
+  clearly and legibly identify you as the publisher of these copies. The front
+  cover must present the full title with all words of the title equally
+  prominent and visible. You may add other material on the covers in addition.
+  Copying with changes limited to the covers, as long as they preserve the
+  title of the Document and satisfy these conditions, can be treated as
+  verbatim copying in other respects.
+ </p><p>
+  If the required texts for either cover are too voluminous to fit legibly, you
+  should put the first ones listed (as many as fit reasonably) on the actual
+  cover, and continue the rest onto adjacent pages.
+ </p><p>
+  If you publish or distribute Opaque copies of the Document numbering more
+  than 100, you must either include a machine-readable Transparent copy along
+  with each Opaque copy, or state in or with each Opaque copy a
+  computer-network location from which the general network-using public has
+  access to download using public-standard network protocols a complete
+  Transparent copy of the Document, free of added material. If you use the
+  latter option, you must take reasonably prudent steps, when you begin
+  distribution of Opaque copies in quantity, to ensure that this Transparent
+  copy will remain thus accessible at the stated location until at least one
+  year after the last time you distribute an Opaque copy (directly or through
+  your agents or retailers) of that edition to the public.
+ </p><p>
+  It is requested, but not required, that you contact the authors of the
+  Document well before redistributing any large number of copies, to give them
+  a chance to provide you with an updated version of the Document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.27"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.27">#</a></h5></div><p>
+  You may copy and distribute a Modified Version of the Document under the
+  conditions of sections 2 and 3 above, provided that you release the Modified
+  Version under precisely this License, with the Modified Version filling the
+  role of the Document, thus licensing distribution and modification of the
+  Modified Version to whoever possesses a copy of it. In addition, you must do
+  these things in the Modified Version:
+ </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+    Use in the Title Page (and on the covers, if any) a title distinct from
+    that of the Document, and from those of previous versions (which should, if
+    there were any, be listed in the History section of the Document). You may
+    use the same title as a previous version if the original publisher of that
+    version gives permission.
+   </p></li><li class="listitem"><p>
+    List on the Title Page, as authors, one or more persons or entities
+    responsible for authorship of the modifications in the Modified Version,
+    together with at least five of the principal authors of the Document (all
+    of its principal authors, if it has fewer than five), unless they release
+    you from this requirement.
+   </p></li><li class="listitem"><p>
+    State on the Title page the name of the publisher of the Modified Version,
+    as the publisher.
+   </p></li><li class="listitem"><p>
+    Preserve all the copyright notices of the Document.
+   </p></li><li class="listitem"><p>
+    Add an appropriate copyright notice for your modifications adjacent to the
+    other copyright notices.
+   </p></li><li class="listitem"><p>
+    Include, immediately after the copyright notices, a license notice giving
+    the public permission to use the Modified Version under the terms of this
+    License, in the form shown in the Addendum below.
+   </p></li><li class="listitem"><p>
+    Preserve in that license notice the full lists of Invariant Sections and
+    required Cover Texts given in the Document's license notice.
+   </p></li><li class="listitem"><p>
+    Include an unaltered copy of this License.
+   </p></li><li class="listitem"><p>
+    Preserve the section Entitled "History", Preserve its Title, and add to it
+    an item stating at least the title, year, new authors, and publisher of the
+    Modified Version as given on the Title Page. If there is no section
+    Entitled "History" in the Document, create one stating the title, year,
+    authors, and publisher of the Document as given on its Title Page, then add
+    an item describing the Modified Version as stated in the previous sentence.
+   </p></li><li class="listitem"><p>
+    Preserve the network location, if any, given in the Document for public
+    access to a Transparent copy of the Document, and likewise the network
+    locations given in the Document for previous versions it was based on.
+    These may be placed in the "History" section. You may omit a network
+    location for a work that was published at least four years before the
+    Document itself, or if the original publisher of the version it refers to
+    gives permission.
+   </p></li><li class="listitem"><p>
+    For any section Entitled "Acknowledgements" or "Dedications", Preserve the
+    Title of the section, and preserve in the section all the substance and
+    tone of each of the contributor acknowledgements and/or dedications given
+    therein.
+   </p></li><li class="listitem"><p>
+    Preserve all the Invariant Sections of the Document, unaltered in their
+    text and in their titles. Section numbers or the equivalent are not
+    considered part of the section titles.
+   </p></li><li class="listitem"><p>
+    Delete any section Entitled "Endorsements". Such a section may not be
+    included in the Modified Version.
+   </p></li><li class="listitem"><p>
+    Do not retitle any existing section to be Entitled "Endorsements" or to
+    conflict in title with any Invariant Section.
+   </p></li><li class="listitem"><p>
+    Preserve any Warranty Disclaimers.
+   </p></li></ol></div><p>
+  If the Modified Version includes new front-matter sections or appendices that
+  qualify as Secondary Sections and contain no material copied from the
+  Document, you may at your option designate some or all of these sections as
+  invariant. To do this, add their titles to the list of Invariant Sections in
+  the Modified Version's license notice. These titles must be distinct from any
+  other section titles.
+ </p><p>
+  You may add a section Entitled "Endorsements", provided it contains nothing
+  but endorsements of your Modified Version by various parties--for example,
+  statements of peer review or that the text has been approved by an
+  organization as the authoritative definition of a standard.
+ </p><p>
+  You may add a passage of up to five words as a Front-Cover Text, and a
+  passage of up to 25 words as a Back-Cover Text, to the end of the list of
+  Cover Texts in the Modified Version. Only one passage of Front-Cover Text and
+  one of Back-Cover Text may be added by (or through arrangements made by) any
+  one entity. If the Document already includes a cover text for the same cover,
+  previously added by you or by arrangement made by the same entity you are
+  acting on behalf of, you may not add another; but you may replace the old
+  one, on explicit permission from the previous publisher that added the old
+  one.
+ </p><p>
+  The author(s) and publisher(s) of the Document do not by this License give
+  permission to use their names for publicity for or to assert or imply
+  endorsement of any Modified Version.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.34"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.34">#</a></h5></div><p>
+  You may combine the Document with other documents released under this
+  License, under the terms defined in section 4 above for modified versions,
+  provided that you include in the combination all of the Invariant Sections of
+  all of the original documents, unmodified, and list them all as Invariant
+  Sections of your combined work in its license notice, and that you preserve
+  all their Warranty Disclaimers.
+ </p><p>
+  The combined work need only contain one copy of this License, and multiple
+  identical Invariant Sections may be replaced with a single copy. If there are
+  multiple Invariant Sections with the same name but different contents, make
+  the title of each such section unique by adding at the end of it, in
+  parentheses, the name of the original author or publisher of that section if
+  known, or else a unique number. Make the same adjustment to the section
+  titles in the list of Invariant Sections in the license notice of the
+  combined work.
+ </p><p>
+  In the combination, you must combine any sections Entitled "History" in the
+  various original documents, forming one section Entitled "History"; likewise
+  combine any sections Entitled "Acknowledgements", and any sections Entitled
+  "Dedications". You must delete all sections Entitled "Endorsements".
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.38"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.38">#</a></h5></div><p>
+  You may make a collection consisting of the Document and other documents
+  released under this License, and replace the individual copies of this
+  License in the various documents with a single copy that is included in the
+  collection, provided that you follow the rules of this License for verbatim
+  copying of each of the documents in all other respects.
+ </p><p>
+  You may extract a single document from such a collection, and distribute it
+  individually under this License, provided you insert a copy of this License
+  into the extracted document, and follow this License in all other respects
+  regarding verbatim copying of that document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.41"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.41">#</a></h5></div><p>
+  A compilation of the Document or its derivatives with other separate and
+  independent documents or works, in or on a volume of a storage or
+  distribution medium, is called an "aggregate" if the copyright resulting from
+  the compilation is not used to limit the legal rights of the compilation's
+  users beyond what the individual works permit. When the Document is included
+  in an aggregate, this License does not apply to the other works in the
+  aggregate which are not themselves derivative works of the Document.
+ </p><p>
+  If the Cover Text requirement of section 3 is applicable to these copies of
+  the Document, then if the Document is less than one half of the entire
+  aggregate, the Document's Cover Texts may be placed on covers that bracket
+  the Document within the aggregate, or the electronic equivalent of covers if
+  the Document is in electronic form. Otherwise they must appear on printed
+  covers that bracket the whole aggregate.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.44"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.44">#</a></h5></div><p>
+  Translation is considered a kind of modification, so you may distribute
+  translations of the Document under the terms of section 4. Replacing
+  Invariant Sections with translations requires special permission from their
+  copyright holders, but you may include translations of some or all Invariant
+  Sections in addition to the original versions of these Invariant Sections.
+  You may include a translation of this License, and all the license notices in
+  the Document, and any Warranty Disclaimers, provided that you also include
+  the original English version of this License and the original versions of
+  those notices and disclaimers. In case of a disagreement between the
+  translation and the original version of this License or a notice or
+  disclaimer, the original version will prevail.
+ </p><p>
+  If a section in the Document is Entitled "Acknowledgements", "Dedications",
+  or "History", the requirement (section 4) to Preserve its Title (section 1)
+  will typically require changing the actual title.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.47"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.47">#</a></h5></div><p>
+  You may not copy, modify, sublicense, or distribute the Document except as
+  expressly provided for under this License. Any other attempt to copy, modify,
+  sublicense or distribute the Document is void, and will automatically
+  terminate your rights under this License. However, parties who have received
+  copies, or rights, from you under this License will not have their licenses
+  terminated so long as such parties remain in full compliance.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.49"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.49">#</a></h5></div><p>
+  The Free Software Foundation may publish new, revised versions of the GNU
+  Free Documentation License from time to time. Such new versions will be
+  similar in spirit to the present version, but may differ in detail to address
+  new problems or concerns. See
+  <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">http://www.gnu.org/copyleft/</a>.
+ </p><p>
+  Each version of the License is given a distinguishing version number. If the
+  Document specifies that a particular numbered version of this License "or any
+  later version" applies to it, you have the option of following the terms and
+  conditions either of that specified version or of any later version that has
+  been published (not as a draft) by the Free Software Foundation. If the
+  Document does not specify a version number of this License, you may choose
+  any version ever published (not as a draft) by the Free Software Foundation.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.52"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="index.html#id-1.17.52">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+  If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+  replace the “with...Texts.” line with this:
+ </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+  If you have Invariant Sections without Cover Texts, or some other combination
+  of the three, merge those two alternatives to suit the situation.
+ </p><p>
+  If your document contains nontrivial examples of program code, we recommend
+  releasing these examples in parallel under your choice of free software
+  license, such as the GNU General Public License, to permit their use in free
+  software.
+ </p></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="sect1"><a href="index.html#openscap-whatis"><span class="title-number">1 </span><span class="title-name">What are SCAP and OpenSCAP?</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-benefits"><span class="title-number">2 </span><span class="title-name">Benefits</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-prepare-infrastructure"><span class="title-number">3 </span><span class="title-name">Infrastructure Preparation</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-installation"><span class="title-number">4 </span><span class="title-name">Installation</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-components"><span class="title-number">5 </span><span class="title-name">Important SCAP components</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-ssg"><span class="title-number">6 </span><span class="title-name">SCAP Security Guide content and directories</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-ssg-profiles"><span class="title-number">7 </span><span class="title-name">SCAP Security Guide profiles</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-customize-scap-security-guide"><span class="title-number">8 </span><span class="title-name">Customizing the SCAP Security Guide</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-scan"><span class="title-number">9 </span><span class="title-name">Vulnerability scanning</span></a></span></li><li><span class="sect1"><a href="index.html#openscap-remediate"><span class="title-number">10 </span><span class="title-name">Vulnerability remediation</span></a></span></li><li><span class="sect1"><a href="index.html#oscap-related-topics"><span class="title-number">11 </span><span class="title-name">Related topics</span></a></span></li><li><span class="sect1"><a href="index.html#id-1.16"><span class="title-number">12 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="sect1"><a href="index.html#id-1.17"><span class="title-number">13 </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
